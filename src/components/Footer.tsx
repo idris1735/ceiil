@@ -1,370 +1,262 @@
-'use client';
-
+import Image from 'next/image';
 import Link from 'next/link';
 
 const quickLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Who We Are', href: '/about' },
-  { label: 'Our Board', href: '/about/board' },
-  { label: 'Our Management', href: '/about/management' },
-  { label: 'Strategic Alliances', href: '/alliances' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'About', href: '#about', color: '#38bdf8' },      // Sky blue
+  { label: 'Products', href: '#products', color: '#f59e0b' },  // Amber
+  { label: 'Values', href: '#values', color: '#ec4899' },      // Pink
+  { label: 'Alliances', href: '#alliances', color: '#10b981' },  // Emerald
+  { label: 'Contact', href: '#contact', color: '#a855f7' },    // Purple
 ];
 
-const products = [
-  { label: 'Motor Insurance', href: '/products/motor' },
-  { label: 'Marine Insurance', href: '/products/marine' },
-  { label: 'Property Insurance', href: '/products/property' },
-  { label: 'Liability Insurance', href: '/products/liability' },
-  { label: 'Engineering Insurance', href: '/products/engineering' },
-  { label: 'Oil & Gas Insurance', href: '/products/oil-gas' },
-  { label: 'Travel Insurance', href: '/products/travel' },
-  { label: 'General Accident', href: '/products/general' },
+const productLinks = [
+  { label: 'Marine Insurance', href: 'https://ceiil.ng/index.php/marine-insurance/', color: '#60a5fa' },   // Light blue
+  { label: 'Motor Insurance', href: 'https://ceiil.ng/index.php/motor-insurance/', color: '#f87171' },     // Red
+  { label: 'Property Insurance', href: 'https://ceiil.ng/index.php/property-insurance/', color: '#34d399' }, // Green
+  { label: 'Liability Insurance', href: 'https://ceiil.ng/index.php/liability-insurance/', color: '#c084fc' }, // Light purple
+  { label: 'Engineering Insurance', href: 'https://ceiil.ng/index.php/engineering-insurance/', color: '#fbbf24' }, // Yellow-gold
 ];
+
+function getLinkIcon(label: string, color: string) {
+  switch (label) {
+    // Navigate icons
+    case 'About':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      );
+    case 'Products':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 'Values':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+      );
+    case 'Alliances':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case 'Contact':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      );
+    
+    // Product icons
+    case 'Marine Insurance':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M2 12h20" />
+          <path d="M12 2v20" />
+          <path d="m17 7-5-5-5 5" />
+        </svg>
+      );
+    case 'Motor Insurance':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <rect x="2" y="4" width="20" height="12" rx="2" ry="2" />
+          <circle cx="7" cy="20" r="2" />
+          <circle cx="17" cy="20" r="2" />
+          <path d="M7 16H2" />
+          <path d="M22 16h-5" />
+        </svg>
+      );
+    case 'Property Insurance':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      );
+    case 'Liability Insurance':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <rect x="3" y="11" width="18" height="10" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      );
+    case 'Engineering Insurance':
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="footer" role="contentinfo">
-      <div className="container">
-        <div className="footer-grid">
-
-          {/* ── Brand Column ── */}
+    <footer className="footer-shell" id="contact">
+      <div className="section-shell">
+        <div className="footer-panel">
           <div className="footer-brand">
-            <div className="footer-logo">
-              <div className="footer-logo-mark">
-                <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="18" cy="18" r="7" fill="#9B1C33" opacity="0.9"/>
-                  <text x="18" y="22.5" textAnchor="middle" fontFamily="Nunito, sans-serif" fontWeight="900" fontSize="9" fill="white" letterSpacing="-0.5">C</text>
-                </svg>
-              </div>
-              <div>
-                <div className="footer-logo-name">
-                  Capital <span style={{ color: '#9B1C33' }}>Express</span>
-                </div>
-                <div className="footer-logo-sub">Indemnity Insurance</div>
-              </div>
+            <div className="footer-logos-container" style={{ marginBottom: '24px' }}>
+              <Image
+                src="/media/Official-Capital-Express-Indemnity-Logo-Colored.png"
+                alt="Capital Express Indemnity Insurance Limited"
+                width={360}
+                height={110}
+                className="footer-logo"
+                style={{ objectFit: 'contain', height: '104px', width: 'auto', display: 'block' }}
+              />
             </div>
-
-            <p className="footer-tagline">
-              We don't just insure — we innovate, advocate, and elevate.
-              Your trusted risk advisor, protecting what matters most.
-            </p>
-
-            <div className="footer-actions">
-              <Link href="/buy" className="footer-action-btn footer-action-primary">Buy a Policy</Link>
-              <Link href="/claims" className="footer-action-btn footer-action-secondary">Make a Claim</Link>
-            </div>
-
-            {/* Social */}
-            <div className="footer-social">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
-                <LinkedInIcon />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter/X">
-                <XIcon />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
+            
+            <div className="footer-socials">
+              <a href="https://www.facebook.com/profile.php?id=61568368362283" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <FacebookIcon />
               </a>
+              <a href="https://twitter.com/CapitalExpressA" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <TwitterIcon />
+              </a>
+              <a href="https://www.instagram.com/ceiilng/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <InstagramIcon />
+              </a>
+              <a href="https://www.linkedin.com/company/capital-express-assurance-limited" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <LinkedInIcon />
+              </a>
             </div>
           </div>
 
-          {/* ── Quick Links ── */}
-          <div className="footer-col">
-            <h3 className="footer-col-title">Quick Links</h3>
-            <ul className="footer-links-list">
+          <div className="footer-column">
+            <h3>Navigate</h3>
+            <div className="footer-links">
               {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="footer-link">{link.label}</Link>
-                </li>
+                <Link key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                  {getLinkIcon(link.label, link.color)}
+                  <span style={{ marginLeft: '8px' }}>{link.label}</span>
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          {/* ── Products ── */}
-          <div className="footer-col">
-            <h3 className="footer-col-title">Our Products</h3>
-            <ul className="footer-links-list">
-              {products.map((product) => (
-                <li key={product.href}>
-                  <Link href={product.href} className="footer-link">{product.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* ── Contact ── */}
-          <div className="footer-col">
-            <h3 className="footer-col-title">Get In Touch</h3>
-            <div className="footer-contact-items">
-              <div className="footer-contact-item">
-                <div className="footer-contact-icon">📍</div>
-                <p>17, Bishop Kale Close,<br/>Off Kasumu Ekemode Street,<br/>Off Saka Tinubu Street,<br/>Victoria Island, Lagos — Nigeria</p>
-              </div>
-              <div className="footer-contact-item">
-                <div className="footer-contact-icon">🕐</div>
-                <p>Monday – Friday<br/>08:00am – 5:00pm</p>
-              </div>
-              <div className="footer-contact-item">
-                <div className="footer-contact-icon">✉️</div>
-                <a href="mailto:info@ceiil.ng" className="footer-link">info@ceiil.ng</a>
-              </div>
             </div>
+          </div>
 
-            {/* NAICOM Regulated Badge */}
-            <div className="footer-regulated">
-              <div className="regulated-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#1BB0CE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <div className="footer-column">
+            <h3>Products</h3>
+            <div className="footer-links">
+              {productLinks.map((link) => (
+                <a key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                  {getLinkIcon(link.label, link.color)}
+                  <span style={{ marginLeft: '8px' }}>{link.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="footer-column">
+            <h3>Contact</h3>
+            <div className="footer-contact" style={{ gap: '16px' }}>
+              <div className="footer-contact-item" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '4px' }}>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
                 </svg>
-                Regulated by NAICOM
+                <p style={{ margin: 0, fontSize: '0.94rem', lineHeight: '1.5' }}>
+                  17, Bishop Kale Close, Off Kasumu Ekemode Street, Off Saka Tinubu Street, Victoria Island, Lagos, Nigeria
+                </p>
+              </div>
+
+              <div className="footer-contact-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <a href="tel:02013302950" className="footer-link">020-1330-2950</a>
+                  <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
+                  <a href="tel:07059770508" className="footer-link">070-5977-0508</a>
+                </div>
+              </div>
+
+              <div className="footer-contact-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <a href="mailto:info@ceiil.ng" className="footer-link">info@ceiil.ng</a>
+                  <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
+                  <a href="mailto:hello@ceiil.ng" className="footer-link">hello@ceiil.ng</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── Bottom Bar ── */}
         <div className="footer-bottom">
-          <p className="footer-copy">
-            © {currentYear} Capital Express Indemnity Insurance Limited. All rights reserved.
-          </p>
+          <div className="footer-bottom-text">
+            <p>© 2025 Capital Express Indemnity Insurance Limited, All Rights Reserved.</p>
+            <p className="footer-regulatory">Authorized and Regulated by the National Insurance Commission.</p>
+          </div>
+          
+          <div className="footer-bottom-nia">
+            <Image
+              src="/media/cropped-NIA-logo-qf0vpvuzjulo0lkfzeyy1p1z2yfkrarivm3x56hil4.png"
+              alt="National Insurance Association Logo"
+              width={160}
+              height={60}
+              style={{ objectFit: 'contain', height: '56px', width: 'auto', display: 'block' }}
+            />
+          </div>
+
           <div className="footer-bottom-links">
-            <Link href="/privacy" className="footer-bottom-link">Privacy Policy</Link>
-            <Link href="/terms" className="footer-bottom-link">Terms of Use</Link>
+            <a href="http://ceiil.ng/index.php/privacy-policy/">Privacy Policy</a>
+            <a href="https://ceiil.ng/index.php/our-financials/">Financials</a>
+            <a href="http://ceiil.ng/wp-content/uploads/2025/06/CAPEX-Indemnity-Insurance-Limited-Whistleblow-Policy.pdf" target="_blank" rel="noopener noreferrer">Whistleblowing Policy</a>
+            <a href="https://services.ndpc.gov.ng/portal/?page=verify-c&d=ang38719805065&id=21251&sn=1d0606f0a5d90959d3e32ac2d4ce9739&t=audit_filing&tp=nwp_audit" target="_blank" rel="noopener noreferrer">NDPC Compliance</a>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .footer {
-          background: #00425B;
-          color: rgba(255,255,255,0.75);
-          padding: 5rem 0 0;
-        }
-        .footer-grid {
-          display: grid;
-          grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-          gap: 3rem;
-          padding-bottom: 4rem;
-        }
-        /* Brand */
-        .footer-brand {}
-        .footer-logo {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 1.25rem;
-        }
-        .footer-logo-mark {
-          flex-shrink: 0;
-        }
-        .footer-logo-name {
-          font-family: 'Nunito', sans-serif;
-          font-weight: 900;
-          font-size: 1.1rem;
-          color: white;
-          letter-spacing: -0.02em;
-        }
-        .footer-logo-sub {
-          font-size: 0.6rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.5);
-        }
-        .footer-tagline {
-          font-size: 0.875rem;
-          line-height: 1.7;
-          color: rgba(255,255,255,0.6);
-          margin-bottom: 1.5rem;
-          max-width: 280px;
-        }
-        .footer-actions {
-          display: flex;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
-          flex-wrap: wrap;
-        }
-        .footer-action-btn {
-          display: inline-block;
-          padding: 0.6rem 1.25rem;
-          border-radius: 9999px;
-          font-size: 0.8125rem;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .footer-action-primary {
-          background: #9B1C33;
-          color: white;
-        }
-        .footer-action-primary:hover {
-          background: #7A1428;
-          transform: translateY(-1px);
-        }
-        .footer-action-secondary {
-          background: rgba(255,255,255,0.1);
-          color: white;
-          border: 1px solid rgba(255,255,255,0.2);
-        }
-        .footer-action-secondary:hover {
-          background: rgba(255,255,255,0.18);
-          transform: translateY(-1px);
-        }
-        .footer-social {
-          display: flex;
-          gap: 0.75rem;
-        }
-        .social-link {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.1);
-          color: rgba(255,255,255,0.7);
-          transition: all 0.2s ease;
-          text-decoration: none;
-        }
-        .social-link:hover {
-          background: #1BB0CE;
-          color: white;
-          transform: translateY(-2px);
-        }
-        /* Columns */
-        .footer-col-title {
-          font-family: 'Nunito', sans-serif;
-          font-size: 0.8125rem;
-          font-weight: 800;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: white;
-          margin-bottom: 1.25rem;
-        }
-        .footer-links-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.625rem;
-        }
-        .footer-link {
-          font-size: 0.875rem;
-          color: rgba(255,255,255,0.6);
-          text-decoration: none;
-          transition: color 0.15s ease;
-        }
-        .footer-link:hover {
-          color: #1BB0CE;
-        }
-        /* Contact */
-        .footer-contact-items {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          margin-bottom: 1.25rem;
-        }
-        .footer-contact-item {
-          display: flex;
-          gap: 0.75rem;
-          align-items: flex-start;
-          font-size: 0.8125rem;
-          line-height: 1.6;
-          color: rgba(255,255,255,0.6);
-        }
-        .footer-contact-icon {
-          flex-shrink: 0;
-          font-size: 0.875rem;
-          margin-top: 0.1rem;
-        }
-        .footer-regulated {
-          margin-top: 0.75rem;
-        }
-        .regulated-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.4rem 0.875rem;
-          background: rgba(27, 176, 206, 0.12);
-          border: 1px solid rgba(27, 176, 206, 0.25);
-          border-radius: 9999px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: #1BB0CE;
-        }
-        /* Bottom Bar */
-        .footer-bottom {
-          border-top: 1px solid rgba(255,255,255,0.08);
-          padding: 1.5rem 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-        .footer-copy {
-          font-size: 0.8125rem;
-          color: rgba(255,255,255,0.4);
-        }
-        .footer-bottom-links {
-          display: flex;
-          gap: 1.5rem;
-        }
-        .footer-bottom-link {
-          font-size: 0.8125rem;
-          color: rgba(255,255,255,0.4);
-          text-decoration: none;
-          transition: color 0.15s ease;
-        }
-        .footer-bottom-link:hover {
-          color: rgba(255,255,255,0.8);
-        }
-        /* Responsive */
-        @media (max-width: 1024px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-          }
-        }
-        @media (max-width: 640px) {
-          .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          .footer-bottom {
-            flex-direction: column;
-            text-align: center;
-          }
-        }
-      `}</style>
     </footer>
-  );
-}
-
-function LinkedInIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-      <circle cx="4" cy="4" r="2"/>
-    </svg>
-  );
-}
-
-function XIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
   );
 }
 
 function FacebookIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
 }
+
+function TwitterIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+

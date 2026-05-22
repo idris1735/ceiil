@@ -1,1125 +1,1000 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { SkeletonHeroSlide, SkeletonQuickActions, SkeletonProductsGrid } from '@/components/Skeleton';
+import { useEffect, useState } from 'react';
 
-/* ── Hero Carousel Data ──────────────────────────────────── */
 const slides = [
   {
-    id: 1,
-    eyebrow: 'Motor Insurance',
-    headlinePart1: 'The Small',
-    headlineAccent: 'Cover',
-    headlinePart2: 'That Saves Big Trouble',
-    body: 'Every journey carries risk. Our motor insurance keeps you moving — with comprehensive coverage that pays when it counts most.',
-    ctaPrimary: { label: 'Get Motor Cover', href: '/products/motor' },
-    ctaSecondary: { label: 'View All Products', href: '/products' },
+    id: 'motor',
+    title: 'The small cover that saves big trouble.',
     image: '/media/The-small-cover-scaled.jpg',
-    theme: 'light',
+    imagePosition: 'center center',
   },
   {
-    id: 2,
-    eyebrow: 'Property Insurance',
-    headlinePart1: 'Protect the',
-    headlineAccent: 'Pride',
-    headlinePart2: "You've Built",
-    body: "Your home is your greatest asset. Our building and property insurance shields everything you've worked hard to own.",
-    ctaPrimary: { label: 'Protect My Property', href: '/products/property' },
-    ctaSecondary: { label: 'Learn More', href: '/about' },
-    image: '/media/protect-the-pride-you-built-scaled.jpg',
-    theme: 'light',
-  },
-  {
-    id: 3,
-    eyebrow: 'Business Strategy',
-    headlinePart1: 'Master Every',
-    headlineAccent: 'Move',
-    headlinePart2: '— Let Insurance Be Your Winning Strategy',
-    body: "In business, every decision is a calculated risk. We turn that risk into your competitive advantage with expert indemnity solutions.",
-    ctaPrimary: { label: 'Get Covered Today', href: '/buy' },
-    ctaSecondary: { label: 'Who We Are', href: '/about' },
+    id: 'strategy',
+    title: 'Master every move.',
     image: '/media/CEIIL-Wallpaper1-scaled.jpg',
-    theme: 'dark',
+    imagePosition: '78% center',
+  },
+  {
+    id: 'property',
+    title: "Protect the pride you've built.",
+    image: '/media/protect-the-pride-you-built-scaled.jpg',
+    imagePosition: '22% center',
   },
 ];
 
-/* ── Products ────────────────────────────────────────────── */
+const quickActions = [
+  {
+    label: 'Buy a Policy',
+    href: 'https://ceiil.ng/index.php/contact-us/',
+    detail: 'Start a conversation with CEIIL',
+  },
+  {
+    label: 'Make a Claim',
+    href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/',
+    detail: 'Go straight to the claim forms page',
+  },
+  {
+    label: 'Renew a Policy',
+    href: 'https://www.ceiil.com.ng/',
+    detail: 'Continue to the renewal portal',
+  },
+];
+
 const products = [
-  { icon: '🚗', name: 'Motor Insurance', desc: 'Comprehensive cover for every vehicle on every road.', href: '/products/motor', color: '#1BB0CE' },
-  { icon: '⚓', name: 'Marine Insurance', desc: 'Protecting cargo and vessels across international waters.', href: '/products/marine', color: '#00425B' },
-  { icon: '🏢', name: 'Property Insurance', desc: 'Safeguarding your buildings and business premises.', href: '/products/property', color: '#9B1C33' },
-  { icon: '⚖️', name: 'Liability Insurance', desc: 'Shield your business from third-party claims and suits.', href: '/products/liability', color: '#1BB0CE' },
-  { icon: '⚙️', name: 'Engineering Insurance', desc: 'Coverage for construction, plant, and machinery risks.', href: '/products/engineering', color: '#00425B' },
-  { icon: '🛢️', name: 'Oil & Gas Insurance', desc: 'Specialist cover for Nigeria\'s energy sector.', href: '/products/oil-gas', color: '#9B1C33' },
-  { icon: '✈️', name: 'Travel Insurance', desc: 'Peace of mind for every journey, near or far.', href: '/products/travel', color: '#1BB0CE' },
-  { icon: '🛡️', name: 'General Accident', desc: 'Broad accidental damage and personal injury coverage.', href: '/products/general', color: '#00425B' },
-];
-
-/* ── Why Choose Us ───────────────────────────────────────── */
-const pillars = [
   {
-    icon: '💎',
-    title: 'Value & Optimisation',
-    body: 'We slash your insurance costs while minimising your risk profile. At CEIIL, protecting you is not a cost — it\'s an investment in your growth.',
+    name: 'Marine Insurance',
+    summary: 'Cargo, hull, freight, and transport risk protection across sea, air, and land movements.',
+    href: 'https://ceiil.ng/index.php/marine-insurance/',
   },
   {
-    icon: '🤝',
-    title: 'Client Advocacy',
-    body: 'Your needs are our number one priority. We inspire confidence through unparalleled risk advisory services and unwavering expertise.',
+    name: 'Motor Insurance',
+    summary: 'Third-party, fire and theft, comprehensive, extended comprehensive, and goods in transit cover.',
+    href: 'https://ceiil.ng/index.php/motor-insurance/',
   },
   {
-    icon: '🔮',
-    title: 'Trusted Risk Advisor',
-    body: 'We work closely with you to tailor solutions that fit your unique needs, building a relationship based on trust and mutual respect.',
+    name: 'Property Insurance',
+    summary: 'Fire and special perils, burglary, and protection for buildings, contents, and operating continuity.',
+    href: 'https://ceiil.ng/index.php/property-insurance/',
   },
   {
-    icon: '🚀',
-    title: 'The CEIIL Difference',
-    body: 'We don\'t just insure — we innovate, advocate, and elevate. Our creative, sage-like approach transforms how businesses perceive risk.',
+    name: 'Liability Insurance',
+    summary: 'Fidelity guarantee and professional indemnity solutions for legal and operational exposure.',
+    href: 'https://ceiil.ng/index.php/liability-insurance/',
+  },
+  {
+    name: 'Engineering Insurance',
+    summary: 'Plant all risks, erection all risks, machinery breakdown, and contractor all-risk cover.',
+    href: 'https://ceiil.ng/index.php/engineering-insurance/',
   },
 ];
 
-/* ── Core Values ─────────────────────────────────────────── */
-const values = [
-  { icon: '👥', title: 'Customer Dedication', body: 'Exceptional service to meet and exceed our clients\' needs and expectations.' },
-  { icon: '🫱', title: 'Respect for Individuals', body: 'Every individual treated with respect and dignity, fostering an inclusive environment.' },
-  { icon: '⚖️', title: 'Integrity', body: 'The highest standards of honesty, transparency, and ethical conduct in all our dealings.' },
-  { icon: '💡', title: 'Creativity', body: 'Out-of-the-box thinking to develop innovative insurance solutions for evolving customer needs.' },
-  { icon: '🤜', title: 'Teamwork', body: 'Collaboration and mutual support, leveraging each member\'s strengths to achieve common goals.' },
+function HeartShieldIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="value-card-icon">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M12 14.5s-1.5-1.5-1.5-2.5a1.5 1.5 0 0 1 3 0c0 1-1.5 2.5-1.5 2.5z" />
+    </svg>
+  );
+}
+
+function RespectIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="value-card-icon">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+function ShieldCheckIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="value-card-icon">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+function CreativityIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="value-card-icon">
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+    </svg>
+  );
+}
+
+function TeamworkIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="value-card-icon">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+const coreValuesData = [
+  {
+    name: 'Customer Dedication',
+    desc: "We put our customers first and remain committed to meeting their needs.",
+    num: '01',
+    color: 'linear-gradient(135deg, #004058 0%, #00bcd4 100%)',
+    ribbonText: 'DEDICATION • SERVICE • TRUST • CARE • ',
+    icon: HeartShieldIcon,
+  },
+  {
+    name: 'Respect for Individuals',
+    desc: "We value people, diversity, dignity, and mutual respect.",
+    num: '02',
+    color: 'linear-gradient(135deg, #b02038 0%, #e91e63 100%)',
+    ribbonText: 'RESPECT • EQUITY • DIGNITY • INCLUSION • ',
+    icon: RespectIcon,
+  },
+  {
+    name: 'Integrity',
+    desc: "We uphold trust, transparency, and accountability in all we do.",
+    num: '03',
+    color: 'linear-gradient(135deg, #003247 0%, #ffb300 100%)',
+    ribbonText: 'INTEGRITY • TRUTH • HONESTY • ETHICS • ',
+    icon: ShieldCheckIcon,
+  },
+  {
+    name: 'Creativity',
+    desc: "We embrace innovation and practical ideas that improve service delivery.",
+    num: '04',
+    color: 'linear-gradient(135deg, #3b0764 0%, #a855f7 100%)',
+    ribbonText: 'CREATIVITY • IDEA • VISION • FUTURE • ',
+    icon: CreativityIcon,
+  },
+  {
+    name: 'Teamwork',
+    desc: "We work together to deliver better outcomes for customers and stakeholders.",
+    num: '05',
+    color: 'linear-gradient(135deg, #064e3b 0%, #10b981 100%)',
+    ribbonText: 'TEAMWORK • UNITY • SYNERGY • COLLABORATE • ',
+    icon: TeamworkIcon,
+  },
 ];
 
-/* ── Strategic Alliances ──────────────────────────────────── */
-const alliances = {
-  international: [
-    { name: 'Korean Re', logo: '/media/koreanpr-1.png' },
-    { name: 'The Hartford', logo: '/media/thehartford-1.png' },
-    { name: 'Artrium', logo: '/media/artrium-1.png' },
-    { name: 'Thomas Miller', logo: '/media/thomasmiller-1.png' },
-    { name: 'Markel', logo: '/media/markel-1.png' },
-    { name: 'Gallagher Re', logo: '/media/gallagherre-2.png' },
-    { name: 'Apollo', logo: '/media/apollo-1.png' },
-  ],
-  regional: [
-    { name: 'WAICA Re', logo: '/media/waica-1.png' },
-    { name: 'FBS Re', logo: '/media/fbs-re-1.png' },
-    { name: 'Continental Re', logo: '/media/continental-1.png' },
-    { name: 'Africa Re', logo: '/media/africa-re-1.png' },
-  ],
-  brokers: [
-    { name: 'Gallagher', logo: '/media/gallagherre-3.png' },
-    { name: 'Jordans Global', logo: '/media/jordansglobal-1.png' },
-    { name: 'Lockton', logo: '/media/lockton-1.png' },
-  ],
-};
 
-/* ═══════════════════════════════════════════════════════════
-   HOME PAGE
-═══════════════════════════════════════════════════════════ */
+const alliances = [
+  '/media/koreanpr-1.png',
+  '/media/thehartford-1.png',
+  '/media/artrium-1.png',
+  '/media/thomasmiller-1.png',
+  '/media/markel-1.png',
+  '/media/gallagherre-2.png',
+  '/media/apollo-1.png',
+  '/media/waica-1.png',
+  '/media/fbs-re-1.png',
+  '/media/continental-1.png',
+  '/media/africa-re-1.png',
+  '/media/jordansglobal-1.png',
+  '/media/lockton-1.png',
+];
+
 export default function HomePage() {
-  const [mounted, setMounted] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [hoveredPhil, setHoveredPhil] = useState<number | null>(null);
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    setMounted(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Smooth 1-second loading simulation to showcase skeletons
-    return () => clearTimeout(timer);
+    const timer = window.setInterval(() => {
+      setCurrentSlide((value) => (value + 1) % slides.length);
+    }, 9200);
+
+    return () => window.clearInterval(timer);
   }, []);
 
-  if (!mounted || loading) {
-    return (
-      <div className="skeleton-loading-container" role="status" aria-label="Loading page content">
-        <SkeletonHeroSlide />
-        <SkeletonQuickActions />
-        <SkeletonProductsGrid />
-        <style jsx>{`
-          .skeleton-loading-container {
-            min-height: 100vh;
-            background: #F7F8FA;
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.02,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('data-reveal-id');
+          if (id) {
+            setRevealed((prev) => {
+              if (prev[id]) return prev;
+              return { ...prev, [id]: true };
+            });
           }
-        `}</style>
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('[data-reveal-id]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
+  return (
+    <div className="home-page">
+      <section className="hero-stage">
+        <div className="hero-shell">
+          <div className="hero-backdrop">
+            {slides.map((item, index) => (
+              <div key={item.id} className={`hero-image-frame ${index === currentSlide ? 'hero-image-frame-active' : ''}`}>
+                <Image
+                  src={item.image}
+                  alt=""
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: item.imagePosition }}
+                />
+              </div>
+            ))}
+            <div className="hero-backdrop-wash" />
+            <div className="hero-backdrop-glow" />
+          </div>
+
+          <div className="hero-overlay-content">
+            <div className="hero-text-container">
+              <span className="hero-eyebrow">Capital Express Indemnity Insurance</span>
+              <h1 className="hero-title">Protecting What Matters Most</h1>
+              <p className="hero-subtitle">
+                Insurance solutions designed to protect your assets, family, business, and future.
+              </p>
+              <div className="hero-cta-buttons">
+                <a href="https://ceiil.ng/index.php/contact-us/" className="button-primary hero-btn">
+                  <span>Get a Quote</span>
+                  <ArrowIcon />
+                </a>
+                <a href="https://ceiil.ng/index.php/motor-insurance-claim-2/" className="button-secondary hero-btn">
+                  <span>Report a Claim</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-content-shell">
+            <div className="hero-controls">
+              {slides.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`hero-dot ${index === currentSlide ? 'hero-dot-active' : ''}`}
+                  aria-label={`Show ${item.title}`}
+                  onClick={() => setCurrentSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="actions-shell info-card">
+          {quickActions.map((action, index) => (
+            <a
+              key={action.label}
+              href={action.href}
+              data-reveal-id={`action-${index}`}
+              className={`action-card ${
+                index === 0 ? 'reveal-left' : index === 1 ? 'reveal-up' : 'reveal-right'
+              } ${revealed[`action-${index}`] ? 'reveal-in-view' : ''}`}
+            >
+              <div className="action-index">0{index + 1}</div>
+              <div className="action-text">
+                <h2>{action.label}</h2>
+                <p>{action.detail}</p>
+              </div>
+              <ArrowIcon />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="solutions-section" id="products">
+        <div className="section-shell solutions-layout">
+          <div 
+            data-reveal-id="solutions-intro" 
+            className={`solutions-intro reveal-left ${revealed['solutions-intro'] ? 'reveal-in-view' : ''}`}
+          >
+            <p className="section-kicker">Solutions for You</p>
+            <h2 className="section-title">Get Your Kind Of Solution.</h2>
+            <p className="section-copy">
+              Explore our comprehensive portfolio of general insurance plans designed to protect your assets, mitigate risks, and safeguard your peace of mind.
+            </p>
+            <div className="button-row" style={{ marginTop: '32px' }}>
+              <a href="https://ceiil.ng/index.php/contact-us/" className="button-primary">
+                <span>Talk to an Advisor</span>
+                <ArrowIcon />
+              </a>
+            </div>
+          </div>
+
+          <div className="solutions-list">
+            {products.map((product, index) => {
+              const Icon = productIcons[index];
+              return (
+                <a
+                  key={product.name}
+                  href={product.href}
+                  data-reveal-id={`solution-${index}`}
+                  className={`solution-item ${
+                    index % 2 === 0 ? 'reveal-right' : 'reveal-left'
+                  } reveal-delay-${(index % 5) + 1} ${revealed[`solution-${index}`] ? 'reveal-in-view' : ''}`}
+                >
+                  <div className="solution-icon-wrapper">
+                    <Icon />
+                  </div>
+                  <div className="solution-details">
+                    <h3>{product.name}</h3>
+                    <p>{product.summary}</p>
+                  </div>
+                  <div className="solution-arrow">
+                    <ArrowIcon />
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block" id="about">
+        <div className="section-shell about-grid">
+          <div 
+            data-reveal-id="about-text" 
+            className={`about-text-block reveal-left ${revealed['about-text'] ? 'reveal-in-view' : ''}`}
+          >
+            <p className="section-kicker">WHAT WE DO</p>
+            <h2 className="section-title">We turn your dreams into reality</h2>
+            <div className="title-divider" />
+            <p className="section-copy">
+              Capital Express Indemnity Insurance is positioned as a trusted risk protection partner focused on delivering value through efficient technology, professional manpower, and customer-focused service.
+            </p>
+          </div>
+
+          <div className="claims-grid">
+            <div 
+              data-reveal-id="claims-0" 
+              className={`claims-card reveal-left reveal-delay-1 ${revealed['claims-0'] ? 'reveal-in-view' : ''}`}
+            >
+              <Image 
+                src="/media/car-crash-6243099-scaled.jpg" 
+                alt="Motor Accident Claim" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw" 
+                className="claims-image"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div 
+              data-reveal-id="claims-1" 
+              className={`claims-card reveal-right reveal-delay-2 ${revealed['claims-1'] ? 'reveal-in-view' : ''}`}
+            >
+              <Image 
+                src="/media/Fire-SpecialPerils-scaled.jpg" 
+                alt="Property Fire Peril Claim" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw" 
+                className="claims-image"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div 
+              data-reveal-id="claims-2" 
+              className={`claims-card reveal-left reveal-delay-3 ${revealed['claims-2'] ? 'reveal-in-view' : ''}`}
+            >
+              <Image 
+                src="/media/Thirdparty-Police-scaled.jpg" 
+                alt="General Accident Claim" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw" 
+                className="claims-image"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div 
+              data-reveal-id="claims-3" 
+              className={`claims-card reveal-right reveal-delay-4 ${revealed['claims-3'] ? 'reveal-in-view' : ''}`}
+            >
+              <Image 
+                src="/media/Marine-scaled.jpg" 
+                alt="Marine Transit Peril Claim" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 50vw" 
+                className="claims-image"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="philosophy-section" id="philosophy">
+        <div className="section-shell philosophy-layout">
+          <div 
+            data-reveal-id="philosophy-intro" 
+            className={`philosophy-intro reveal-left ${revealed['philosophy-intro'] ? 'reveal-in-view' : ''}`}
+          >
+            <p className="section-kicker">Corporate Philosophy</p>
+            <h2 className="section-title">Architects of Trust & Value.</h2>
+            <p className="section-copy">
+              We operate with a clear service posture built around value optimization, client advocacy, and long-term trust.
+            </p>
+
+            <div className="philosophy-visual-wrapper">
+              <svg className="philosophy-compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Background Grid */}
+                <circle cx="100" cy="100" r="90" stroke="rgba(22, 32, 43, 0.04)" strokeWidth="1" />
+                <line x1="100" y1="10" x2="100" y2="190" stroke="rgba(22, 32, 43, 0.04)" strokeWidth="1" />
+                <line x1="10" y1="100" x2="190" y2="100" stroke="rgba(22, 32, 43, 0.04)" strokeWidth="1" />
+
+                {/* Ring 1 - Vision (Teal) */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="85"
+                  className={`compass-ring ring-vision ${hoveredPhil === 0 ? 'active' : hoveredPhil !== null ? 'dim' : ''}`}
+                  stroke={hoveredPhil === 0 ? 'var(--accent-teal)' : 'rgba(22, 32, 43, 0.08)'}
+                  strokeWidth={hoveredPhil === 0 ? '2' : '1.2'}
+                  strokeDasharray="4 8"
+                />
+                <circle
+                  cx="100"
+                  cy="15"
+                  r={hoveredPhil === 0 ? '6' : '3.5'}
+                  className={`compass-dot dot-vision ${hoveredPhil === 0 ? 'active' : ''}`}
+                  fill={hoveredPhil === 0 ? 'var(--accent-teal)' : 'rgba(22, 32, 43, 0.2)'}
+                />
+
+                {/* Ring 2 - Mission (Crimson) */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="65"
+                  className={`compass-ring ring-mission ${hoveredPhil === 1 ? 'active' : hoveredPhil !== null ? 'dim' : ''}`}
+                  stroke={hoveredPhil === 1 ? 'var(--brand-crimson)' : 'rgba(22, 32, 43, 0.1)'}
+                  strokeWidth={hoveredPhil === 1 ? '2.2' : '1.2'}
+                  strokeDasharray="12 6"
+                />
+                <circle
+                  cx="165"
+                  cy="100"
+                  r={hoveredPhil === 1 ? '6' : '3.5'}
+                  className={`compass-dot dot-mission ${hoveredPhil === 1 ? 'active' : ''}`}
+                  fill={hoveredPhil === 1 ? 'var(--brand-crimson)' : 'rgba(22, 32, 43, 0.25)'}
+                />
+
+                {/* Ring 3 - Positioning (Gold) */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="45"
+                  className={`compass-ring ring-position ${hoveredPhil === 2 ? 'active' : hoveredPhil !== null ? 'dim' : ''}`}
+                  stroke={hoveredPhil === 2 ? 'var(--accent-gold)' : 'rgba(22, 32, 43, 0.12)'}
+                  strokeWidth={hoveredPhil === 2 ? '2.5' : '1.2'}
+                  strokeDasharray="2 4"
+                />
+                <circle
+                  cx="100"
+                  cy="145"
+                  r={hoveredPhil === 2 ? '6' : '3.5'}
+                  className={`compass-dot dot-position ${hoveredPhil === 2 ? 'active' : ''}`}
+                  fill={hoveredPhil === 2 ? 'var(--accent-gold)' : 'rgba(22, 32, 43, 0.3)'}
+                />
+
+                {/* Ring 4 - Technology (Emerald) */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="25"
+                  className={`compass-ring ring-technology ${hoveredPhil === 3 ? 'active' : hoveredPhil !== null ? 'dim' : ''}`}
+                  stroke={hoveredPhil === 3 ? '#10b981' : 'rgba(22, 32, 43, 0.14)'}
+                  strokeWidth={hoveredPhil === 3 ? '2.8' : '1.2'}
+                  strokeDasharray="3 3"
+                />
+                <circle
+                  cx="75"
+                  cy="100"
+                  r={hoveredPhil === 3 ? '6' : '3.5'}
+                  className={`compass-dot dot-technology ${hoveredPhil === 3 ? 'active' : ''}`}
+                  fill={hoveredPhil === 3 ? '#10b981' : 'rgba(22, 32, 43, 0.35)'}
+                />
+
+                {/* Center Glow / Core */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="10"
+                  className={`compass-core ${hoveredPhil !== null ? 'active-' + hoveredPhil : ''}`}
+                  fill="rgba(22, 32, 43, 0.15)"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div className="philosophy-stack">
+            <article
+              data-reveal-id="philosophy-0"
+              className={`philosophy-item card-vision reveal-right reveal-delay-1 ${
+                hoveredPhil === 0 ? 'active' : ''
+              } ${revealed['philosophy-0'] ? 'reveal-in-view' : ''}`}
+              onMouseEnter={() => setHoveredPhil(0)}
+              onMouseLeave={() => setHoveredPhil(null)}
+            >
+              <div className="philosophy-card-bg" />
+              <div className="philosophy-header-row">
+                <span className="philosophy-index-huge">01</span>
+                <div className="philosophy-title-wrapper">
+                  <span className="philosophy-badge badge-vision">VISION</span>
+                  <h3>Vision</h3>
+                </div>
+              </div>
+              <p>To be a leading world-class financial services and risk protection provider.</p>
+            </article>
+
+            <article
+              data-reveal-id="philosophy-1"
+              className={`philosophy-item card-mission reveal-left reveal-delay-2 ${
+                hoveredPhil === 1 ? 'active' : ''
+              } ${revealed['philosophy-1'] ? 'reveal-in-view' : ''}`}
+              onMouseEnter={() => setHoveredPhil(1)}
+              onMouseLeave={() => setHoveredPhil(null)}
+            >
+              <div className="philosophy-card-bg" />
+              <div className="philosophy-header-row">
+                <span className="philosophy-index-huge">02</span>
+                <div className="philosophy-title-wrapper">
+                  <span className="philosophy-badge badge-mission">MISSION</span>
+                  <h3>Mission</h3>
+                </div>
+              </div>
+              <p>To deliver innovative wealth management and risk protection solutions through efficient technology, exceptional people, and customer-focused service, while creating sustainable value for all stakeholders.</p>
+            </article>
+
+            <article
+              data-reveal-id="philosophy-2"
+              className={`philosophy-item card-positioning reveal-right reveal-delay-3 ${
+                hoveredPhil === 2 ? 'active' : ''
+              } ${revealed['philosophy-2'] ? 'reveal-in-view' : ''}`}
+              onMouseEnter={() => setHoveredPhil(2)}
+              onMouseLeave={() => setHoveredPhil(null)}
+            >
+              <div className="philosophy-card-bg" />
+              <div className="philosophy-header-row">
+                <span className="philosophy-index-huge">03</span>
+                <div className="philosophy-title-wrapper">
+                  <span className="philosophy-badge badge-positioning">POSITIONING</span>
+                  <h3>Positioning</h3>
+                </div>
+              </div>
+              <p>Capital Express Indemnity Insurance is positioned as a trusted risk protection partner focused on delivering value through efficient technology, professional manpower, and customer-focused service.</p>
+            </article>
+
+            <article
+              data-reveal-id="philosophy-3"
+              className={`philosophy-item card-technology reveal-left reveal-delay-4 ${
+                hoveredPhil === 3 ? 'active' : ''
+              } ${revealed['philosophy-3'] ? 'reveal-in-view' : ''}`}
+              onMouseEnter={() => setHoveredPhil(3)}
+              onMouseLeave={() => setHoveredPhil(null)}
+            >
+              <div className="philosophy-card-bg" />
+              <div className="philosophy-header-row">
+                <span className="philosophy-index-huge">04</span>
+                <div className="philosophy-title-wrapper">
+                  <span className="philosophy-badge badge-technology" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#10b981' }}>TECHNOLOGY</span>
+                  <h3>Technology</h3>
+                </div>
+              </div>
+              <p>Our competitive advantage is driven by continuous investment in modern technology. We operate advanced digital platforms, including our self-service portal, core business systems, and customer engagement tools, to ensure efficient, secure, dependable, and responsive operations.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="section-block" id="values">
+        <div className="section-shell values-shell" style={{ display: 'block' }}>
+          <div 
+            data-reveal-id="values-intro" 
+            className={`reveal-left ${revealed['values-intro'] ? 'reveal-in-view' : ''}`}
+            style={{ marginBottom: '48px' }}
+          >
+            <p className="section-kicker">Core Values</p>
+            <h2 className="section-title" style={{ maxWidth: '24ch' }}>The part that should feel human, not corporate.</h2>
+            <p className="section-copy">
+              Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder.
+            </p>
+          </div>
+
+          <div className="values-grid">
+            {coreValuesData.map((value, index) => {
+              const IconComp = value.icon;
+              return (
+                <div
+                  key={value.name}
+                  data-reveal-id={`value-${index}`}
+                  className={`value-card ${
+                    index % 2 === 0 ? 'reveal-right' : 'reveal-left'
+                  } reveal-delay-${index + 1} ${revealed[`value-${index}`] ? 'reveal-in-view' : ''}`}
+                  style={{ background: value.color }}
+                >
+                  <div className="value-card-cutout" style={{ color: 'var(--brand-teal)' }}>
+                    <IconComp />
+                  </div>
+                  
+                  <svg className="value-card-ribbon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      id={`circlePath-${index}`}
+                      d="M 100, 100 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
+                      fill="none"
+                    />
+                    <text fill="currentColor" fontSize="10.5" fontWeight="700" letterSpacing="2px">
+                      <textPath href={`#circlePath-${index}`}>
+                        {value.ribbonText}
+                      </textPath>
+                    </text>
+                  </svg>
+
+                  <div className="value-card-number">{value.num}</div>
+                  <div className="value-card-content">
+                    <h3 className="value-card-title">{value.name}</h3>
+                    <p className="value-card-desc">{value.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block" id="alliances" style={{ overflow: 'hidden', padding: '80px 0' }}>
+        <div className="section-shell" style={{ maxWidth: '100%', padding: 0 }}>
+          <div 
+            data-reveal-id="alliances-intro" 
+            className={`reveal-up ${revealed['alliances-intro'] ? 'reveal-in-view' : ''}`}
+            style={{ textAlign: 'center', marginBottom: '40px' }}
+          >
+            <h2 className="alliances-title">Strategic Alliances</h2>
+          </div>
+
+          <div className="ticker-container">
+            <div className="ticker-track">
+              {alliances.map((logo, index) => (
+                <div key={`logo-1-${index}`} className="ticker-item">
+                  <Image src={logo} alt="Partner Logo" width={180} height={68} className="ticker-logo" />
+                </div>
+              ))}
+              {alliances.map((logo, index) => (
+                <div key={`logo-2-${index}`} className="ticker-item">
+                  <Image src={logo} alt="Partner Logo" width={180} height={68} className="ticker-logo" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block contact-section" id="contact-form-sec">
+        <div className="section-shell contact-layout">
+          <div 
+            data-reveal-id="contact-form-reveal" 
+            className={`contact-intro reveal-left ${revealed['contact-form-reveal'] ? 'reveal-in-view' : ''}`}
+          >
+            <p className="section-kicker">GET IN TOUCH</p>
+            <h2 className="section-title" style={{ maxWidth: '20ch' }}>Let's secure your future together.</h2>
+            <p className="section-copy">
+              Have questions about our insurance policies, claims, or coverage options? Reach out to our dedicated advisory team today for personalized guidance.
+            </p>
+
+            <div className="contact-form-container">
+              <ContactForm />
+            </div>
+          </div>
+
+          <div 
+            data-reveal-id="contact-info-reveal" 
+            className={`contact-info-panel reveal-right ${revealed['contact-info-reveal'] ? 'reveal-in-view' : ''}`}
+          >
+            <div className="contact-info-bg-wrap">
+              <Image 
+                src="/media/business-7304257-scaled.jpg" 
+                alt="Contact Us Background" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="contact-info-bg-image"
+              />
+              <div className="contact-info-overlay" />
+            </div>
+
+            <div className="contact-info-content">
+              <h3>Contact Info</h3>
+              <div className="contact-info-items">
+                <div className="contact-info-item">
+                  <div className="contact-info-icon-wrapper">
+                    <LocationIcon />
+                  </div>
+                  <div>
+                    <h4>Head Office</h4>
+                    <p>17, Bishop Kale Close, VI, Lagos</p>
+                  </div>
+                </div>
+
+                <div className="contact-info-item">
+                  <div className="contact-info-icon-wrapper">
+                    <PhoneIcon />
+                  </div>
+                  <div>
+                    <h4>Call Center</h4>
+                    <p>
+                      <a href="tel:02013302950">020-1330-2950</a>
+                      <span className="contact-info-divider">|</span>
+                      <a href="tel:07059770508">070-5977-0508</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="contact-info-item">
+                  <div className="contact-info-icon-wrapper">
+                    <EmailIcon />
+                  </div>
+                  <div>
+                    <h4>Email Address</h4>
+                    <p>
+                      <a href="mailto:info@ceiil.ng">info@ceiil.ng</a>
+                      <span className="contact-info-divider">|</span>
+                      <a href="mailto:hello@ceiil.ng">hello@ceiil.ng</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="contact-info-item">
+                  <div className="contact-info-icon-wrapper">
+                    <ClockIcon />
+                  </div>
+                  <div>
+                    <h4>Office Hours</h4>
+                    <p>Mon - Fri: 8:00 AM - 5:00 PM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 17L17 7M9 7H17V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const productIcons = [
+  MarineIcon,
+  MotorIcon,
+  PropertyIcon,
+  LiabilityIcon,
+  EngineeringIcon,
+];
+
+function MarineIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 13h18l-2 5H5l-2-5z" />
+      <path d="M8 13V9h8v4" />
+      <path d="M10 9V6h4v3" />
+      <path d="M12 6V3" />
+      <path d="M1 20c2-1 4-1 6 0s4 1 6 0 4-1 6 0 4 1 6 0" />
+    </svg>
+  );
+}
+
+function MotorIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 18H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h8v13z" />
+      <path d="M14 9h4l4 3v4a2 2 0 0 1-2 2h-6V9z" />
+      <circle cx="7.5" cy="18.5" r="2.5" />
+      <circle cx="17.5" cy="18.5" r="2.5" />
+    </svg>
+  );
+}
+
+function PropertyIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
+      <path d="M12 3v6l-2 2h4l-2 4" />
+    </svg>
+  );
+}
+
+function LiabilityIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+function EngineeringIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+      <circle cx="19" cy="19" r="1.5" />
+      <path d="M19 16v1M19 21v1M16.88 16.88l.7.7M20.42 20.42l.7.7M16 19h1M21 19h1M17 21l-.7-.7M20.3 16.88l-.7.7" />
+    </svg>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function EmailIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function ContactForm() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    // Simulate submission API call
+    setTimeout(() => {
+      setStatus('success');
+      setFormState({ name: '', email: '', phone: '', subject: '', message: '' });
+    }, 1500);
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="contact-success-state">
+        <div className="success-icon-wrapper">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h3>Message Sent!</h3>
+        <p>Thank you for getting in touch. An advisor will contact you shortly.</p>
+        <button 
+          onClick={() => setStatus('idle')} 
+          className="button-primary"
+          style={{ minHeight: '44px', fontSize: '0.9rem' }}
+        >
+          Send Another Message
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="fade-in-content">
-      <HeroCarousel />
-      <QuickActionsBar />
-      <WhatWeDoSection />
-      <ProductsSection />
-      <PhilosophySection />
-      <ValuesSection />
-      <AlliancesSection />
-      <ContactCTASection />
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <div className="form-grid">
+        <div className="form-group">
+          <label htmlFor="form-name">Full Name</label>
+          <input
+            id="form-name"
+            type="text"
+            required
+            placeholder="John Doe"
+            value={formState.name}
+            onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="form-email">Email Address</label>
+          <input
+            id="form-email"
+            type="email"
+            required
+            placeholder="john@example.com"
+            value={formState.email}
+            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+          />
+        </div>
+      </div>
 
-      <style jsx global>{`
-        /* Ensure no white gap above hero */
-        #main-content {
-          display: block;
-        }
-      `}</style>
-      <style jsx>{`
-        .fade-in-content {
-          animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
+      <div className="form-grid">
+        <div className="form-group">
+          <label htmlFor="form-phone">Phone Number</label>
+          <input
+            id="form-phone"
+            type="tel"
+            placeholder="e.g. +234 800 000 0000"
+            value={formState.phone}
+            onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="form-subject">Subject</label>
+          <input
+            id="form-subject"
+            type="text"
+            required
+            placeholder="Policy Inquiry, Claims, etc."
+            value={formState.subject}
+            onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+          />
+        </div>
+      </div>
 
-/* ── Hero Carousel ───────────────────────────────────────── */
-function HeroCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState<'next' | 'prev'>('next');
-  const [animating, setAnimating] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const goTo = useCallback((index: number, dir: 'next' | 'prev' = 'next') => {
-    if (animating) return;
-    setAnimating(true);
-    setDirection(dir);
-    setTimeout(() => {
-      setCurrent(index);
-      setAnimating(false);
-    }, 600);
-  }, [animating]);
-
-  const next = useCallback(() => {
-    goTo((current + 1) % slides.length, 'next');
-  }, [current, goTo]);
-
-  const prev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length, 'prev');
-  }, [current, goTo]);
-
-  // Auto-advance
-  useEffect(() => {
-    timerRef.current = setInterval(next, 6000);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [next]);
-
-  const pause = () => { if (timerRef.current) clearInterval(timerRef.current); };
-  const resume = () => { timerRef.current = setInterval(next, 6000); };
-
-  const slide = slides[current];
-
-  return (
-    <section
-      className="hero-section"
-      onMouseEnter={pause}
-      onMouseLeave={resume}
-      aria-label={`Hero carousel, slide ${current + 1} of ${slides.length}`}
-    >
-      {/* Background Image */}
-      <div className={`hero-bg ${animating ? `hero-bg-out-${direction}` : 'hero-bg-in'}`}>
-        <Image
-          src={slide.image}
-          alt=""
-          fill
-          priority={current === 0}
-          style={{ objectFit: 'cover', objectPosition: 'center right' }}
-          sizes="100vw"
+      <div className="form-group">
+        <label htmlFor="form-message">Message</label>
+        <textarea
+          id="form-message"
+          rows={4}
+          required
+          placeholder="Write your message here..."
+          value={formState.message}
+          onChange={(e) => setFormState({ ...formState, message: e.target.value })}
         />
-        {/* Gradient overlay — stronger on left for text legibility */}
-        <div className={`hero-overlay hero-overlay-${slide.theme}`} />
       </div>
 
-      {/* Content */}
-      <div className={`container hero-content ${animating ? 'hero-content-out' : 'hero-content-in'}`}>
-        <div className="hero-text">
-          <span className="hero-eyebrow" key={`eyebrow-${current}`}>{slide.eyebrow}</span>
-          <h1 className="hero-headline" key={`headline-${current}`}>
-            {slide.headlinePart1}{' '}
-            <span className="hero-accent">{slide.headlineAccent}</span>{' '}
-            {slide.headlinePart2}
-          </h1>
-          <p className="hero-body" key={`body-${current}`}>{slide.body}</p>
-          <div className="hero-actions" key={`actions-${current}`}>
-            <Link href={slide.ctaPrimary.href} className="btn btn-primary hero-btn-primary">
-              {slide.ctaPrimary.label}
-              <ArrowRight />
-            </Link>
-            <Link href={slide.ctaSecondary.href} className="btn btn-ghost-white">
-              {slide.ctaSecondary.label}
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Carousel Controls */}
-      <div className="hero-controls">
-        {/* Dot indicators */}
-        <div className="hero-dots" role="tablist" aria-label="Carousel slides">
-          {slides.map((s, i) => (
-            <button
-              key={s.id}
-              className={`carousel-dot ${i === current ? 'active' : ''}`}
-              onClick={() => goTo(i, i > current ? 'next' : 'prev')}
-              role="tab"
-              aria-selected={i === current}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Arrow buttons */}
-        <div className="hero-arrows">
-          <button className="hero-arrow" onClick={prev} aria-label="Previous slide">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button className="hero-arrow" onClick={next} aria-label="Next slide">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Slide progress bar */}
-      <div className="hero-progress">
-        <div className="hero-progress-bar" key={`progress-${current}`} />
-      </div>
-
-      <style jsx>{`
-        .hero-section {
-          position: relative;
-          height: 100vh;
-          min-height: 640px;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-        }
-        /* BG */
-        .hero-bg {
-          position: absolute;
-          inset: 0;
-          transition: opacity 0.6s ease;
-        }
-        .hero-bg-in { opacity: 1; }
-        .hero-bg-out-next { opacity: 0; }
-        .hero-bg-out-prev { opacity: 0; }
-
-        /* Overlays */
-        .hero-overlay {
-          position: absolute;
-          inset: 0;
-        }
-        .hero-overlay-light {
-          background: linear-gradient(
-            105deg,
-            rgba(255,255,255,0.92) 0%,
-            rgba(255,255,255,0.7) 45%,
-            rgba(255,255,255,0.1) 75%,
-            transparent 100%
-          );
-        }
-        .hero-overlay-dark {
-          background: linear-gradient(
-            105deg,
-            rgba(0, 22, 35, 0.88) 0%,
-            rgba(0, 22, 35, 0.6) 45%,
-            rgba(0, 22, 35, 0.1) 75%,
-            transparent 100%
-          );
-        }
-
-        /* Content */
-        .hero-content {
-          position: relative;
-          z-index: 2;
-          padding-top: 5rem;
-          transition: opacity 0.4s ease, transform 0.5s ease;
-        }
-        .hero-content-in { opacity: 1; transform: translateY(0); }
-        .hero-content-out { opacity: 0; transform: translateY(12px); }
-
-        .hero-text {
-          max-width: 580px;
-        }
-
-        .hero-eyebrow {
-          display: inline-block;
-          font-size: 0.75rem;
-          font-weight: 800;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: var(--teal-bright);
-          margin-bottom: 1rem;
-          padding: 0.3rem 0.875rem;
-          background: rgba(27, 176, 206, 0.1);
-          border: 1px solid rgba(27, 176, 206, 0.25);
-          border-radius: 9999px;
-          animation: fadeInLeft 0.6s ease both;
-        }
-
-        .hero-headline {
-          font-size: clamp(2.25rem, 5vw, 4rem);
-          font-weight: 900;
-          line-height: 1.08;
-          letter-spacing: -0.03em;
-          color: var(--teal-dark);
-          margin-bottom: 1.25rem;
-          animation: fadeInLeft 0.6s 0.1s ease both;
-        }
-
-        /* When overlay is dark, headline and body flip to white */
-        .hero-overlay-dark ~ * .hero-headline,
-        .hero-section:has(.hero-overlay-dark) .hero-headline {
-          color: white;
-        }
-
-        .hero-accent {
-          color: var(--crimson);
-        }
-
-        .hero-body {
-          font-size: 1.0625rem;
-          line-height: 1.7;
-          color: var(--gray-600);
-          margin-bottom: 2rem;
-          animation: fadeInLeft 0.6s 0.2s ease both;
-          max-width: 480px;
-        }
-
-        .hero-actions {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-          animation: fadeInLeft 0.6s 0.3s ease both;
-        }
-
-        .hero-btn-primary {
-          box-shadow: 0 8px 24px rgba(155,28,51,0.35);
-        }
-
-        /* Controls */
-        .hero-controls {
-          position: absolute;
-          bottom: 2.5rem;
-          left: 0;
-          right: 0;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 2rem;
-          padding: 0 2rem;
-        }
-        .hero-dots {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-        .hero-arrows {
-          display: flex;
-          gap: 0.5rem;
-        }
-        .hero-arrow {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.35);
-          background: rgba(255,255,255,0.1);
-          backdrop-filter: blur(8px);
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        .hero-arrow:hover {
-          background: rgba(255,255,255,0.25);
-          border-color: rgba(255,255,255,0.6);
-        }
-
-        /* Progress bar */
-        .hero-progress {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: rgba(255,255,255,0.15);
-          z-index: 10;
-        }
-        .hero-progress-bar {
-          height: 100%;
-          background: var(--teal-bright);
-          animation: progress 6s linear forwards;
-        }
-        @keyframes progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-          .hero-text { max-width: 100%; }
-          .hero-overlay-light {
-            background: linear-gradient(
-              180deg,
-              rgba(255,255,255,0.9) 0%,
-              rgba(255,255,255,0.75) 60%,
-              rgba(255,255,255,0.3) 100%
-            );
-          }
-          .hero-controls { bottom: 2rem; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Quick Actions Bar ───────────────────────────────────── */
-function QuickActionsBar() {
-  return (
-    <section className="qab-section" aria-label="Quick policy actions">
-      <div className="container">
-        <div className="qab-grid">
-          <Link href="/buy" id="qab-buy" className="qab-card qab-primary">
-            <div className="qab-icon">🛡️</div>
-            <div>
-              <div className="qab-label">Buy a Policy</div>
-              <div className="qab-sub">Start your coverage today</div>
-            </div>
-            <ArrowRight />
-          </Link>
-          <Link href="/claims" id="qab-claims" className="qab-card qab-secondary">
-            <div className="qab-icon">📋</div>
-            <div>
-              <div className="qab-label">Make a Claim</div>
-              <div className="qab-sub">Fast and hassle-free claims</div>
-            </div>
-            <ArrowRight />
-          </Link>
-          <Link href="/renew" id="qab-renew" className="qab-card qab-tertiary">
-            <div className="qab-icon">🔄</div>
-            <div>
-              <div className="qab-label">Renew a Policy</div>
-              <div className="qab-sub">Keep your cover active</div>
-            </div>
-            <ArrowRight />
-          </Link>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .qab-section {
-          padding: 0;
-          margin-top: -2.5rem;
-          position: relative;
-          z-index: 10;
-        }
-        .qab-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-        }
-        .qab-card {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1.375rem 1.5rem;
-          border-radius: 16px;
-          text-decoration: none;
-          transition: all 0.25s ease;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-        }
-        .qab-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 16px 48px rgba(0,0,0,0.18);
-        }
-        .qab-primary { background: var(--crimson); color: white; }
-        .qab-secondary { background: var(--teal-dark); color: white; }
-        .qab-tertiary { background: white; color: var(--teal-dark); border: 2px solid var(--gray-100); }
-        .qab-icon { font-size: 1.5rem; flex-shrink: 0; }
-        .qab-label {
-          font-size: 0.9375rem;
-          font-weight: 800;
-        }
-        .qab-sub {
-          font-size: 0.75rem;
-          opacity: 0.75;
-          margin-top: 0.125rem;
-        }
-        .qab-card :global(svg) {
-          margin-left: auto;
-          flex-shrink: 0;
-          opacity: 0.7;
-        }
-        @media (max-width: 768px) {
-          .qab-section { margin-top: 0; padding: 1.5rem 0 0; }
-          .qab-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── What We Do ──────────────────────────────────────────── */
-function WhatWeDoSection() {
-  return (
-    <section className="section wwd-section" id="what-we-do" aria-labelledby="wwd-title">
-      <div className="container">
-        <div className="wwd-grid">
-          {/* Left — text */}
-          <div className="wwd-text">
-            <span className="section-eyebrow">What We Do</span>
-            <div className="brand-divider" />
-            <h2 className="section-title" id="wwd-title">
-              We turn your dreams<br/>into <span className="accent">reality</span>
-            </h2>
-            <p className="section-body">
-              At Capital Express Indemnity Insurance, we are committed to providing you with
-              comprehensive, reliable, and tailored insurance solutions that safeguard your
-              peace of mind. Our goal is to deliver exceptional service and unparalleled
-              coverage to meet all your insurance needs.
-            </p>
-            <Link href="/about" className="btn btn-teal" style={{ marginTop: '1.75rem' }}>
-              Discover Our Story <ArrowRight />
-            </Link>
-          </div>
-
-          {/* Right — pillars */}
-          <div className="wwd-pillars">
-            {pillars.map((p, i) => (
-              <div key={p.title} className="pillar-card card" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="pillar-icon">{p.icon}</div>
-                <div>
-                  <h3 className="pillar-title">{p.title}</h3>
-                  <p className="pillar-body">{p.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .wwd-section { background: var(--off-white); }
-        .wwd-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: 5rem;
-          align-items: center;
-        }
-        .wwd-text {}
-        .wwd-pillars {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .pillar-card {
-          display: flex;
-          align-items: flex-start;
-          gap: 1rem;
-          padding: 1.25rem 1.5rem;
-        }
-        .pillar-icon {
-          font-size: 1.5rem;
-          flex-shrink: 0;
-          width: 2.5rem;
-          height: 2.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--teal-light);
-          border-radius: 10px;
-        }
-        .pillar-title {
-          font-size: 0.9375rem;
-          font-weight: 800;
-          color: var(--teal-dark);
-          margin-bottom: 0.25rem;
-        }
-        .pillar-body {
-          font-size: 0.8125rem;
-          color: var(--gray-600);
-          line-height: 1.6;
-        }
-        @media (max-width: 900px) {
-          .wwd-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Products Section ────────────────────────────────────── */
-function ProductsSection() {
-  return (
-    <section className="section" id="products" aria-labelledby="products-title">
-      <div className="container">
-        <div className="products-header">
-          <span className="section-eyebrow">Our Solutions</span>
-          <div className="brand-divider" />
-          <h2 className="section-title" id="products-title">
-            Comprehensive <span className="accent">Coverage</span> for Every Need
-          </h2>
-          <p className="section-body">
-            From motor to marine, property to engineering — we have a tailored insurance
-            solution designed precisely for your life, your assets, and your business.
-          </p>
-        </div>
-
-        <div className="products-grid">
-          {products.map((product) => (
-            <Link key={product.name} href={product.href} className="product-card card" id={`product-${product.name.toLowerCase().replace(/\s+/g, '-')}`}>
-              <div className="product-icon" style={{ background: `${product.color}15`, color: product.color }}>
-                {product.icon}
-              </div>
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-desc">{product.desc}</p>
-              <div className="product-arrow" style={{ color: product.color }}>
-                Learn more <ArrowRight />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <style jsx>{`
-        .products-header {
-          text-align: center;
-          margin-bottom: 3.5rem;
-        }
-        .products-header .section-body {
-          margin: 0 auto;
-        }
-        .products-header .brand-divider {
-          margin: 1rem auto 1.5rem;
-        }
-        .products-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.25rem;
-        }
-        .product-card {
-          padding: 1.75rem 1.5rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        .product-icon {
-          width: 3rem;
-          height: 3rem;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.375rem;
-        }
-        .product-name {
-          font-size: 1rem;
-          font-weight: 800;
-          color: var(--teal-dark);
-        }
-        .product-desc {
-          font-size: 0.8125rem;
-          color: var(--gray-600);
-          line-height: 1.6;
-          flex: 1;
-        }
-        .product-arrow {
-          display: flex;
-          align-items: center;
-          gap: 0.375rem;
-          font-size: 0.8125rem;
-          font-weight: 700;
-          margin-top: 0.25rem;
-        }
-        @media (max-width: 1024px) {
-          .products-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 768px) {
-          .products-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-          .products-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Philosophy Section ──────────────────────────────────── */
-function PhilosophySection() {
-  return (
-    <section className="section philosophy-section" id="philosophy" aria-labelledby="philosophy-title">
-      <div className="container">
-        <div className="philosophy-header">
-          <span className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.6)' }}>Our Corporate Philosophy</span>
-          <div className="brand-divider" style={{ margin: '1rem auto 0' }} />
-        </div>
-
-        <div className="philosophy-grid">
-          <div className="philosophy-card" id="vision-card">
-            <div className="philosophy-card-icon">👁️</div>
-            <div className="philosophy-tag">Vision</div>
-            <h2 className="philosophy-card-title" id="philosophy-title">
-              World Class Financial Services
-            </h2>
-            <p className="philosophy-card-body">
-              To be a world class financial services provider — setting the benchmark for
-              excellence, innovation, and reliability in every market we serve.
-            </p>
-          </div>
-
-          <div className="philosophy-divider" aria-hidden="true">
-            <div className="philosophy-divider-line" />
-            <div className="philosophy-divider-circle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="white" opacity="0.6"/>
-              </svg>
-            </div>
-            <div className="philosophy-divider-line" />
-          </div>
-
-          <div className="philosophy-card" id="mission-card">
-            <div className="philosophy-card-icon">🎯</div>
-            <div className="philosophy-tag">Mission</div>
-            <h3 className="philosophy-card-title">In Every Household</h3>
-            <p className="philosophy-card-body">
-              To be in every household where we are licensed to operate, providing wealth
-              management and risk protection services, using the most efficient technology
-              and manpower — creating value to all stakeholders.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .philosophy-section {
-          background: var(--teal-dark);
-          color: white;
-        }
-        .philosophy-header {
-          text-align: center;
-          margin-bottom: 3.5rem;
-        }
-        .philosophy-grid {
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          gap: 2rem;
-          align-items: center;
-        }
-        .philosophy-card {
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 1.25rem;
-          padding: 2.5rem;
-          transition: all 0.3s ease;
-        }
-        .philosophy-card:hover {
-          background: rgba(255,255,255,0.1);
-          border-color: rgba(27,176,206,0.4);
-          transform: translateY(-3px);
-        }
-        .philosophy-card-icon {
-          font-size: 2rem;
-          margin-bottom: 0.75rem;
-        }
-        .philosophy-tag {
-          font-size: 0.7rem;
-          font-weight: 800;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: var(--teal-bright);
-          margin-bottom: 0.75rem;
-        }
-        .philosophy-card-title {
-          font-size: 1.375rem;
-          font-weight: 900;
-          color: white;
-          margin-bottom: 1rem;
-          line-height: 1.2;
-        }
-        .philosophy-card-body {
-          font-size: 0.875rem;
-          line-height: 1.75;
-          color: rgba(255,255,255,0.65);
-        }
-        /* Divider */
-        .philosophy-divider {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.5rem;
-          width: 2rem;
-        }
-        .philosophy-divider-line {
-          width: 1px;
-          flex: 1;
-          min-height: 40px;
-          background: rgba(255,255,255,0.15);
-        }
-        .philosophy-divider-circle {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        @media (max-width: 768px) {
-          .philosophy-grid { grid-template-columns: 1fr; }
-          .philosophy-divider { flex-direction: row; width: 100%; }
-          .philosophy-divider-line { height: 1px; min-height: auto; flex: 1; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Core Values ─────────────────────────────────────────── */
-function ValuesSection() {
-  return (
-    <section className="section" id="values" aria-labelledby="values-title">
-      <div className="container">
-        <div className="values-header">
-          <span className="section-eyebrow">Core Values</span>
-          <div className="brand-divider" style={{ margin: '1rem auto 1.5rem' }} />
-          <h2 className="section-title" id="values-title">
-            The Principles We Live <span className="accent">By</span>
-          </h2>
-        </div>
-
-        <div className="values-grid">
-          {values.map((v, i) => (
-            <div key={v.title} className="value-card card" id={`value-${i + 1}`}>
-              <div className="value-icon">{v.icon}</div>
-              <h3 className="value-title">{v.title}</h3>
-              <p className="value-body">{v.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <style jsx>{`
-        .values-header {
-          text-align: center;
-          margin-bottom: 3.5rem;
-        }
-        .values-grid {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 1.25rem;
-        }
-        .value-card {
-          padding: 2rem 1.5rem;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.875rem;
-        }
-        .value-icon {
-          font-size: 2rem;
-          width: 3.5rem;
-          height: 3.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--teal-light);
-          border-radius: 50%;
-        }
-        .value-title {
-          font-size: 0.9375rem;
-          font-weight: 800;
-          color: var(--teal-dark);
-        }
-        .value-body {
-          font-size: 0.8125rem;
-          color: var(--gray-600);
-          line-height: 1.6;
-        }
-        @media (max-width: 1024px) {
-          .values-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 640px) {
-          .values-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Strategic Alliances ──────────────────────────────────── */
-function AlliancesSection() {
-  return (
-    <section className="section alliances-section" id="alliances" aria-labelledby="alliances-title">
-      <div className="container">
-        <div className="alliances-header">
-          <span className="section-eyebrow">Strategic Alliances</span>
-          <div className="brand-divider" style={{ margin: '1rem auto 1.5rem' }} />
-          <h2 className="section-title" id="alliances-title">
-            Backed by the World's <span className="accent">Best</span>
-          </h2>
-          <p className="section-body" style={{ margin: '0 auto' }}>
-            Our partnerships with leading global and regional re-insurers ensure your
-            claims are always supported — wherever you are.
-          </p>
-        </div>
-
-        {Object.entries(alliances).map(([category, partners]) => (
-          <div key={category} className="alliance-group">
-            <h3 className="alliance-category">
-              {category === 'international' ? '🌍 International Re-Insurers' :
-               category === 'regional' ? '🌍 Regional Re-Insurers' : '🤝 Re-Insurer Brokers'}
-            </h3>
-            <div className="alliance-partners">
-              {(partners as { name: string; logo: string }[]).map((p) => (
-                <div key={p.name} className="alliance-logo-card" title={p.name}>
-                  <Image
-                    src={p.logo}
-                    alt={p.name}
-                    width={140}
-                    height={60}
-                    style={{ objectFit: 'contain', maxHeight: '48px', width: 'auto' }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <style jsx>{`
-        .alliances-section { background: var(--off-white); }
-        .alliances-header {
-          text-align: center;
-          margin-bottom: 3.5rem;
-        }
-        .alliance-group {
-          margin-bottom: 2.5rem;
-        }
-        .alliance-category {
-          font-size: 0.8125rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--gray-600);
-          margin-bottom: 1rem;
-        }
-        .alliance-partners {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          align-items: center;
-        }
-        .alliance-logo-card {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.875rem 1.5rem;
-          background: white;
-          border: 1.5px solid var(--gray-200);
-          border-radius: 12px;
-          transition: all 0.2s ease;
-          cursor: default;
-          min-width: 100px;
-        }
-        .alliance-logo-card:hover {
-          border-color: var(--teal-bright);
-          box-shadow: 0 4px 16px rgba(0,66,91,0.08);
-          transform: translateY(-2px);
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Contact CTA Section ─────────────────────────────────── */
-function ContactCTASection() {
-  return (
-    <section className="section cta-section" id="contact-cta" aria-labelledby="cta-title">
-      <div className="container">
-        <div className="cta-inner">
-          <div className="cta-text">
-            <h2 className="cta-title" id="cta-title">
-              Ready to Protect What Matters?
-            </h2>
-            <p className="cta-body">
-              Talk to our team of risk advisors today. We're available Monday to Friday,
-              8:00am – 5:00pm. Victoria Island, Lagos.
-            </p>
-          </div>
-          <div className="cta-actions">
-            <Link href="/contact" id="cta-contact-btn" className="btn btn-primary" style={{ fontSize: '0.9375rem' }}>
-              Get In Touch <ArrowRight />
-            </Link>
-            <Link href="/buy" id="cta-buy-btn" className="btn btn-ghost-white" style={{ fontSize: '0.9375rem' }}>
-              Buy a Policy
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .cta-section {
-          background: linear-gradient(135deg, var(--teal-dark) 0%, #005F82 60%, #1BB0CE 100%);
-          color: white;
-          padding: 5rem 0;
-        }
-        .cta-inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 3rem;
-          flex-wrap: wrap;
-        }
-        .cta-text { max-width: 560px; }
-        .cta-title {
-          font-size: clamp(1.75rem, 3vw, 2.5rem);
-          font-weight: 900;
-          color: white;
-          margin-bottom: 0.875rem;
-        }
-        .cta-body {
-          font-size: 1rem;
-          color: rgba(255,255,255,0.75);
-          line-height: 1.6;
-        }
-        .cta-actions {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          flex-shrink: 0;
-        }
-        @media (max-width: 768px) {
-          .cta-inner { flex-direction: column; align-items: flex-start; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ── Shared Icon ─────────────────────────────────────────── */
-function ArrowRight() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
+      <button 
+        type="submit" 
+        className="button-primary" 
+        disabled={status === 'loading'}
+        style={{ marginTop: '10px' }}
+      >
+        <span>{status === 'loading' ? 'Sending...' : 'Send Message'}</span>
+        {status !== 'loading' && <ArrowIcon />}
+      </button>
+    </form>
   );
 }

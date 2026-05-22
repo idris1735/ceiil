@@ -1,606 +1,375 @@
 'use client';
 
 import Image from 'next/image';
-
-import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
-const navLinks = [
-  { label: 'Home', href: '/' },
-  {
-    label: 'Who We Are',
-    href: '/about',
-    children: [
-      { label: 'Our Story', href: '/about' },
-      { label: 'Our Core Values', href: '/about/values' },
-      { label: 'Our Board', href: '/about/board' },
-      { label: 'Our Management', href: '/about/management' },
-    ],
-  },
-  {
-    label: 'Products',
-    href: '/products',
-    children: [
-      { label: 'Motor Insurance', href: '/products/motor' },
-      { label: 'Marine Insurance', href: '/products/marine' },
-      { label: 'Property Insurance', href: '/products/property' },
-      { label: 'Liability Insurance', href: '/products/liability' },
-      { label: 'Engineering Insurance', href: '/products/engineering' },
-      { label: 'Oil & Gas', href: '/products/oil-gas' },
-      { label: 'Travel Insurance', href: '/products/travel' },
-      { label: 'General Accident', href: '/products/general' },
-    ],
-  },
-  { label: 'Claims', href: '/claims' },
-  { label: 'Alliances', href: '/alliances' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
+const whoWeAreLinks = [
+  { label: 'Our Core Values', href: '#values' },
+  { label: 'Our Board', href: 'https://ceiil.ng/index.php/our-management-team/' },
+  { label: 'Our Management', href: 'https://ceiil.ng/index.php/our-leadership/' },
+  { label: 'Investor Portal', href: 'https://ceiil.ng/index.php/investor-portal/' },
 ];
 
-const policyActions = [
-  { label: 'Buy a Policy', href: '/buy', icon: '🛡️' },
-  { label: 'Make a Claim', href: '/claims', icon: '📋' },
-  { label: 'Renew a Policy', href: '/renew', icon: '🔄' },
+const productLinks = [
+  { label: 'Motor Insurance', href: 'https://ceiil.ng/index.php/motor-insurance/' },
+  { label: 'Liability Insurance', href: 'https://ceiil.ng/index.php/liability-insurance/' },
+  { label: 'Engineering Insurance', href: 'https://ceiil.ng/index.php/engineering-insurance/' },
+  { label: 'Marine Insurance', href: 'https://ceiil.ng/index.php/marine-insurance/' },
+  { label: 'Property Insurance', href: 'https://ceiil.ng/index.php/property-insurance/' },
+];
+
+const actionLinks = [
+  { label: 'Buy a Policy', href: 'https://ceiil.ng/index.php/contact-us/' },
+  { label: 'Make a Claim', href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/' },
+  { label: 'Renew a Policy', href: 'https://www.ceiil.com.ng/' },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [policyOpen, setPolicyOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const policyRef = useRef<HTMLDivElement>(null);
-  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isActionOpen, setIsActionOpen] = useState(false);
+  
+  // Mobile accordion expand states
+  const [isMobileWhoOpen, setIsMobileWhoOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
+
+  const actionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setIsScrolled(window.scrollY > 48);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close policy dropdown on outside click
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (policyRef.current && !policyRef.current.contains(e.target as Node)) {
-        setPolicyOpen(false);
+    const onPointerDown = (event: MouseEvent) => {
+      if (actionRef.current && !actionRef.current.contains(event.target as Node)) {
+        setIsActionOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+
+    document.addEventListener('mousedown', onPointerDown);
+    return () => document.removeEventListener('mousedown', onPointerDown);
   }, []);
 
-  const handleDropdownEnter = (label: string) => {
-    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
-    setActiveDropdown(label);
-  };
-
-  const handleDropdownLeave = () => {
-    dropdownTimeout.current = setTimeout(() => setActiveDropdown(null), 150);
-  };
-
   return (
-    <>
-      <header
-        className={`navbar-root ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}
-        role="banner"
-      >
-        <div className="navbar-inner container">
-          {/* ── Logo ── */}
-          <Link href="/" className="navbar-logo" aria-label="CEIIL Home">
-            <CeiilLogo scrolled={scrolled} />
+    <header className={`nav-wrap ${isScrolled ? 'nav-wrap-scrolled' : ''}`}>
+      <div className={`nav-shell glass-panel ${isScrolled ? 'nav-shell-scrolled' : ''}`}>
+        <Link href="/" className="brand-lockup" aria-label="Capital Express Indemnity Insurance Limited">
+          <Image
+            src="/media/ceiil-litt.png"
+            alt="Capital Express Indemnity Insurance Limited"
+            width={216}
+            height={70}
+            priority
+            className="brand-logo"
+          />
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="nav-links" aria-label="Primary navigation">
+          {/* HOME */}
+          <Link href="/" className="nav-link nav-link-crimson">
+            <HomeIcon />
+            <span>HOME</span>
           </Link>
+          
+          <span className="nav-dot">•</span>
 
-          {/* ── Desktop Nav Links ── */}
-          <nav className="navbar-links" aria-label="Main navigation">
-            {navLinks.map((link) =>
-              link.children ? (
-                <div
-                  key={link.label}
-                  className="nav-item-group"
-                  onMouseEnter={() => handleDropdownEnter(link.label)}
-                  onMouseLeave={handleDropdownLeave}
-                >
-                  <button
-                    className={`nav-link nav-link-btn ${scrolled ? 'nav-link-scrolled' : 'nav-link-hero'}`}
-                    aria-haspopup="true"
-                    aria-expanded={activeDropdown === link.label}
-                    id={`nav-${link.label.replace(/\s/g, '-').toLowerCase()}`}
-                  >
-                    {link.label}
-                    <ChevronIcon />
-                  </button>
-                  <div
-                    className={`nav-dropdown ${activeDropdown === link.label ? 'nav-dropdown-open' : ''}`}
-                    role="menu"
-                    aria-labelledby={`nav-${link.label.replace(/\s/g, '-').toLowerCase()}`}
-                  >
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="nav-dropdown-item"
-                        role="menuitem"
-                        onClick={() => setActiveDropdown(null)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`nav-link ${scrolled ? 'nav-link-scrolled' : 'nav-link-hero'}`}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </nav>
-
-          {/* ── Policy CTA ── */}
-          <div className="navbar-cta" ref={policyRef}>
-            <button
-              id="policy-btn"
-              className={`btn ${scrolled ? 'btn-primary' : 'btn-ghost-white'} navbar-policy-btn`}
-              onClick={() => setPolicyOpen(!policyOpen)}
-              aria-haspopup="true"
-              aria-expanded={policyOpen}
-              aria-controls="policy-dropdown"
-            >
-              Buy a Policy
-              <ChevronIcon rotated={policyOpen} />
+          {/* WHO WE ARE DROPDOWN */}
+          <div className="nav-item-dropdown">
+            <button className="nav-link nav-link-teal">
+              <WhoWeAreIcon />
+              <span>WHO WE ARE</span>
+              <DropdownArrow />
             </button>
-
-            <div
-              id="policy-dropdown"
-              className={`policy-dropdown ${policyOpen ? 'policy-dropdown-open' : ''}`}
-              role="menu"
-              aria-labelledby="policy-btn"
-            >
-              {policyActions.map((action) => (
-                <Link
-                  key={action.href}
-                  href={action.href}
-                  className="policy-dropdown-item"
-                  role="menuitem"
-                  onClick={() => setPolicyOpen(false)}
-                >
-                  <span className="policy-dropdown-icon">{action.icon}</span>
-                  <span>{action.label}</span>
-                </Link>
+            <div className="nav-dropdown-menu">
+              {whoWeAreLinks.map((link) => (
+                <a key={link.href} href={link.href} className="nav-dropdown-item">
+                  {link.label}
+                </a>
               ))}
             </div>
           </div>
 
-          {/* ── Mobile Hamburger ── */}
-          <button
-            className={`hamburger ${scrolled ? 'hamburger-scrolled' : 'hamburger-hero'}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileOpen}
-          >
-            <span className={`ham-line ${mobileOpen ? 'ham-open-1' : ''}`} />
-            <span className={`ham-line ${mobileOpen ? 'ham-open-2' : ''}`} />
-            <span className={`ham-line ${mobileOpen ? 'ham-open-3' : ''}`} />
-          </button>
-        </div>
-      </header>
+          <span className="nav-dot">•</span>
 
-      {/* ── Mobile Drawer ── */}
-      <div
-        className={`mobile-overlay ${mobileOpen ? 'mobile-overlay-open' : ''}`}
-        onClick={() => setMobileOpen(false)}
-        aria-hidden="true"
-      />
-      <div
-        className={`mobile-drawer ${mobileOpen ? 'mobile-drawer-open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile navigation"
-      >
-        <div className="mobile-drawer-header">
-          <CeiilLogo scrolled={true} />
-          <button className="mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
-        </div>
-        <nav className="mobile-nav">
-          {navLinks.map((link) => (
-            <div key={link.label}>
-              <Link
-                href={link.href}
-                className="mobile-nav-link"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-              {link.children && (
-                <div className="mobile-sub-links">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="mobile-sub-link"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+          {/* PRODUCTS DROPDOWN */}
+          <div className="nav-item-dropdown">
+            <button className="nav-link nav-link-teal">
+              <ProductsIcon />
+              <span>PRODUCTS</span>
+              <DropdownArrow />
+            </button>
+            <div className="nav-dropdown-menu">
+              {productLinks.map((link) => (
+                <a key={link.href} href={link.href} className="nav-dropdown-item">
+                  {link.label}
+                </a>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <span className="nav-dot">•</span>
+
+          {/* NEWS */}
+          <a href="https://ceiil.ng/index.php/blog/" className="nav-link nav-link-teal">
+            <NewsIcon />
+            <span>NEWS</span>
+          </a>
+
+          <span className="nav-dot">•</span>
+
+          {/* FINANCIALS */}
+          <a href="https://ceiil.ng/index.php/our-financials/" className="nav-link nav-link-teal">
+            <span>FINANCIALS</span>
+          </a>
+
+          <span className="nav-dot">•</span>
+
+          {/* CONTACT US */}
+          <a href="#contact" className="nav-link nav-link-teal">
+            <ContactIcon />
+            <span>CONTACT US</span>
+          </a>
+
         </nav>
-        <div className="mobile-drawer-actions">
-          {policyActions.map((action) => (
-            <Link
-              key={action.href}
-              href={action.href}
-              className="mobile-action-btn"
-              onClick={() => setMobileOpen(false)}
-            >
-              {action.icon} {action.label}
-            </Link>
-          ))}
+
+        {/* Right CTA Actions & Toggle */}
+        <div className="nav-actions" ref={actionRef}>
+          <button
+            type="button"
+            className="nav-cta"
+            aria-expanded={isActionOpen}
+            aria-haspopup="menu"
+            onClick={() => setIsActionOpen((open) => !open)}
+          >
+            <span>Buy a Policy</span>
+            <ChevronIcon open={isActionOpen} />
+          </button>
+
+          <div className={`action-menu ${isActionOpen ? 'action-menu-open' : ''}`} role="menu">
+            {actionLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="action-link"
+                role="menuitem"
+                onClick={() => setIsActionOpen(false)}
+              >
+                <span>{link.label}</span>
+                <ArrowIcon />
+              </a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
       </div>
 
-      <style jsx>{`
-        /* ── Root ── */
-        .navbar-root {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 100;
-          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .navbar-transparent {
-          background: transparent;
-          box-shadow: none;
-          padding: 1.5rem 0;
-        }
-        .navbar-scrolled {
-          background: rgba(255, 255, 255, 0.97);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          box-shadow: 0 1px 0 rgba(0,0,0,0.08), 0 4px 20px rgba(0,0,0,0.06);
-          padding: 0.85rem 0;
-        }
-        .navbar-inner {
-          display: flex;
-          align-items: center;
-          gap: 2rem;
-        }
+      {/* Mobile Menu Panel */}
+      <div className={`mobile-panel glass-panel ${isMenuOpen ? 'mobile-panel-open' : ''}`}>
+        <nav className="mobile-links" aria-label="Mobile navigation">
+          {/* HOME */}
+          <Link href="/" className="mobile-link text-crimson" onClick={() => setIsMenuOpen(false)}>
+            <div className="mobile-link-header">
+              <HomeIcon />
+              <span>HOME</span>
+            </div>
+          </Link>
 
-        /* ── Logo ── */
-        .navbar-logo {
-          flex-shrink: 0;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-        }
+          {/* WHO WE ARE ACCORDION */}
+          <div className="mobile-accordion">
+            <button
+              type="button"
+              className="mobile-accordion-trigger"
+              onClick={() => setIsMobileWhoOpen((open) => !open)}
+            >
+              <div className="mobile-link-header">
+                <WhoWeAreIcon />
+                <span>WHO WE ARE</span>
+              </div>
+              <ChevronIcon open={isMobileWhoOpen} />
+            </button>
+            <div className={`mobile-accordion-content ${isMobileWhoOpen ? 'mobile-accordion-content-open' : ''}`}>
+              {whoWeAreLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="mobile-sublink"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
 
-        /* ── Desktop Links ── */
-        .navbar-links {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          flex: 1;
-          justify-content: center;
-        }
-        .nav-link {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          padding: 0.5rem 0.85rem;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.2s ease;
-          white-space: nowrap;
-          background: none;
-          cursor: pointer;
-        }
-        .nav-link-btn {
-          border: none;
-          font-family: inherit;
-        }
-        .nav-link-hero {
-          color: rgba(255,255,255,0.92);
-        }
-        .nav-link-hero:hover {
-          color: #fff;
-          background: rgba(255,255,255,0.12);
-        }
-        .nav-link-scrolled {
-          color: #00425B;
-        }
-        .nav-link-scrolled:hover {
-          color: #00425B;
-          background: #E8F7FB;
-        }
+          {/* PRODUCTS ACCORDION */}
+          <div className="mobile-accordion">
+            <button
+              type="button"
+              className="mobile-accordion-trigger"
+              onClick={() => setIsMobileProductsOpen((open) => !open)}
+            >
+              <div className="mobile-link-header">
+                <ProductsIcon />
+                <span>PRODUCTS</span>
+              </div>
+              <ChevronIcon open={isMobileProductsOpen} />
+            </button>
+            <div className={`mobile-accordion-content ${isMobileProductsOpen ? 'mobile-accordion-content-open' : ''}`}>
+              {productLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="mobile-sublink"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
 
-        /* ── Dropdown ── */
-        .nav-item-group {
-          position: relative;
-        }
-        .nav-dropdown {
-          position: absolute;
-          top: calc(100% + 0.5rem);
-          left: 50%;
-          transform: translateX(-50%) translateY(-8px);
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
-          min-width: 200px;
-          padding: 0.5rem;
-          opacity: 0;
-          pointer-events: none;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav-dropdown-open {
-          opacity: 1;
-          pointer-events: all;
-          transform: translateX(-50%) translateY(0);
-        }
-        .nav-dropdown-item {
-          display: block;
-          padding: 0.6rem 1rem;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #374151;
-          text-decoration: none;
-          transition: all 0.15s ease;
-        }
-        .nav-dropdown-item:hover {
-          background: #E8F7FB;
-          color: #00425B;
-        }
+          {/* NEWS */}
+          <a
+            href="https://ceiil.ng/index.php/blog/"
+            className="mobile-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <div className="mobile-link-header">
+              <NewsIcon />
+              <span>NEWS</span>
+            </div>
+          </a>
 
-        /* ── Policy CTA ── */
-        .navbar-cta {
-          position: relative;
-          flex-shrink: 0;
-        }
-        .navbar-policy-btn {
-          font-size: 0.8rem;
-          padding: 0.6rem 1.25rem;
-        }
-        .policy-dropdown {
-          position: absolute;
-          top: calc(100% + 0.75rem);
-          right: 0;
-          background: white;
-          border-radius: 16px;
-          box-shadow: 0 12px 48px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.04);
-          min-width: 220px;
-          padding: 0.75rem;
-          opacity: 0;
-          pointer-events: none;
-          transform: translateY(-8px);
-          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .policy-dropdown-open {
-          opacity: 1;
-          pointer-events: all;
-          transform: translateY(0);
-        }
-        .policy-dropdown-item {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          padding: 0.75rem 1rem;
-          border-radius: 10px;
-          font-size: 0.875rem;
-          font-weight: 700;
-          color: #1F2937;
-          text-decoration: none;
-          transition: all 0.15s ease;
-        }
-        .policy-dropdown-item:hover {
-          background: #E8F7FB;
-          color: #00425B;
-        }
-        .policy-dropdown-icon {
-          font-size: 1.1rem;
-          width: 1.5rem;
-          text-align: center;
-        }
+          {/* FINANCIALS */}
+          <a
+            href="https://ceiil.ng/index.php/our-financials/"
+            className="mobile-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <div className="mobile-link-header">
+              <span className="mobile-no-icon-spacing">FINANCIALS</span>
+            </div>
+          </a>
 
-        /* ── Hamburger ── */
-        .hamburger {
-          display: none;
-          flex-direction: column;
-          gap: 5px;
-          width: 36px;
-          height: 36px;
-          align-items: center;
-          justify-content: center;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 4px;
-          border-radius: 8px;
-        }
-        .ham-line {
-          display: block;
-          width: 22px;
-          height: 2px;
-          border-radius: 2px;
-          transition: all 0.3s ease;
-        }
-        .hamburger-hero .ham-line { background: white; }
-        .hamburger-scrolled .ham-line { background: #00425B; }
-        .ham-open-1 { transform: rotate(45deg) translate(5px, 5px); }
-        .ham-open-2 { opacity: 0; transform: scaleX(0); }
-        .ham-open-3 { transform: rotate(-45deg) translate(5px, -5px); }
+          {/* CONTACT US */}
+          <a
+            href="#contact"
+            className="mobile-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <div className="mobile-link-header">
+              <ContactIcon />
+              <span>CONTACT US</span>
+            </div>
+          </a>
 
-        /* ── Mobile Overlay ── */
-        .mobile-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.5);
-          backdrop-filter: blur(4px);
-          z-index: 200;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s ease;
-        }
-        .mobile-overlay-open {
-          opacity: 1;
-          pointer-events: all;
-        }
+        </nav>
 
-        /* ── Mobile Drawer ── */
-        .mobile-drawer {
-          position: fixed;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          width: min(320px, 85vw);
-          background: white;
-          z-index: 300;
-          display: flex;
-          flex-direction: column;
-          transform: translateX(100%);
-          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-          overflow-y: auto;
-        }
-        .mobile-drawer-open {
-          transform: translateX(0);
-        }
-        .mobile-drawer-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1.5rem 1.5rem 1rem;
-          border-bottom: 1px solid #E5E7EB;
-        }
-        .mobile-close {
-          background: none;
-          border: none;
-          font-size: 1.25rem;
-          cursor: pointer;
-          color: #6B7280;
-          padding: 4px 8px;
-          border-radius: 6px;
-        }
-        .mobile-nav {
-          flex: 1;
-          padding: 1rem 1.25rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.125rem;
-        }
-        .mobile-nav-link {
-          display: block;
-          padding: 0.75rem 0.875rem;
-          border-radius: 10px;
-          font-size: 0.9375rem;
-          font-weight: 700;
-          color: #1F2937;
-          text-decoration: none;
-          transition: background 0.15s ease;
-        }
-        .mobile-nav-link:hover {
-          background: #E8F7FB;
-          color: #00425B;
-        }
-        .mobile-sub-links {
-          padding-left: 1.25rem;
-          margin-top: -0.25rem;
-          margin-bottom: 0.25rem;
-        }
-        .mobile-sub-link {
-          display: block;
-          padding: 0.5rem 0.875rem;
-          font-size: 0.8125rem;
-          font-weight: 600;
-          color: #6B7280;
-          text-decoration: none;
-          border-radius: 8px;
-          transition: all 0.15s ease;
-        }
-        .mobile-sub-link:hover {
-          color: #00425B;
-          background: #E8F7FB;
-        }
-        .mobile-drawer-actions {
-          padding: 1rem 1.25rem 2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.625rem;
-          border-top: 1px solid #E5E7EB;
-        }
-        .mobile-action-btn {
-          display: flex;
-          align-items: center;
-          gap: 0.625rem;
-          padding: 0.75rem 1rem;
-          border-radius: 10px;
-          font-size: 0.875rem;
-          font-weight: 700;
-          color: white;
-          background: #00425B;
-          text-decoration: none;
-          transition: background 0.15s ease;
-        }
-        .mobile-action-btn:hover {
-          background: #005F82;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 1024px) {
-          .navbar-links { display: none; }
-          .navbar-cta { display: none; }
-          .hamburger { display: flex; }
-        }
-      `}</style>
-    </>
+        <div className="mobile-action-list">
+          {actionLinks.map((link) => (
+            <a key={link.href} href={link.href} className="mobile-action-link" onClick={() => setIsMenuOpen(false)}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </header>
   );
 }
 
-/* ── Real CEIIL Logo ─────────────────────────────────────── */
-function CeiilLogo({ scrolled }: { scrolled: boolean }) {
+// Sub-icons and arrows
+function HomeIcon() {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Image
-        src="/media/ceiil-litt.png"
-        alt="Capital Express Indemnity Insurance Limited"
-        width={160}
-        height={52}
-        priority
-        style={{
-          objectFit: 'contain',
-          filter: scrolled ? 'none' : 'brightness(0) invert(1)',
-          transition: 'filter 0.35s ease',
-          height: '42px',
-          width: 'auto',
-        }}
-      />
-    </div>
+    <svg className="nav-icon-svg text-crimson" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
   );
 }
 
-/* ── Chevron Icon ─────────────────────────────────────────── */
-function ChevronIcon({ rotated = false }: { rotated?: boolean }) {
+function WhoWeAreIcon() {
+  return (
+    <svg className="nav-icon-svg text-teal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
+
+function ProductsIcon() {
+  return (
+    <svg className="nav-icon-svg text-teal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+      <line x1="12" y1="22.08" x2="12" y2="12" />
+    </svg>
+  );
+}
+
+function NewsIcon() {
+  return (
+    <svg className="nav-icon-svg text-teal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <circle cx="8" cy="10" r="1" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="10" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function ContactIcon() {
+  return (
+    <svg className="nav-icon-svg text-teal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function DropdownArrow() {
+  return (
+    <svg className="dropdown-arrow-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChevronIcon({ open }: { open: boolean }) {
   return (
     <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
       style={{
-        transition: 'transform 0.2s ease',
-        transform: rotated ? 'rotate(180deg)' : 'rotate(0deg)',
-        opacity: 0.7,
-        flexShrink: 0,
+        transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+        transition: 'transform 180ms ease',
       }}
     >
-      <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 17L17 7M9 7H17V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
