@@ -60,6 +60,7 @@ Email:
 - info@ceiil.ng
 - hello@ceiil.ng
 - customercare@ceiil.ng appears in some footer instances, but not consistently.
+- The client-supplied presentation update favors `customercare@ceiil.ng`; see `docs/PRESENTATION_CONTENT_UPDATE.md`.
 
 Working hours:
 

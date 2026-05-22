@@ -5,19 +5,48 @@ import { useEffect, useState } from 'react';
 
 const slides = [
   {
-    id: 'motor',
+    id: 'marine-photo',
+    theme: 'photo',
+    eyebrow: 'Capital Express Indemnity Insurance',
+    title: 'Protecting What Matters Most',
+    body: 'Insurance solutions designed to protect your assets, business, family, and future.',
+    image: '/media/Marine-scaled.jpg',
+    imagePosition: 'center center',
+    primaryCta: { label: 'Get a Quote', href: 'https://ceiil.ng/index.php/contact-us/' },
+    secondaryCta: { label: 'Report a Claim', href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/' },
+  },
+  {
+    id: 'family-photo',
+    theme: 'photo',
+    eyebrow: 'Customer-Focused Service',
+    title: 'Creating lasting value for every stakeholder.',
+    body: 'Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder.',
+    image: '/media/family-7257182-scaled.jpg',
+    imagePosition: 'center center',
+    primaryCta: { label: 'Contact Us', href: 'https://ceiil.ng/index.php/contact-us/' },
+    secondaryCta: { label: 'Explore Products', href: '#products' },
+  },
+  {
+    id: 'motor-photo',
+    theme: 'photo',
+    eyebrow: 'Trusted Risk Protection Partner',
+    title: 'Reliable cover for life on the move.',
+    body: 'Delivering value through efficient technology, professional manpower, and customer-focused service.',
+    image: '/media/afroamerican-man-waving-medium-shot-scaled.jpg',
+    imagePosition: 'center center',
+    primaryCta: { label: 'Buy a Policy', href: 'https://ceiil.ng/index.php/contact-us/' },
+    secondaryCta: { label: 'Contact Us', href: '#contact' },
+  },
+  {
+    id: 'motor-campaign',
+    theme: 'art',
     title: 'The small cover that saves big trouble.',
     image: '/media/The-small-cover-scaled.jpg',
     imagePosition: 'center center',
   },
   {
-    id: 'strategy',
-    title: 'Master every move.',
-    image: '/media/CEIIL-Wallpaper1-scaled.jpg',
-    imagePosition: '78% center',
-  },
-  {
-    id: 'property',
+    id: 'property-campaign',
+    theme: 'art',
     title: "Protect the pride you've built.",
     image: '/media/protect-the-pride-you-built-scaled.jpg',
     imagePosition: '22% center',
@@ -126,7 +155,7 @@ const coreValuesData = [
     desc: "We put our customers first and remain committed to meeting their needs.",
     num: '01',
     color: 'linear-gradient(135deg, #004058 0%, #00bcd4 100%)',
-    ribbonText: 'DEDICATION • SERVICE • TRUST • CARE • ',
+    ribbonText: 'DEDICATION / SERVICE / TRUST / CARE / ',
     icon: HeartShieldIcon,
   },
   {
@@ -134,7 +163,7 @@ const coreValuesData = [
     desc: "We value people, diversity, dignity, and mutual respect.",
     num: '02',
     color: 'linear-gradient(135deg, #b02038 0%, #e91e63 100%)',
-    ribbonText: 'RESPECT • EQUITY • DIGNITY • INCLUSION • ',
+    ribbonText: 'RESPECT / EQUITY / DIGNITY / INCLUSION / ',
     icon: RespectIcon,
   },
   {
@@ -142,7 +171,7 @@ const coreValuesData = [
     desc: "We uphold trust, transparency, and accountability in all we do.",
     num: '03',
     color: 'linear-gradient(135deg, #003247 0%, #ffb300 100%)',
-    ribbonText: 'INTEGRITY • TRUTH • HONESTY • ETHICS • ',
+    ribbonText: 'INTEGRITY / TRUTH / HONESTY / ETHICS / ',
     icon: ShieldCheckIcon,
   },
   {
@@ -150,7 +179,7 @@ const coreValuesData = [
     desc: "We embrace innovation and practical ideas that improve service delivery.",
     num: '04',
     color: 'linear-gradient(135deg, #3b0764 0%, #a855f7 100%)',
-    ribbonText: 'CREATIVITY • IDEA • VISION • FUTURE • ',
+    ribbonText: 'CREATIVITY / IDEA / VISION / FUTURE / ',
     icon: CreativityIcon,
   },
   {
@@ -158,7 +187,7 @@ const coreValuesData = [
     desc: "We work together to deliver better outcomes for customers and stakeholders.",
     num: '05',
     color: 'linear-gradient(135deg, #064e3b 0%, #10b981 100%)',
-    ribbonText: 'TEAMWORK • UNITY • SYNERGY • COLLABORATE • ',
+    ribbonText: 'TEAMWORK / UNITY / SYNERGY / COLLABORATE / ',
     icon: TeamworkIcon,
   },
 ];
@@ -184,6 +213,7 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [hoveredPhil, setHoveredPhil] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  const activeSlide = slides[currentSlide];
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -225,7 +255,7 @@ export default function HomePage() {
   return (
     <div className="home-page">
       <section className="hero-stage">
-        <div className="hero-shell">
+        <div className={`hero-shell ${activeSlide.theme === 'photo' ? 'hero-shell-text-slide' : 'hero-shell-art-slide'}`}>
           <div className="hero-backdrop">
             {slides.map((item, index) => (
               <div key={item.id} className={`hero-image-frame ${index === currentSlide ? 'hero-image-frame-active' : ''}`}>
@@ -243,24 +273,33 @@ export default function HomePage() {
             <div className="hero-backdrop-glow" />
           </div>
 
-          <div className="hero-overlay-content">
-            <div className="hero-text-container">
-              <span className="hero-eyebrow">Capital Express Indemnity Insurance</span>
-              <h1 className="hero-title">Protecting What Matters Most</h1>
-              <p className="hero-subtitle">
-                Insurance solutions designed to protect your assets, family, business, and future.
-              </p>
-              <div className="hero-cta-buttons">
-                <a href="https://ceiil.ng/index.php/contact-us/" className="button-primary hero-btn">
-                  <span>Get a Quote</span>
-                  <ArrowIcon />
-                </a>
-                <a href="https://ceiil.ng/index.php/motor-insurance-claim-2/" className="button-secondary hero-btn">
-                  <span>Report a Claim</span>
-                </a>
+          {activeSlide.theme === 'photo' ? (
+            <div className="hero-overlay-content">
+              <div key={activeSlide.id} className="hero-text-container">
+                <div className="hero-brand-lockup">
+                  <Image
+                    src="/media/cropped-ceiil-litt.png"
+                    alt="CEIIL"
+                    width={120}
+                    height={36}
+                    className="hero-brand-mark"
+                  />
+                  <span className="hero-eyebrow">{activeSlide.eyebrow}</span>
+                </div>
+                <h1 className="hero-title">{activeSlide.title}</h1>
+                <p className="hero-subtitle">{activeSlide.body}</p>
+                <div className="hero-cta-buttons">
+                  <a href={activeSlide.primaryCta?.href} className="button-primary hero-btn">
+                    <span>{activeSlide.primaryCta?.label}</span>
+                    <ArrowIcon />
+                  </a>
+                  <a href={activeSlide.secondaryCta?.href} className="button-secondary hero-btn">
+                    <span>{activeSlide.secondaryCta?.label}</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
 
           <div className="hero-content-shell">
             <div className="hero-controls">
@@ -726,7 +765,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h4>Head Office</h4>
-                    <p>17, Bishop Kale Close, VI, Lagos</p>
+                    <p>No. 17, Bishop Kale Close, Off Kasumu Ekemode Street, Victoria Island, Lagos.</p>
                   </div>
                 </div>
 
@@ -753,7 +792,7 @@ export default function HomePage() {
                     <p>
                       <a href="mailto:info@ceiil.ng">info@ceiil.ng</a>
                       <span className="contact-info-divider">|</span>
-                      <a href="mailto:hello@ceiil.ng">hello@ceiil.ng</a>
+                      <a href="mailto:customercare@ceiil.ng">customercare@ceiil.ng</a>
                     </p>
                   </div>
                 </div>

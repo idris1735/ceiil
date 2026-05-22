@@ -2,7 +2,7 @@
 
 Last updated: 2026-05-22
 
-This file is the working handoff for design, PM, and future AI contributors. Read `docs/CONTENT_INVENTORY.md` first for sourced content.
+This file is the working handoff for design, PM, and future AI contributors. Read `docs/CONTENT_INVENTORY.md` first for live-site sourced content, then read `docs/PRESENTATION_CONTENT_UPDATE.md` for the newer client-supplied presentation content.
 
 ## Current Status
 
@@ -13,6 +13,10 @@ What changed in the current pass:
 - The site now builds cleanly on Next.js 16.
 - Local development now defaults to webpack via `npm run dev` because Turbopack was repeatedly crashing HMR on this Windows setup with stale `registry.tsx` references.
 - Turbopack remains available through `npm run dev:turbo` and `npm run build:turbo` for later testing, but it should not be the default workflow right now.
+- The homepage hero now mixes two content modes: plain-photo slides with CEIIL-led overlay copy, and campaign-art slides with no redundant overlay text.
+- The first hero slide now starts with the ship image, per client preference.
+- Favicon and Apple icon assets now point at the CEIIL logo mark in the app router.
+- Footer and contact touchpoints have been updated toward the client-supplied email and social details.
 - The global font setup now uses a cleaner geometric substitute through `next/font` instead of the previous Nunito direction.
 - The navbar now uses a cleaner floating shell and only points to working section anchors or verified live CEIIL action URLs.
 - The homepage hero has been rebuilt around the real CEIIL campaign images in `public/media`.
@@ -120,6 +124,7 @@ Source-confirmed assets and themes:
 
 - Do not invent services, products, awards, locations, or claims.
 - Use `docs/CONTENT_INVENTORY.md` for source-backed facts.
+- Use `docs/PRESENTATION_CONTENT_UPDATE.md` for client-supplied deck content that may be newer or broader than the live site.
 - If copy is rewritten for polish, mark it as proposed copy until the client accepts it.
 - Preserve regulatory/legal meaning, but fix obvious typos only when moving into polished UI.
 - Time-sensitive details, especially prices and laws, must be reconfirmed before publishing.
