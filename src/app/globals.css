@@ -220,35 +220,24 @@ button {
   justify-content: flex-start;
   padding: 0 max(20px, calc((100% - 1280px) / 2 + 40px));
   z-index: 3;
-  pointer-events: none; /* Let clicks pass through, but child elements will have pointer-events auto */
+  pointer-events: none;
 }
 
 .hero-text-container {
   max-width: 620px;
-  padding: 42px 40px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(0, 37, 52, 0.64) 0%, rgba(0, 64, 88, 0.44) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.22);
-  color: #ffffff;
+  padding: 28px 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  color: var(--ink);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   pointer-events: auto;
   animation: heroTextFadeIn 1s cubic-bezier(0.25, 1, 0.35, 1) both;
-}
-
-.hero-brand-lockup {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.hero-brand-mark {
-  width: auto;
-  height: 34px;
 }
 
 @keyframes heroTextFadeIn {
@@ -265,7 +254,7 @@ button {
 .hero-eyebrow {
   font-size: 0.86rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--brand-teal);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -275,7 +264,7 @@ button {
   font-size: clamp(2.2rem, 5.2vw, 3.8rem);
   line-height: 1.08;
   font-weight: 800;
-  color: #ffffff !important;
+  color: var(--brand-crimson) !important;
   letter-spacing: -0.01em;
 }
 
@@ -283,8 +272,9 @@ button {
   margin: 0;
   font-size: clamp(0.98rem, 1.8vw, 1.15rem);
   line-height: 1.6;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600;
+  color: var(--brand-teal-strong) !important;
+  max-width: 40rem;
 }
 
 .hero-cta-buttons {
@@ -299,15 +289,15 @@ button {
 }
 
 .hero-btn.button-secondary {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: var(--ink) !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-color: rgba(0, 64, 88, 0.14) !important;
   backdrop-filter: blur(8px);
 }
 
 .hero-btn.button-secondary:hover {
-  background: rgba(255, 255, 255, 0.22) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(0, 64, 88, 0.2) !important;
 }
 
 .hero-backdrop {
@@ -317,11 +307,12 @@ button {
 
 .hero-content-shell {
   position: absolute;
-  inset: auto 0 0;
-  z-index: 2;
+  right: max(20px, calc((100% - 1280px) / 2 + 40px));
+  bottom: 42px;
+  z-index: 4;
   display: flex;
-  justify-content: center;
-  padding: 0 0 36px;
+  justify-content: flex-end;
+  padding: 0;
   pointer-events: none;
 }
 
@@ -329,12 +320,12 @@ button {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1400ms cubic-bezier(0.25, 1, 0.35, 1);
+  transition: opacity 2200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-image-frame img {
   transform: scale(1);
-  transition: transform 1400ms cubic-bezier(0.25, 1, 0.35, 1);
+  transition: transform 2200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-image-frame-active {
@@ -342,7 +333,7 @@ button {
 }
 
 .hero-image-frame-active img {
-  animation: kenBurnsZoom 9500ms cubic-bezier(0.25, 1, 0.35, 1) forwards;
+  animation: kenBurnsZoom 14000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes kenBurnsZoom {
@@ -350,7 +341,7 @@ button {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
 }
 
@@ -364,8 +355,8 @@ button {
 
 .hero-shell-text-slide .hero-backdrop-wash {
   background:
-    linear-gradient(90deg, rgba(0, 32, 47, 0.62) 0%, rgba(0, 32, 47, 0.42) 24%, rgba(0, 32, 47, 0.12) 48%, rgba(0, 32, 47, 0) 70%),
-    linear-gradient(180deg, rgba(10, 17, 22, 0.2) 0%, rgba(10, 17, 22, 0.06) 24%, rgba(10, 17, 22, 0.04) 72%, rgba(10, 17, 22, 0.22) 100%);
+    linear-gradient(90deg, rgba(255, 252, 247, 0.94) 0%, rgba(255, 252, 247, 0.86) 18%, rgba(255, 252, 247, 0.58) 36%, rgba(255, 252, 247, 0.18) 56%, rgba(255, 252, 247, 0) 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 24%, rgba(10, 17, 22, 0.02) 78%, rgba(10, 17, 22, 0.12) 100%);
 }
 
 .hero-shell-art-slide .hero-backdrop-wash {
@@ -380,24 +371,60 @@ button {
 .hero-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   pointer-events: auto;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 34px rgba(13, 23, 31, 0.12);
+}
+
+.hero-arrow-button {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 64, 88, 0.08);
+  color: var(--brand-teal);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.hero-arrow-button:hover {
+  background: rgba(176, 32, 56, 0.14);
+  color: var(--brand-crimson);
+  transform: translateY(-1px);
+}
+
+.hero-indicator-stack {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.hero-pill-list {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .hero-dot {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 5px;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  background: rgba(0, 64, 88, 0.16);
   transition: width 220ms ease, background-color 220ms ease, opacity 220ms ease;
 }
 
 .hero-dot-active {
-  width: 56px;
-  background: #ffffff;
+  width: 24px;
+  background: linear-gradient(90deg, var(--brand-crimson) 0%, var(--brand-teal) 100%);
 }
 
 .actions-shell {
@@ -2175,11 +2202,12 @@ button {
 
   .hero-text-container {
     max-width: 560px;
-    padding: 34px 30px;
+    padding: 22px 0;
   }
 
   .hero-content-shell {
-    padding-bottom: 28px;
+    right: 24px;
+    bottom: 28px;
   }
 
   .hero-backdrop-wash {
@@ -2246,19 +2274,15 @@ button {
 
   .hero-overlay-content {
     align-items: flex-end;
-    padding: 0 16px 78px;
+    padding: 0 16px 108px;
   }
 
   .hero-text-container {
     width: 100%;
     max-width: none;
-    padding: 24px 20px;
-    border-radius: 22px;
+    padding: 0;
+    border-radius: 0;
     gap: 14px;
-  }
-
-  .hero-brand-mark {
-    height: 28px;
   }
 
   .hero-eyebrow {
@@ -2286,20 +2310,45 @@ button {
   }
 
   .hero-content-shell {
-    padding-bottom: 22px;
+    right: 16px;
+    left: 16px;
+    bottom: 24px;
+    justify-content: center;
   }
 
   .hero-controls {
-    gap: 8px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  .hero-arrow-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hero-indicator-stack {
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .hero-pill-list {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
   }
 
   .hero-dot {
-    width: 12px;
-    height: 12px;
+    flex: 1 1 0;
+    width: auto;
+    min-width: 10px;
   }
 
   .hero-dot-active {
-    width: 42px;
+    flex: 1.6 1 0;
+    width: auto;
   }
 
   .footer-panel {

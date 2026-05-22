@@ -11,7 +11,7 @@ const slides = [
     title: 'Protecting What Matters Most',
     body: 'Insurance solutions designed to protect your assets, business, family, and future.',
     image: '/media/Marine-scaled.jpg',
-    imagePosition: 'center center',
+    imagePosition: 'center top',
     primaryCta: { label: 'Get a Quote', href: 'https://ceiil.ng/index.php/contact-us/' },
     secondaryCta: { label: 'Report a Claim', href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/' },
   },
@@ -22,7 +22,7 @@ const slides = [
     title: 'Creating lasting value for every stakeholder.',
     body: 'Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder.',
     image: '/media/family-7257182-scaled.jpg',
-    imagePosition: 'center center',
+    imagePosition: 'center top',
     primaryCta: { label: 'Contact Us', href: 'https://ceiil.ng/index.php/contact-us/' },
     secondaryCta: { label: 'Explore Products', href: '#products' },
   },
@@ -33,7 +33,7 @@ const slides = [
     title: 'Reliable cover for life on the move.',
     body: 'Delivering value through efficient technology, professional manpower, and customer-focused service.',
     image: '/media/afroamerican-man-waving-medium-shot-scaled.jpg',
-    imagePosition: 'center center',
+    imagePosition: 'center top',
     primaryCta: { label: 'Buy a Policy', href: 'https://ceiil.ng/index.php/contact-us/' },
     secondaryCta: { label: 'Contact Us', href: '#contact' },
   },
@@ -214,11 +214,17 @@ export default function HomePage() {
   const [hoveredPhil, setHoveredPhil] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const activeSlide = slides[currentSlide];
+  const previousSlide = () => {
+    setCurrentSlide((value) => (value - 1 + slides.length) % slides.length);
+  };
+  const nextSlide = () => {
+    setCurrentSlide((value) => (value + 1) % slides.length);
+  };
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setCurrentSlide((value) => (value + 1) % slides.length);
-    }, 9200);
+    }, 14000);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -276,16 +282,7 @@ export default function HomePage() {
           {activeSlide.theme === 'photo' ? (
             <div className="hero-overlay-content">
               <div key={activeSlide.id} className="hero-text-container">
-                <div className="hero-brand-lockup">
-                  <Image
-                    src="/media/cropped-ceiil-litt.png"
-                    alt="CEIIL"
-                    width={120}
-                    height={36}
-                    className="hero-brand-mark"
-                  />
-                  <span className="hero-eyebrow">{activeSlide.eyebrow}</span>
-                </div>
+                <span className="hero-eyebrow">{activeSlide.eyebrow}</span>
                 <h1 className="hero-title">{activeSlide.title}</h1>
                 <p className="hero-subtitle">{activeSlide.body}</p>
                 <div className="hero-cta-buttons">
@@ -302,16 +299,28 @@ export default function HomePage() {
           ) : null}
 
           <div className="hero-content-shell">
-            <div className="hero-controls">
-              {slides.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`hero-dot ${index === currentSlide ? 'hero-dot-active' : ''}`}
-                  aria-label={`Show ${item.title}`}
-                  onClick={() => setCurrentSlide(index)}
-                />
-              ))}
+            <div className="hero-controls" aria-label="Hero carousel controls">
+              <button type="button" className="hero-arrow-button" aria-label="Previous slide" onClick={previousSlide}>
+                <ChevronLeftIcon />
+              </button>
+
+              <div className="hero-indicator-stack">
+                <div className="hero-pill-list">
+                  {slides.map((item, index) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className={`hero-dot ${index === currentSlide ? 'hero-dot-active' : ''}`}
+                      aria-label={`Show ${item.title}`}
+                      onClick={() => setCurrentSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <button type="button" className="hero-arrow-button" aria-label="Next slide" onClick={nextSlide}>
+                <ChevronRightIcon />
+              </button>
             </div>
           </div>
         </div>
@@ -819,6 +828,22 @@ function ArrowIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M7 17L17 7M9 7H17V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChevronLeftIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
