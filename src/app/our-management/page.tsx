@@ -39,7 +39,7 @@ const managementTeam = [
   {
     name: "Audu Dunni Oladokun",
     role: "Head, E-Business",
-    image: "/media/HEAD-E-BUSINESS-PASSPORT.jpg",
+    image: "",
     bio: "Dunni is a visionary Technology and E-Business Executive with over two decades of experience driving digital transformation and operational excellence across the financial and insurance sectors. He has consistently repositioned technology from a support function into a core business driver, leveraging innovative platforms, data insights, and strategic partnerships to unlock new value and competitive advantage."
   },
   {
