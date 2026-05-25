@@ -2925,7 +2925,7 @@ button {
     display: none !important;
   }
   .menu-toggle {
-    display: flex !important;
+    display: inline-flex !important;
   }
   .brand-logo {
     width: 160px !important;
@@ -2939,7 +2939,7 @@ button {
   }
 
   /* Mobile Panel */
-  .mobile-panel {
+  .mobile-panel-open {
     display: block !important;
   }
 
