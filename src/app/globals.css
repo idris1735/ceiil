@@ -2893,212 +2893,238 @@ button {
 }
 
 /* ============================================
-   MOBILE RESPONSIVENESS
+   RESPONSIVE — iPad / Tablet (≤1024px)
    ============================================ */
+@media (max-width: 1024px) {
+  /* Products: featured 2-col → stack */
+  .products-page [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  .products-page [style*="height: 520px"] {
+    height: 380px !important;
+  }
+  .products-page [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
 
-/* ── Tablet (≤768px) ── */
+  /* About split section */
+  .about-us-page-wrapper [style*="minHeight: 480px"] {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+
+  /* Board / Management: 3-col → 2-col */
+  [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — Phone / Small Tablet (≤768px)
+   ============================================ */
 @media (max-width: 768px) {
 
-  /* General */
-  .section-block {
-    padding: 56px 0;
-  }
+  /* ── General ── */
+  .section-block { padding: 48px 0; }
   .section-shell,
-  .site-container {
-    width: min(var(--container), calc(100% - 24px));
-  }
-  .section-title {
-    font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
-  }
+  .site-container { width: calc(100% - 32px); }
 
-  /* PageHero */
+  /* ── PageHero ── */
   .page-hero-section {
-    padding: 120px 0 64px !important;
+    padding: 140px 0 56px !important;
     background-attachment: scroll !important;
   }
 
-  /* Navbar */
-  .nav-links {
-    display: none !important;
-  }
-  .nav-dot {
-    display: none !important;
-  }
-  .menu-toggle {
-    display: inline-flex !important;
-  }
-  .brand-logo {
-    width: 160px !important;
-    height: auto !important;
-  }
-  .nav-cta {
-    display: none !important;
-  }
-  .nav-shell {
-    padding: 10px 16px !important;
-  }
+  /* ── Navbar ── */
+  .nav-shell { padding: 8px 14px !important; min-height: 64px !important; }
+  .brand-logo { width: 140px !important; height: auto !important; }
+  .nav-links,
+  .nav-dot,
+  .nav-cta,
+  .action-menu { display: none !important; }
+  .menu-toggle { display: inline-flex !important; }
+  .mobile-panel-open { display: block !important; }
 
-  /* Mobile Panel */
-  .mobile-panel-open {
-    display: block !important;
-  }
-
-  /* Homepage Hero */
+  /* ── Homepage Hero: immersive full-screen ── */
   .hero-shell {
-    min-height: 80svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
   }
   .hero-overlay-content {
-    padding: 0 20px !important;
+    padding: 0 20px 120px !important;
     align-items: flex-end !important;
-    padding-bottom: 80px !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
   .hero-text-container {
     max-width: 100% !important;
-    gap: 10px !important;
-    padding: 20px !important;
+    gap: 8px !important;
+    padding: 24px 16px !important;
+    align-items: center !important;
   }
   .hero-title {
-    font-size: clamp(1.6rem, 7vw, 2.4rem) !important;
+    font-size: clamp(1.5rem, 8vw, 2.4rem) !important;
+    text-align: center !important;
   }
   .hero-subtitle {
     font-size: 0.9rem !important;
+    text-align: center !important;
+    max-width: 320px !important;
   }
   .hero-cta-buttons {
-    flex-direction: column !important;
-    gap: 8px !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    justify-content: center !important;
   }
   .hero-btn {
-    width: 100% !important;
-    min-height: 44px !important;
-    font-size: 0.85rem !important;
+    min-height: 42px !important;
+    font-size: 0.82rem !important;
+    padding: 0 18px !important;
   }
   .hero-content-shell {
-    right: 12px !important;
-    bottom: 20px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    bottom: 16px !important;
   }
   .hero-controls {
-    gap: 4px !important;
-    padding: 4px 6px !important;
+    gap: 3px !important;
+    padding: 3px 6px !important;
   }
   .hero-arrow-button {
-    width: 26px !important;
-    height: 26px !important;
+    width: 24px !important;
+    height: 24px !important;
   }
 
-  /* Quick Actions */
+  /* ── Quick Actions: compact row ── */
   .actions-shell {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     margin-top: -20px !important;
+    gap: 0 !important;
+    padding: 0 8px !important;
   }
   .action-card {
-    min-height: 90px !important;
-    padding: 0 20px !important;
-    border-right: 0 !important;
-    border-bottom: 1px solid rgba(22,32,43,0.08) !important;
+    min-height: 72px !important;
+    padding: 0 10px !important;
+    gap: 8px !important;
   }
-  .action-card:first-child {
-    border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+  .action-card .action-text h2 {
+    font-size: 0.82rem !important;
   }
-  .action-card:last-child {
-    border-radius: 0 0 var(--radius-card) var(--radius-card) !important;
-    border-bottom: 0 !important;
+  .action-card .action-text p {
+    font-size: 0.68rem !important;
+    display: none !important;
+  }
+  .action-card svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 
-  /* Footer */
+  /* ── Footer ── */
   .footer-panel {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+    padding: 28px !important;
   }
   .footer-bottom {
     flex-direction: column !important;
-    gap: 16px !important;
+    gap: 12px !important;
     text-align: center !important;
   }
   .footer-bottom-links {
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
 
-  /* Products Grid */
-  [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
-  [style*="grid-template-columns: repeat(3, 1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
-  [style*="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))"] {
+  /* ── Products Page ── */
+  .products-page [style*="grid-template-columns: 1fr 1fr"],
+  .products-page [style*="grid-template-columns: repeat(3, 1fr)"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* Board / Management cards */
+  /* ── Board / Management ── */
   [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
-    gap: 20px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
   }
 
-  /* Core Values rows */
-  [style*="flex-direction: row"] {
+  /* ── Core Values ── */
+  .core-values-page [style*="flex-direction: row"],
+  .core-values-page [style*="flex-direction: row-reverse"] {
     flex-direction: column !important;
-    gap: 32px !important;
+    gap: 24px !important;
   }
 
-  /* About Us split section */
-  [style*="grid-template-columns: 1fr 1fr"][style*="minHeight"] {
+  /* ── About split section ── */
+  .about-us-page-wrapper [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
     min-height: auto !important;
   }
+
+  /* ── Contact ── */
+  .contact-page-wrapper [style*="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr))"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Claims / Investor / Privacy ── */
+  [style*="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
 }
 
-/* ── Mobile (≤480px) ── */
+/* ============================================
+   RESPONSIVE — Small Phone (≤480px)
+   ============================================ */
 @media (max-width: 480px) {
 
-  /* Tighter spacing */
-  .section-block {
-    padding: 40px 0;
-  }
-  .section-shell {
-    width: calc(100% - 20px);
-  }
+  .section-block { padding: 36px 0; }
+  .section-shell { width: calc(100% - 20px); }
 
-  /* PageHero */
   .page-hero-section {
-    padding: 100px 0 48px !important;
+    padding: 120px 0 48px !important;
   }
 
-  /* Product detail cards */
-  .glass-panel.info-card {
-    padding: 24px 16px !important;
+  /* Hero even more compact */
+  .hero-text-container { padding: 16px 12px !important; }
+  .hero-cta-buttons {
+    flex-direction: column !important;
+    width: 100% !important;
   }
+  .hero-btn { width: 100% !important; }
 
-  /* Board card portrait height */
-  [style*="height: 320px"] {
-    height: 260px !important;
+  /* Quick Actions: compact */
+  .actions-shell { grid-template-columns: repeat(3, 1fr) !important; }
+  .action-card {
+    min-height: 60px !important;
+    padding: 0 6px !important;
+    gap: 4px !important;
   }
+  .action-card .action-text h2 { font-size: 0.7rem !important; }
+  .action-card svg { width: 16px !important; height: 16px !important; }
 
-  /* Featured product cards */
-  [style*="height: 520px"] {
-    height: 380px !important;
+  /* Footer fully stacked */
+  .footer-panel { grid-template-columns: 1fr !important; }
+  .footer-bottom-links { flex-direction: column !important; align-items: center !important; }
+
+  /* Board / Management: single column */
+  [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
+    grid-template-columns: 1fr !important;
   }
+  [style*="height: 320px"] { height: 280px !important; }
 
-  /* Hero text */
-  .hero-title {
-    font-size: 1.5rem !important;
-  }
+  /* Products featured cards */
+  .products-page [style*="height: 520px"] { height: 300px !important; }
+  .products-page [style*="height: 380px"] { height: 300px !important; }
 
-  /* FAQ accordion */
-  .faq-header-custom {
-    padding: 16px !important;
-    font-size: 0.95rem !important;
-  }
-
-  /* Contact form inputs */
+  /* Form name fields */
   form [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* CTA banner padding */
-  [style*="padding: 60px 48px"] {
-    padding: 40px 24px !important;
-  }
+  /* Glass panels */
+  .glass-panel.info-card { padding: 20px 16px !important; }
+
+  /* CTA banners */
+  [style*="padding: 60px 48px"] { padding: 32px 20px !important; }
 }
