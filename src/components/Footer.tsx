@@ -2,103 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const quickLinks = [
-  { label: 'About', href: '/about', color: '#38bdf8' },      // Sky blue
-  { label: 'Products', href: '/products', color: '#f59e0b' },  // Amber
-  { label: 'Values', href: '/about#philosophy', color: '#ec4899' },      // Pink
-  { label: 'Alliances', href: '/#alliances', color: '#10b981' },  // Emerald
-  { label: 'Contact', href: '/contact', color: '#a855f7' },    // Purple
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Products', href: '/products' },
+  { label: 'Core Values', href: '/our-core-values' },
+  { label: 'Board', href: '/our-board' },
+  { label: 'Management', href: '/our-management' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const productLinks = [
-  { label: 'Marine Insurance', href: '/products/marine', color: '#60a5fa' },   // Light blue
-  { label: 'Motor Insurance', href: '/products/motor', color: '#f87171' },     // Red
-  { label: 'Property Insurance', href: '/products/property', color: '#34d399' }, // Green
-  { label: 'Liability Insurance', href: '/products/liability', color: '#c084fc' }, // Light purple
-  { label: 'Engineering Insurance', href: '/products/engineering', color: '#fbbf24' }, // Yellow-gold
+  { label: 'Motor Insurance', href: '/products/motor' },
+  { label: 'Marine Insurance', href: '/products/marine' },
+  { label: 'Property Insurance', href: '/products/property' },
+  { label: 'Liability Insurance', href: '/products/liability' },
+  { label: 'Engineering Insurance', href: '/products/engineering' },
 ];
-
-function getLinkIcon(label: string, color: string) {
-  switch (label) {
-    // Navigate icons
-    case 'About':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" y1="16" x2="12" y2="12" />
-          <line x1="12" y1="8" x2="12.01" y2="8" />
-        </svg>
-      );
-    case 'Products':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      );
-    case 'Values':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-      );
-    case 'Alliances':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      );
-    case 'Contact':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-      );
-    
-    // Product icons
-    case 'Marine Insurance':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M2 12h20" />
-          <path d="M12 2v20" />
-          <path d="m17 7-5-5-5 5" />
-        </svg>
-      );
-    case 'Motor Insurance':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <rect x="2" y="4" width="20" height="12" rx="2" ry="2" />
-          <circle cx="7" cy="20" r="2" />
-          <circle cx="17" cy="20" r="2" />
-          <path d="M7 16H2" />
-          <path d="M22 16h-5" />
-        </svg>
-      );
-    case 'Property Insurance':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-      );
-    case 'Liability Insurance':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <rect x="3" y="11" width="18" height="10" rx="2" ry="2" />
-          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-        </svg>
-      );
-    case 'Engineering Insurance':
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
 
 export default function Footer() {
   return (
@@ -134,9 +52,8 @@ export default function Footer() {
             <h3>Navigate</h3>
             <div className="footer-links">
               {quickLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
-                  {getLinkIcon(link.label, link.color)}
-                  <span style={{ marginLeft: '8px' }}>{link.label}</span>
+                <Link key={link.href} href={link.href} className="footer-link">
+                  {link.label}
                 </Link>
               ))}
             </div>
@@ -146,9 +63,8 @@ export default function Footer() {
             <h3>Products</h3>
             <div className="footer-links">
               {productLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
-                  {getLinkIcon(link.label, link.color)}
-                  <span style={{ marginLeft: '8px' }}>{link.label}</span>
+                <Link key={link.href} href={link.href} className="footer-link">
+                  {link.label}
                 </Link>
               ))}
             </div>
@@ -196,17 +112,6 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-text">
             <p>© 2025 Capital Express Indemnity Insurance Limited, All Rights Reserved.</p>
-            <p className="footer-regulatory">Authorized and Regulated by the National Insurance Commission.</p>
-          </div>
-          
-          <div className="footer-bottom-nia">
-            <Image
-              src="/media/cropped-NIA-logo-qf0vpvuzjulo0lkfzeyy1p1z2yfkrarivm3x56hil4.png"
-              alt="National Insurance Association Logo"
-              width={160}
-              height={60}
-              style={{ objectFit: 'contain', height: '56px', width: 'auto', display: 'block' }}
-            />
           </div>
 
           <div className="footer-bottom-links">

@@ -1,47 +1,66 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
+import AvatarPlaceholder from '@/components/AvatarPlaceholder';
+import PageHero from '@/components/PageHero';
 
 const boardOfDirectors = [
   {
     name: "Dr. ‘Dere Awosika (OON, MFR, mni)",
     role: "Chairman",
-    bio: "Dr. Awosika is an alumnus of the National Institute for Policy and Strategic Studies (NIPSS), Kuru, and a distinguished administrator who has served at the highest levels of public service and corporate governance. She has served as a Federal Permanent Secretary and sat on the boards of major banks, pharmaceuticals, and manufacturing enterprises in Nigeria, bringing deep oversight and strategic guidance to CEIIL."
+    designation: "Chairman of the Board of Directors",
+    image: "/media/Dr.-‘Dere-scaled.jpg",
+    bio: "Dr. Awosika is an alumnus of the National Institute for Policy and Strategic Studies (NIPSS), Kuru, and a distinguished administrator who has served at the highest levels of public service and corporate governance in Nigeria. She is a former Federal Permanent Secretary and sits on the boards of multiple corporate enterprises, steering CEIIL's strategic governance."
   },
   {
     name: "Mr. Adewale Koko",
-    role: "M/D/CEO",
+    role: "Managing Director / CEO",
+    designation: "Managing Director / CEO",
+    image: "/media/adewale-koko.jpg",
     bio: "Mr. Adewale Koko is a highly experienced chartered insurer with more than two (2) decades of extensive expertise in the insurance industry. His proficiency spans business development, strategic planning, risk management, oil and gas, and financial management. Throughout his career, he has held pivotal leadership roles in several renowned Nigerian companies, demonstrating remarkable skill and strategic foresight."
   },
   {
     name: "Chief Mrs. Olayinka Titilope Aletor mni (JP)",
     role: "Non-Executive Director",
-    bio: "A seasoned administrator and director with extensive leadership experience in financial services and strategic community development. She holds critical qualifications from leading institutions and has piloted multiple corporate initiatives in the non-profit and private sectors."
+    designation: "Non-Executive Director",
+    image: "/media/Chief-Mrs.-OLAYINKA-scaled.jpg",
+    bio: "A seasoned administrator, director, and alumnus of NIPSS with extensive leadership experience in financial services and strategic community development. She brings deep oversight to CEIIL's audit and governance portfolios."
   },
   {
     name: "Mr. Segun Ajayi-Kadir (mni)",
     role: "Independent Non-Executive Director",
-    bio: "Prominent policy advocate and industrialist, serving in major advisory roles across national manufacturing and industrial associations. He brings a strong perspective on commercial development, policy relations, and risk frameworks."
+    designation: "Independent Non-Executive Director",
+    image: "/media/Mr.-Segun--scaled.jpg",
+    bio: "Prominent policy advocate and industrialist, currently serving as the Director General of the Manufacturers Association of Nigeria (MAN). He brings a strong commercial development and public relations perspective to the Board."
   },
   {
     name: "Alh. Abdulaziz Abdullahi Mashi",
     role: "Independent Non-Executive Director",
-    bio: "Distinguished public administrator with decades of federal and state administrative management experience. He has served in senior policy roles in various ministries, helping shape robust governance structures."
+    designation: "Independent Non-Executive Director",
+    image: "/media/Alh.-Abdulaziz-scaled.jpg",
+    bio: "Distinguished public administrator with decades of federal and state administrative management experience, having served as a Federal Permanent Secretary in several ministries."
   },
   {
     name: "Mr. Adegboyega Fatimileyin",
     role: "Independent Non-Executive Director",
-    bio: "Experienced professional in real estate, corporate strategy, and asset optimization. He brings deep commercial insights, corporate restructuring experience, and financial advisory acumen to the board."
+    designation: "Independent Non-Executive Director",
+    image: "/media/Mr-Ghoyega-Fatimileyin.jpeg",
+    bio: "Experienced professional in real estate development, corporate investment strategy, and asset optimization. He provides specialized real estate and capital market insights to the board."
   },
   {
     name: "Mr. Francis Oketola",
     role: "Non-Executive Director",
-    bio: "Financial strategist with deep expertise in general insurance investment portfolios, risk mitigation, and corporate governance. He oversees audit and investment compliance."
+    designation: "Non-Executive Director",
+    image: "/media/francis-oketola.jpg",
+    bio: "Financial strategist with deep expertise in general insurance investment portfolios, financial analysis, and corporate risk mitigation frameworks."
   },
   {
     name: "Mr. Mathew Ogwezhi",
     role: "Non-Executive Director",
-    bio: "Senior corporate administrator specialized in operational efficiency and value creation across portfolios. He brings extensive expertise in managing multi-asset investments and compliance frameworks."
+    designation: "Non-Executive Director",
+    image: "",
+    bio: "Senior corporate administrator specialized in operational efficiency and value creation across portfolios, bringing extensive expertise in managing multi-asset investments and compliance."
   }
 ];
 
@@ -60,75 +79,108 @@ export default function OurBoardPage() {
   };
 
   return (
-    <div className="our-board-page-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
+    <div className="our-board-page" style={{ minHeight: '100vh', paddingBottom: '96px' }}>
       
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>GOVERNANCE</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            Board of Directors
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            CEIIL is steered by a board of seasoned professionals with deep expertise in insurance, governance, policy advocacy, and public administration.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        bgImage="/media/ceiil-wall-paper4-scaled.jpg"
+        kicker="GOVERNANCE"
+        title="Board of Directors"
+        subtitle="CEIIL is steered by a board of seasoned professionals with deep expertise in insurance, governance, policy advocacy, and public administration."
+      />
 
-      {/* Grid of Directors */}
-      <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '32px' }}>
-          {boardOfDirectors.map((director) => (
-            <div 
-              key={director.name} 
-              className="glass-panel info-card" 
-              style={{ 
-                padding: '30px', 
-                background: '#fff', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'space-between',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onClick={() => openBioModal(director.name, director.bio)}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-panel)';
-              }}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.25rem', color: 'var(--brand-teal-strong)', margin: '0 0 8px', fontWeight: 700, fontFamily: '"Century Gothic", sans-serif' }}>
-                  {director.name}
-                </h3>
-                <p style={{ color: 'var(--brand-crimson)', fontSize: '0.9rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 16px' }}>
-                  {director.role}
-                </p>
-                <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: '1.6', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  {director.bio}
-                </p>
-              </div>
-              <button 
-                type="button" 
+      {/* Editorial Profile Grid */}
+      <section className="section-block">
+        <div className="section-shell">
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+              gap: '40px' 
+            }}
+          >
+            {boardOfDirectors.map((director, index) => (
+              <div 
+                key={director.name}
+                className="glass-panel info-card card-flip"
                 style={{ 
-                  background: 'none', 
-                  border: 'none', 
-                  color: 'var(--brand-teal)', 
-                  padding: '8px 0 0', 
-                  fontWeight: 600, 
-                  fontSize: '0.9rem', 
-                  textAlign: 'left',
-                  cursor: 'pointer' 
+                  padding: '24px',
+                  background: '#fff',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  cursor: 'pointer',
                 }}
+                onClick={() => openBioModal(director.name, director.bio)}
               >
-                Read Full Bio &rarr;
-              </button>
-            </div>
-          ))}
+                {/* Director Portrait */}
+                <div 
+                  className="card-flip-img"
+                  style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    height: '320px', 
+                    borderRadius: 'var(--radius-card)', 
+                    overflow: 'hidden',
+                    marginBottom: '20px',
+                    backgroundColor: 'var(--surface-strong)',
+                    border: '1px solid var(--line)'
+                  }}
+                >
+                  {director.image ? (
+                    <Image
+                      src={director.image}
+                      alt={director.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                    />
+                  ) : (
+                    <AvatarPlaceholder name={director.name} />
+                  )}
+                </div>
+
+                {/* Director Details */}
+                <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <h3 
+                      style={{ 
+                        fontSize: '1.25rem', 
+                        color: 'var(--brand-teal-strong)', 
+                        margin: '0 0 4px', 
+                        fontFamily: '"Century Gothic", sans-serif',
+                        fontWeight: 700 
+                      }}
+                    >
+                      {director.name}
+                    </h3>
+                    <p 
+                      style={{ 
+                        color: 'var(--brand-crimson)', 
+                        fontSize: '0.85rem', 
+                        fontWeight: 600, 
+                        textTransform: 'uppercase', 
+                        letterSpacing: '1px', 
+                        margin: '0 0 12px' 
+                      }}
+                    >
+                      {director.role}
+                    </p>
+                  </div>
+                  <span 
+                    style={{ 
+                      color: 'var(--brand-teal)', 
+                      fontSize: '0.88rem', 
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    Read Profile &rarr;
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -198,6 +250,7 @@ export default function OurBoardPage() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

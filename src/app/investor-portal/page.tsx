@@ -1,21 +1,15 @@
-'use client';
+import PageHero from '@/components/PageHero';
 
 export default function InvestorPortalPage() {
   return (
-    <div className="investor-portal-page-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
-      
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>INVESTOR PORTAL</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            Investor & Shareholder Center
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            Access corporate governance reports, share capital structures, board committees, and direct inquiries for CEIIL investors.
-          </p>
-        </div>
-      </section>
+    <div className="investor-portal-page-wrapper" style={{ minHeight: '100vh', paddingBottom: '80px' }}>
+
+      <PageHero
+        bgImage="/media/ceiil-wallpaper3-scaled.jpg"
+        kicker="INVESTOR PORTAL"
+        title="Investor & Shareholder Center"
+        subtitle="Access corporate governance reports, share capital structures, board committees, and direct inquiries for CEIIL investors."
+      />
 
       {/* Grid of sections */}
       <section className="section-shell">

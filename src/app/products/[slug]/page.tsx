@@ -1,12 +1,13 @@
 'use client';
 
-import Link from 'next/link';
+import PageHero from '@/components/PageHero';
 import { use, useState } from 'react';
 
 const productsDetailData: Record<string, {
   name: string;
   tagline: string;
   overview: string;
+  bgImage: string;
   features: { title: string; desc: string }[];
   subcategories: { title: string; items: string[] }[];
   claimProcess: string[];
@@ -15,6 +16,7 @@ const productsDetailData: Record<string, {
     name: "Motor Insurance",
     tagline: "The small cover that saves big trouble",
     overview: "Our Motor Insurance plans are designed to protect private car owners, commercial transport operators, and corporate fleet managers from physical damages, thefts, fires, and legal liabilities arising from road accidents.",
+    bgImage: "/media/The-small-cover-scaled.jpg",
     features: [
       { title: "Comprehensive Coverage", desc: "Covers damage to your own vehicle due to collisions, fires, and theft, plus third-party liabilities." },
       { title: "Third-Party Cover", desc: "Provides mandatory coverage for third-party bodily injury, death, and property damage as required by law." },
@@ -35,6 +37,7 @@ const productsDetailData: Record<string, {
     name: "Marine Insurance",
     tagline: "Securing your cargo across sea, land, and air",
     overview: "Whether importing machinery, exporting agricultural products, or moving goods locally, our Marine Insurance plans shield you from transport hazards, cargo damage, and logistics disruption.",
+    bgImage: "/media/Marine-scaled.jpg",
     features: [
       { title: "Marine Cargo", desc: "Covers losses or damages to goods in transit by sea, air, or parcel post from origin to destination." },
       { title: "Goods in Transit (GIT)", desc: "Protects cargo during inland transit via road or rail against accidents, fires, and thefts." },
@@ -55,6 +58,7 @@ const productsDetailData: Record<string, {
     name: "Property Insurance",
     tagline: "Protect the pride you've built",
     overview: "Real estate, manufacturing plants, homes, and inventory represent major capital investments. Our Property Insurance plans guard these assets against unexpected fires, burglary, storms, and environmental perils.",
+    bgImage: "/media/protect-the-pride-you-built-scaled.jpg",
     features: [
       { title: "Fire & Special Perils", desc: "Shields buildings and contents from fire, explosions, lightning, floods, earthquakes, and civil unrest." },
       { title: "Burglary & Housebreaking", desc: "Covers theft of inventory, office equipment, or household valuables accompanied by forcible or violent entry." },
@@ -75,6 +79,7 @@ const productsDetailData: Record<string, {
     name: "Liability Insurance",
     tagline: "Securing operational trust & compliance",
     overview: "Operational exposure and professional services carry risks of litigation, regulatory penalties, and public damage claims. We provide general and specialized liability coverage to protect corporate balance sheets.",
+    bgImage: "/media/professionalIndemnity-scaled.jpg",
     features: [
       { title: "Professional Indemnity", desc: "Covers legal defense costs and damages resulting from professional errors, omissions, or negligence." },
       { title: "Fidelity Guarantee", desc: "Protects employers from financial loss due to dishonest acts, fraud, or embezzlement by employees." },
@@ -95,6 +100,7 @@ const productsDetailData: Record<string, {
     name: "Engineering & Construction",
     tagline: "Mastering project complexity with precision cover",
     overview: "Construction works, engineering contracts, and specialized machinery require robust coverages that match project scope. We provide custom solutions for contractors, builders, and engineers.",
+    bgImage: "/media/industrial-1565855-scaled.jpg",
     features: [
       { title: "Contractor All-Risk (CAR)", desc: "Protects civil engineering projects, contractors, and third-party liabilities during execution." },
       { title: "Erection All Risk (EAR)", desc: "Covers installation of plant, machinery, steel structures, and electrical systems." },
@@ -131,28 +137,12 @@ export default function ProductDetailPage({ params }: PageProps) {
   return (
     <div className="product-detail-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
       
-      {/* Back Button */}
-      <div className="section-shell" style={{ marginBottom: '24px' }}>
-        <Link href="/products" style={{ color: 'var(--brand-crimson)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          &larr; Back to Portfolio
-        </Link>
-      </div>
-
-      {/* Main product presentation */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>PRODUCT DETAILS</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 12px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            {product.name}
-          </h1>
-          <p style={{ fontSize: '1.25rem', color: 'var(--accent-teal)', fontStyle: 'italic', margin: '0 0 24px' }}>
-            &ldquo;{product.tagline}&rdquo;
-          </p>
-          <p style={{ fontSize: '1.15rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            {product.overview}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        bgImage={product.bgImage}
+        kicker="PRODUCT DETAILS"
+        title={product.name}
+        subtitle={`"${product.tagline}" — ${product.overview}`}
+      />
 
       {/* Two Column details: Info on left, Inquiry form on right */}
       <section className="section-shell">

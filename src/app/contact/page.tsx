@@ -1,54 +1,51 @@
 'use client';
 
+import PageHero from '@/components/PageHero';
 import { useState } from 'react';
 
-const branches = [
+const verifiedBranches = [
   {
     name: "Head Office (Lagos)",
     address: "No. 17, Bishop Kale Close, Off Kasumu Ekemode Street, Victoria Island, Eti-Osa, Lagos State.",
     tels: ["07059770508", "020-1330-2950"],
     emails: ["info@ceiil.ng", "customercare@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
+    hours: "Monday – Friday: 8:00 AM – 5:00 PM",
   },
   {
     name: "Abuja Head Office Annex",
     address: "2nd Floor UAC Building, Beside The Securities & Exchange Commission, Central Business District, Abuja.",
     tels: ["08029999671", "08129988016"],
-    emails: ["abuja.annex@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
+    hours: "Monday – Friday: 8:00 AM – 5:00 PM",
   },
   {
     name: "Abuja Branch",
     address: "No. 1, Nouakchott Street, Opposite Keystone Bank PLC, Wuse Zone 1, Abuja.",
-    tels: ["08033140508"],
-    emails: ["abuja@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
+    hours: "Monday – Friday: 8:00 AM – 5:00 PM",
   },
   {
     name: "Ibadan Branch",
     address: "Lynx Royal Classic Plaza, Irepo Street, Opposite Molete Baptist Church, Idi Odo, Challenge, Ibadan, Oyo State.",
-    tels: ["08023450912"],
-    emails: ["ibadan@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
+    hours: "Monday – Friday: 8:00 AM – 5:00 PM",
   },
   {
     name: "Kano Branch",
     address: "2nd Floor, Union Bank Building, 43 Niger Street, Kano.",
-    tels: ["08037871234"],
-    emails: ["kano@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
+    hours: "Monday – Friday: 8:00 AM – 5:00 PM",
   },
-  {
-    name: "Port Harcourt Branch",
-    address: "Phase II, 12 Ikwerre Road, Port Harcourt, Rivers State.",
-    tels: ["08033004561"],
-    emails: ["portharcourt@ceiil.ng"],
-    hours: "Monday - Friday: 8:00 AM - 5:00 PM"
-  }
+];
+
+const faqs = [
+  { q: "How do I file an insurance claim?", a: "Visit the Claims page on our website, fill out the relevant claim form with supporting documentation, and submit online. A claims officer will follow up with next steps." },
+  { q: "What are CEIIL's working hours?", a: "Monday to Friday, 8:00 AM to 5:00 PM (WAT)." },
+  { q: "How can I get a quote?", a: "Fill out the contact form on this page, call us on 07059770508 or 020-1330-2950, or send an email to info@ceiil.ng." },
+  { q: "How do I renew my policy?", a: "Visit our self-service portal, contact customer care, or visit any branch office. Reach out via customercare@ceiil.ng." },
+  { q: "Where is CEIIL located?", a: "Head office at 17, Bishop Kale Close, Victoria Island, Lagos. Branches in Abuja, Ibadan, and Kano." },
+  { q: "Is CEIIL regulated?", a: "Yes. CEIIL is licensed and regulated by the National Insurance Commission (NAICOM)." },
 ];
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,18 +53,29 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="contact-page-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
-      
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>GET IN TOUCH</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            Contact Our Team
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            Have questions about our insurance policies, need help with renewal, or want to speak to an underwriter? We are here to help.
-          </p>
+    <div className="contact-page-wrapper" style={{ minHeight: '100vh', paddingBottom: '80px' }}>
+
+      <PageHero
+        bgImage="/media/ceiil-wallpaper3-scaled.jpg"
+        kicker="GET IN TOUCH"
+        title="Contact Our Team"
+        subtitle="Have questions about our insurance policies, need help with renewal, or want to speak to an underwriter? We are here to help."
+      />
+
+      {/* ── Google Map ── */}
+      <section className="section-block" style={{ paddingBottom: '0' }}>
+        <div className="section-shell">
+          <div style={{ borderRadius: 'var(--radius-panel)', overflow: 'hidden', border: '1px solid var(--line)' }}>
+            <iframe
+              src="https://maps.google.com/maps?q=17+Bishop+Kale+Close+Victoria+Island+Lagos+Nigeria&t=m&z=15&output=embed&iwloc=near"
+              width="100%"
+              height="360"
+              style={{ border: 0, display: 'block' }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="CEIIL Head Office — Victoria Island, Lagos"
+            />
+          </div>
         </div>
       </section>
 
@@ -225,7 +233,7 @@ export default function ContactPage() {
               Our Office Branches
             </h2>
             
-            {branches.map((branch, index) => (
+            {verifiedBranches.map((branch, index) => (
               <div 
                 key={index}
                 className="glass-panel info-card" 
@@ -238,16 +246,20 @@ export default function ContactPage() {
                   {branch.address}
                 </p>
                 <div style={{ fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '6px', color: 'var(--muted)' }}>
-                  <div>
-                    <strong style={{ color: 'var(--brand-crimson)' }}>Tel: </strong> 
-                    {branch.tels.join(', ')}
-                  </div>
-                  <div>
-                    <strong style={{ color: 'var(--brand-teal)' }}>Email: </strong> 
-                    {branch.emails.map(email => (
-                      <a key={email} href={`mailto:${email}`} style={{ textDecoration: 'underline', marginRight: '8px' }}>{email}</a>
-                    ))}
-                  </div>
+                  {branch.tels && branch.tels.length > 0 && (
+                    <div>
+                      <strong style={{ color: 'var(--brand-crimson)' }}>Tel: </strong>
+                      {branch.tels.join(', ')}
+                    </div>
+                  )}
+                  {branch.emails && branch.emails.length > 0 && (
+                    <div>
+                      <strong style={{ color: 'var(--brand-teal)' }}>Email: </strong>
+                      {branch.emails.map((email) => (
+                        <a key={email} href={`mailto:${email}`} style={{ textDecoration: 'underline', marginRight: '8px' }}>{email}</a>
+                      ))}
+                    </div>
+                  )}
                   <div style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '4px' }}>
                     {branch.hours}
                   </div>
@@ -256,6 +268,37 @@ export default function ContactPage() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* ── FAQs ── */}
+      <section className="section-block" style={{ paddingTop: '0' }}>
+        <div className="section-shell">
+          <div className="glass-panel info-card" style={{ padding: '48px', background: '#fff' }}>
+            <h2 style={{ fontSize: '1.5rem', color: 'var(--brand-teal-strong)', margin: '0 0 24px', fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>
+              Frequently Asked Questions
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {faqs.map((faq, i) => (
+                <div key={i} style={{ borderBottom: '1px solid var(--line)' }}>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    style={{
+                      width: '100%', padding: '16px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                      background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
+                      color: 'var(--brand-teal-strong)', fontWeight: 600, fontSize: '0.95rem', fontFamily: '"Century Gothic", sans-serif',
+                    }}
+                  >
+                    {faq.q}
+                    <span style={{ fontSize: '1.3rem', color: 'var(--brand-teal)', transition: 'transform 0.2s', transform: openFaq === i ? 'rotate(45deg)' : 'none' }}>+</span>
+                  </button>
+                  <div style={{ maxHeight: openFaq === i ? '200px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease, padding 0.3s ease', padding: openFaq === i ? '0 0 16px' : '0' }}>
+                    <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

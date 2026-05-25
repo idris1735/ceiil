@@ -1,21 +1,15 @@
-'use client';
+import PageHero from '@/components/PageHero';
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="privacy-policy-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
-      
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>LEGAL & COMPLIANCE</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            Privacy Policy
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            Capital Express Indemnity Insurance Limited is committed to protecting your personal data and complying with the Nigeria Data Protection Regulation (NDPR) and other applicable laws.
-          </p>
-        </div>
-      </section>
+    <div className="privacy-policy-wrapper" style={{ minHeight: '100vh', paddingBottom: '80px' }}>
+
+      <PageHero
+        bgImage="/media/ceiil-wallpaper3-scaled.jpg"
+        kicker="LEGAL & COMPLIANCE"
+        title="Privacy Policy"
+        subtitle="Capital Express Indemnity Insurance Limited is committed to protecting your personal data and complying with the Nigeria Data Protection Regulation (NDPR) and other applicable laws."
+      />
 
       {/* Main Text Content */}
       <section className="section-shell">

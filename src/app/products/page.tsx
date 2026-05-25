@@ -1,188 +1,190 @@
 'use client';
 
-import Link from 'next/link';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import PageHero from '@/components/PageHero';
 
 const productCategories = [
   {
     id: 'motor',
     name: 'Motor Insurance',
-    summary: 'Comprehensive, Third-Party, and specialized vehicle coverage built for private owners and commercial fleets.',
-    desc: 'Protect your vehicles from accidental damage, fire, theft, and third-party liabilities. Our plans feature swift claims settlement and flexible coverage extensions.',
-    subProducts: ['Comprehensive Motor Cover', 'Third-Party Liability Cover', 'Commercial Fleet Protection', 'Third-Party Fire & Theft'],
-    icon: (color: string) => (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="12" rx="2" ry="2" />
-        <circle cx="7" cy="20" r="2" />
-        <circle cx="17" cy="20" r="2" />
-        <path d="M7 16H2" />
-        <path d="M22 16h-5" />
-      </svg>
-    )
+    summary: 'Third-party, fire & theft, and comprehensive cover for private and commercial vehicles.',
+    image: "/media/car-1590508-scaled.jpg",
+    subProducts: ['Third-Party Liability', 'Third-Party Fire & Theft', 'Standard Comprehensive', 'Extended Comprehensive'],
+    featured: true,
   },
   {
     id: 'marine',
     name: 'Marine Insurance',
-    summary: 'End-to-end protection for marine cargo, vessel hulls, and transit logistics across international borders.',
-    desc: 'Mitigate risk across maritime shipping, goods-in-transit, and logistics chains. Our policies safeguard cargo owners, freight forwarders, and vessel operators.',
-    subProducts: ['Marine Cargo Insurance', 'Goods-In-Transit (GIT) All-Risk', 'Marine Hull & Machinery', 'Freight Forwarders Liability'],
-    icon: (color: string) => (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 12h20" />
-        <path d="M12 2v20" />
-        <path d="m17 7-5-5-5 5" />
-      </svg>
-    )
+    summary: 'Cargo, hull, and goods-in-transit protection across sea, air, and land routes.',
+    image: "/media/Marine-scaled.jpg",
+    subProducts: ['Marine Cargo Insurance', 'Marine Hull Insurance', 'Goods-In-Transit (GIT) All-Risk'],
+    featured: true,
   },
   {
     id: 'property',
-    name: 'Property Insurance',
-    summary: 'Shielding physical assets, real estate, and structural investments from fire, burglary, and perils.',
-    desc: 'Ensure operational continuity by protecting commercial properties, warehouses, and homes against fire, lightning, explosions, burglary, and natural disasters.',
-    subProducts: ['Fire and Special Perils Insurance', 'Burglary & Housebreaking Cover', 'Householders & Homeowners Cover', 'Business Interruption Protection'],
-    icon: (color: string) => (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-        <polyline points="9 22 9 12 15 12 15 22" />
-      </svg>
-    )
+    name: 'Fire & Special Perils',
+    summary: 'Protection against fire, lightning, explosions, and associated risks to property.',
+    image: "/media/Fire-SpecialPerils-scaled.jpg",
+    subProducts: ['Fire & Special Perils', 'Burglary & Housebreaking', 'Business Interruption'],
+  },
+  {
+    id: 'engineering',
+    name: 'Engineering Insurance',
+    summary: 'Contractors all-risk, erection all-risk, machinery breakdown, and plant cover.',
+    image: "/media/industrial-1565855-scaled.jpg",
+    subProducts: ['Contractor All-Risk (CAR)', 'Erection All Risk (EAR)', 'Plant All Risk', 'Machinery Breakdown'],
   },
   {
     id: 'liability',
     name: 'Liability Insurance',
-    summary: 'Strategic protection for corporate, professional, and operational legal exposures.',
-    desc: 'Protect your business and officers from professional error suits, public claims, employee fraud, or general commercial liabilities.',
-    subProducts: ['Professional Indemnity Insurance', 'Fidelity Guarantee Insurance', 'Occupiers’ Liability Insurance', 'Directors & Officers Liability'],
-    icon: (color: string) => (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="10" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    )
+    summary: 'Professional indemnity, fidelity guarantee, and occupiers\' liability coverage.',
+    image: "/media/professionalIndemnity-scaled.jpg",
+    subProducts: ['Professional Indemnity', 'Fidelity Guarantee', 'Occupiers\' Liability'],
+    accent: true,
   },
   {
-    id: 'engineering',
-    name: 'Engineering & Construction',
-    summary: 'Comprehensive risk management for construction projects, machinery, and industrial plants.',
-    desc: 'Specialized policies covering contractor risks, civil engineering works, machinery breakdowns, and structural erections.',
-    subProducts: ['Contractor All-Risk (CAR) Insurance', 'Erection All Risk (EAR) Insurance', 'Plant All Risk Insurance', 'Machinery Breakdown Cover'],
-    icon: (color: string) => (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-      </svg>
-    )
-  }
+    id: 'oil-gas',
+    name: 'Oil & Gas Insurance',
+    summary: 'Specialized energy-sector cover for onshore and offshore operations and assets.',
+    image: "/media/night-499986-scaled.jpg",
+    subProducts: ['Onshore Cover', 'Offshore Cover', 'Operational Liability', 'Asset Protection'],
+  },
+  {
+    id: 'travel',
+    name: 'Travel Insurance',
+    summary: 'Air travel and group personal accident cover for domestic and international journeys.',
+    image: "/media/smiley-woman-placing-her-luggage-her-trunk-scaled.jpg",
+    subProducts: ['Air Travel Insurance', 'Group Personal Accident'],
+  },
+  {
+    id: 'general',
+    name: 'General Accident',
+    summary: 'Broad accident protection for individuals and groups against unforeseen events.',
+    image: "/media/insurance-5238829-scaled.jpg",
+    subProducts: ['Group Personal Accident', 'Burglary Insurance', 'Goods-In-Transit (GIT)'],
+  },
 ];
 
 export default function ProductsPage() {
+  const featured = productCategories.filter((p) => p.featured);
+  const rest = productCategories.filter((p) => !p.featured && !p.accent);
+  const accent = productCategories.filter((p) => p.accent);
+
   return (
-    <div className="products-page-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
-      
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>OUR PORTFOLIO</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            General Insurance Plans
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            Explore our comprehensive range of insurance products tailored to protect assets, mitigate operational threats, and safeguard long-term investments.
-          </p>
+    <div className="products-page" style={{ minHeight: '100vh', paddingBottom: '96px' }}>
+
+      <PageHero
+        bgImage="/media/ceiil-wall-paper4-scaled.jpg"
+        kicker="OUR PORTFOLIO"
+        title="General Insurance Plans"
+        subtitle="Comprehensive coverage across motor, marine, property, engineering, liability, oil & gas, travel, and general accident insurance."
+      />
+
+      {/* ── Featured Products: Large 2-up Layout ── */}
+      <section className="section-block" style={{ paddingBottom: '48px' }}>
+        <div className="section-shell">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+            {featured.map((cat) => (
+              <NextLink
+                key={cat.id}
+                href={`/products/${cat.id}`}
+                className="card-tilt"
+                style={{
+                  position: 'relative',
+                  height: '520px',
+                  borderRadius: 'var(--radius-panel)',
+                  overflow: 'hidden',
+                  display: 'block',
+                  textDecoration: 'none',
+                }}
+              >
+                <Image src={cat.image} alt={cat.name} fill className="card-zoom-img"
+                  sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,25,36,0.85) 0%, rgba(0,25,36,0.2) 50%, rgba(0,25,36,0.05) 100%)',
+                }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '48px', color: '#fff' }}>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--accent-teal)', fontWeight: 700 }}>FEATURED</span>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 700, margin: '12px 0 8px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif', lineHeight: 1.2 }}>{cat.name}</h2>
+                  <p style={{ opacity: 0.85, lineHeight: 1.6, fontSize: '0.95rem', maxWidth: '420px' }}>{cat.summary}</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '16px' }}>
+                    {cat.subProducts.slice(0, 3).map((sub) => (
+                      <span key={sub} style={{ fontSize: '0.78rem', padding: '4px 12px', borderRadius: '999px', background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.18)' }}>{sub}</span>
+                    ))}
+                  </div>
+                </div>
+              </NextLink>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Grid of categories */}
-      <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '32px' }}>
-          {productCategories.map((cat, idx) => (
-            <div 
-              key={cat.id} 
-              className="glass-panel info-card" 
-              style={{ 
-                padding: '40px', 
-                background: '#fff',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = 'var(--brand-teal)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--line)';
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-                  <div style={{ 
-                    width: '56px', 
-                    height: '56px', 
-                    borderRadius: '14px', 
-                    background: idx % 2 === 0 ? 'var(--brand-teal-soft)' : 'rgba(176, 32, 56, 0.08)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: idx % 2 === 0 ? 'var(--brand-teal)' : 'var(--brand-crimson)'
-                  }}>
-                    {cat.icon(idx % 2 === 0 ? 'var(--brand-teal)' : 'var(--brand-crimson)')}
-                  </div>
-                  <h2 style={{ fontSize: '1.5rem', color: 'var(--brand-teal-strong)', margin: 0, fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>
-                    {cat.name}
-                  </h2>
+      {/* ── Remaining Products: 3-Column Editorial Grid ── */}
+      <section className="section-block" style={{ paddingTop: '0' }}>
+        <div className="section-shell">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px' }}>
+            {/* Liability — accent dark card */}
+            {accent.map((cat) => (
+              <NextLink key={cat.id} href={`/products/${cat.id}`} className="card-rise"
+                style={{
+                  borderRadius: 'var(--radius-panel)', overflow: 'hidden',
+                  background: 'var(--brand-teal-strong)', color: '#fff',
+                  display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                  padding: '36px', minHeight: '320px', textDecoration: 'none',
+                  border: '1px solid var(--brand-teal)',
+                }}
+              >
+                <div>
+                  <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-teal)', fontWeight: 700 }}>COVERAGE</span>
+                  <h2 style={{ fontSize: '1.5rem', fontWeight: 700, margin: '14px 0 10px', fontFamily: '"Century Gothic", sans-serif' }}>{cat.name}</h2>
+                  <p style={{ opacity: 0.8, lineHeight: 1.6, fontSize: '0.9rem' }}>{cat.summary}</p>
                 </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '20px' }}>
+                  {cat.subProducts.map((sub) => (
+                    <span key={sub} style={{ fontSize: '0.75rem', padding: '4px 12px', borderRadius: '999px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>{sub}</span>
+                  ))}
+                </div>
+              </NextLink>
+            ))}
 
-                <p style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '0.98rem', lineHeight: '1.5', marginBottom: '12px' }}>
-                  {cat.summary}
-                </p>
-                <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '24px' }}>
-                  {cat.desc}
-                </p>
-
-                <div style={{ marginBottom: '32px' }}>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--brand-crimson)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '12px' }}>
-                    Key Coverage Includes:
-                  </span>
-                  <ul style={{ paddingLeft: '20px', margin: 0, color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.8' }}>
-                    {cat.subProducts.map((sub, i) => (
-                      <li key={i}>{sub}</li>
+            {/* Rest — image cards */}
+            {rest.map((cat) => (
+              <NextLink key={cat.id} href={`/products/${cat.id}`} className="glass-panel info-card card-tilt"
+                style={{ padding: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden', textDecoration: 'none' }}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                  <Image src={cat.image} alt={cat.name} fill className="card-zoom-img"
+                    sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,25,36,0.5), transparent 60%)' }} />
+                  <h2 style={{ position: 'absolute', bottom: '16px', left: '24px', fontSize: '1.3rem', color: '#fff', margin: 0, fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>{cat.name}</h2>
+                </div>
+                <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <p style={{ color: 'var(--muted)', fontSize: '0.88rem', lineHeight: 1.6, margin: '0 0 16px' }}>{cat.summary}</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                    {cat.subProducts.slice(0, 3).map((sub) => (
+                      <span key={sub} style={{ fontSize: '0.72rem', padding: '3px 10px', borderRadius: '999px', background: 'var(--brand-teal-soft)', color: 'var(--brand-teal)', fontWeight: 600 }}>{sub}</span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              </div>
+              </NextLink>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div style={{ display: 'flex', gap: '16px', marginTop: 'auto' }}>
-                <Link 
-                  href={`/products/${cat.id}`} 
-                  className="button-primary"
-                  style={{ 
-                    flex: 1, 
-                    textAlign: 'center', 
-                    padding: '12px', 
-                    fontSize: '0.95rem',
-                    background: 'var(--brand-teal-strong)' 
-                  }}
-                >
-                  Learn More
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="button-secondary"
-                  style={{ 
-                    flex: 1, 
-                    textAlign: 'center', 
-                    padding: '12px', 
-                    fontSize: '0.95rem',
-                    border: '1px solid var(--brand-crimson)',
-                    color: 'var(--brand-crimson)'
-                  }}
-                >
-                  Get Quote
-                </Link>
-              </div>
-            </div>
-          ))}
+      {/* ── CTA Banner ── */}
+      <section className="section-block" style={{ paddingTop: '0' }}>
+        <div className="section-shell">
+          <div style={{ background: 'linear-gradient(135deg, var(--brand-teal-strong) 0%, var(--brand-teal) 100%)', borderRadius: 'var(--radius-panel)', padding: '60px 48px', textAlign: 'center', color: '#fff' }}>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '12px', fontFamily: '"Century Gothic", sans-serif' }}>Need a tailored insurance plan?</h2>
+            <p style={{ opacity: 0.85, maxWidth: '520px', margin: '0 auto 28px', lineHeight: 1.7 }}>Our team will help you find the right coverage for your specific needs. Reach out for a personalized consultation.</p>
+            <NextLink href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 32px', borderRadius: '999px', background: '#fff', color: 'var(--brand-teal-strong)', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}>
+              Get a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+            </NextLink>
+          </div>
         </div>
       </section>
     </div>

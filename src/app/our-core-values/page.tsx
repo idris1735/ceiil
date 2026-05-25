@@ -1,96 +1,131 @@
 'use client';
 
-const coreValues = [
+import PageHero from '@/components/PageHero';
+import CoreValueIllustration from '@/components/CoreValueIllustration';
+
+const coreValuesData = [
   {
-    name: 'Customer Dedication',
-    desc: "We put our customers first and remain committed to meeting their needs. We seek to build long-term relationships centered on confidence, clarity, and trust.",
-    num: '01',
-    color: 'var(--brand-teal)'
+    num: "01",
+    name: "Customer Dedication",
+    tagline: "Putting our customers first",
+    desc: "We put our customers first and remain committed to meeting their needs.",
   },
   {
-    name: 'Creativity',
-    desc: "We embrace innovation and practical ideas that improve service delivery. We constantly refine our products and technology edge to remain a modern financial service provider.",
-    num: '02',
-    color: 'var(--brand-crimson)'
+    num: "02",
+    name: "Creativity",
+    tagline: "Innovation that improves service delivery",
+    desc: "We embrace innovation and practical ideas that improve service delivery.",
   },
   {
-    name: 'Respect for Individuals',
-    desc: "We value people, diversity, dignity, and mutual respect. We foster an inclusive environment where our workers and partners feel highly valued and supported.",
-    num: '03',
-    color: 'var(--accent-teal)'
+    num: "03",
+    name: "Respect for Individuals",
+    tagline: "Valuing people, diversity, and dignity",
+    desc: "We value people, diversity, dignity, and mutual respect.",
   },
   {
-    name: 'Teamwork',
-    desc: "We work together to deliver better outcomes for customers and stakeholders. Collaboration is at the core of our business and operational achievements.",
-    num: '04',
-    color: 'var(--accent-gold)'
+    num: "04",
+    name: "Teamwork",
+    tagline: "Better outcomes through collaboration",
+    desc: "We work together to deliver better outcomes for customers and stakeholders.",
   },
   {
-    name: 'Integrity',
-    desc: "We uphold trust, transparency, and accountability in all we do. We conduct our business in alignment with the highest ethical and regulatory standards.",
-    num: '05',
-    color: 'var(--brand-teal-strong)'
+    num: "05",
+    name: "Integrity",
+    tagline: "Trust, transparency, and accountability",
+    desc: "We uphold trust, transparency, and accountability in all we do.",
   }
 ];
 
 export default function CoreValuesPage() {
   return (
-    <div className="core-values-page-wrapper" style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
+    <div className="core-values-page" style={{ minHeight: '100vh', paddingBottom: '96px' }}>
       
-      {/* Page Header */}
-      <section className="section-shell" style={{ marginBottom: '48px' }}>
-        <div className="glass-panel" style={{ padding: '60px 40px', background: 'var(--brand-teal-strong)', color: '#fff', borderRadius: 'var(--radius-panel)' }}>
-          <span className="section-kicker" style={{ color: 'var(--accent-teal)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>WHAT DRIVES US</span>
-          <h1 className="section-title" style={{ color: '#fff', fontSize: '3rem', margin: '16px 0 24px', fontFamily: '"Century Gothic", var(--font-brand), sans-serif' }}>
-            Our Core Values
-          </h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', lineHeight: '1.6', margin: 0 }}>
-            Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        bgImage="/media/ceiil-wallpaper3-scaled.jpg"
+        kicker="OUR GUIDING PRINCIPLES"
+        title="Our Core Values"
+        subtitle="Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder."
+      />
 
-      {/* Values Grid */}
-      <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
-          {coreValues.map((value) => (
-            <div 
-              key={value.name}
-              className="glass-panel info-card"
-              style={{ 
-                padding: '40px', 
-                background: '#fff', 
-                position: 'relative',
-                overflow: 'hidden',
-                borderLeft: `4px solid ${value.color}`,
-                transition: 'transform 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              <div style={{ 
-                position: 'absolute', 
-                top: '-10px', 
-                right: '10px', 
-                fontSize: '6rem', 
-                fontWeight: 900, 
-                color: 'rgba(0,0,0,0.03)',
-                userSelect: 'none' 
-              }}>
-                {value.num}
+      {/* Alternating Editorial Sections */}
+      <section style={{ marginTop: '48px' }}>
+        <div className="section-shell" style={{ display: 'flex', flexDirection: 'column', gap: '96px' }}>
+          {coreValuesData.map((val, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <div 
+                key={val.num}
+                style={{ 
+                  display: 'flex',
+                  flexDirection: isEven ? 'row' : 'row-reverse',
+                  gap: '64px',
+                  alignItems: 'center',
+                  flexWrap: 'wrap'
+                }}
+              >
+                {/* Visual Block — SVG Illustration */}
+                <div style={{ flex: '1 1 420px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '380px',
+                    aspectRatio: '1',
+                    position: 'relative',
+                  }}>
+                    <CoreValueIllustration
+                      name={val.name}
+                      className="card-reveal-img"
+                    />
+                  </div>
+                </div>
+
+                {/* Content Block */}
+                <div style={{ flex: '1 1 420px' }}>
+                  <div style={{ 
+                    fontFamily: '"Century Gothic", sans-serif',
+                    fontSize: '4.5rem', 
+                    fontWeight: 900, 
+                    color: isEven ? 'rgba(0, 64, 88, 0.08)' : 'rgba(176, 32, 56, 0.08)',
+                    lineHeight: '1',
+                    marginBottom: '-12px'
+                  }}>
+                    {val.num}
+                  </div>
+                  <h2 
+                    style={{ 
+                      fontSize: '2.2rem', 
+                      color: 'var(--brand-teal-strong)', 
+                      margin: '0 0 8px', 
+                      fontFamily: '"Century Gothic", sans-serif',
+                      fontWeight: 700 
+                    }}
+                  >
+                    {val.name}
+                  </h2>
+                  <h3 
+                    style={{ 
+                      fontSize: '1.1rem', 
+                      color: 'var(--brand-crimson)', 
+                      margin: '0 0 20px', 
+                      fontWeight: 600,
+                      fontStyle: 'italic'
+                    }}
+                  >
+                    {val.tagline}
+                  </h3>
+                  <p 
+                    style={{ 
+                      color: 'var(--ink)', 
+                      fontSize: '1.05rem', 
+                      lineHeight: '1.7', 
+                      margin: 0 
+                    }}
+                  >
+                    {val.desc}
+                  </p>
+                </div>
               </div>
-              <h2 style={{ fontSize: '1.5rem', color: 'var(--brand-teal-strong)', margin: '0 0 16px', fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>
-                {value.name}
-              </h2>
-              <p style={{ color: 'var(--muted)', fontSize: '0.96rem', lineHeight: '1.6', margin: 0 }}>
-                {value.desc}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

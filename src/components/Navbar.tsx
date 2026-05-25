@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const whoWeAreLinks = [
+  { label: 'About Us', href: '/about-us' },
   { label: 'Our Core Values', href: '/our-core-values' },
   { label: 'Our Board', href: '/our-board' },
   { label: 'Our Management', href: '/our-management' },
@@ -26,9 +28,15 @@ const actionLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isActionOpen, setIsActionOpen] = useState(false);
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
   
   // Mobile accordion expand states
   const [isMobileWhoOpen, setIsMobileWhoOpen] = useState(false);
@@ -71,7 +79,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="nav-links" aria-label="Primary navigation">
           {/* HOME */}
-          <Link href="/" className="nav-link nav-link-crimson">
+          <Link href="/" className={`nav-link ${isActive('/') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
             <HomeIcon />
             <span>HOME</span>
           </Link>
@@ -80,16 +88,16 @@ export default function Navbar() {
 
           {/* WHO WE ARE DROPDOWN */}
           <div className="nav-item-dropdown">
-            <button className="nav-link nav-link-teal">
+            <Link href="/about-us" className={`nav-link ${isActive('/about-us') || isActive('/our-') || isActive('/investor-portal') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
               <WhoWeAreIcon />
               <span>WHO WE ARE</span>
               <DropdownArrow />
-            </button>
+            </Link>
             <div className="nav-dropdown-menu">
               {whoWeAreLinks.map((link) => (
-                <a key={link.href} href={link.href} className="nav-dropdown-item">
+                <Link key={link.href} href={link.href} className="nav-dropdown-item">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -98,16 +106,16 @@ export default function Navbar() {
 
           {/* PRODUCTS DROPDOWN */}
           <div className="nav-item-dropdown">
-            <button className="nav-link nav-link-teal">
+            <Link href="/products" className={`nav-link ${isActive('/products') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
               <ProductsIcon />
               <span>PRODUCTS</span>
               <DropdownArrow />
-            </button>
+            </Link>
             <div className="nav-dropdown-menu">
               {productLinks.map((link) => (
-                <a key={link.href} href={link.href} className="nav-dropdown-item">
+                <Link key={link.href} href={link.href} className="nav-dropdown-item">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -115,7 +123,7 @@ export default function Navbar() {
           <span className="nav-dot">•</span>
 
           {/* NEWS */}
-          <Link href="/news" className="nav-link nav-link-teal">
+          <Link href="/news" className={`nav-link ${isActive('/news') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
             <NewsIcon />
             <span>NEWS</span>
           </Link>
@@ -123,14 +131,15 @@ export default function Navbar() {
           <span className="nav-dot">•</span>
 
           {/* FINANCIALS */}
-          <Link href="/financials" className="nav-link nav-link-teal">
+          <Link href="/financials" className={`nav-link ${isActive('/financials') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
+            <FinancialsIcon />
             <span>FINANCIALS</span>
           </Link>
 
           <span className="nav-dot">•</span>
 
           {/* CONTACT US */}
-          <Link href="/contact" className="nav-link nav-link-teal">
+          <Link href="/contact" className={`nav-link ${isActive('/contact') ? 'nav-link-crimson' : 'nav-link-teal'}`}>
             <ContactIcon />
             <span>CONTACT US</span>
           </Link>
@@ -204,14 +213,14 @@ export default function Navbar() {
             </button>
             <div className={`mobile-accordion-content ${isMobileWhoOpen ? 'mobile-accordion-content-open' : ''}`}>
               {whoWeAreLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="mobile-sublink"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -231,14 +240,14 @@ export default function Navbar() {
             </button>
             <div className={`mobile-accordion-content ${isMobileProductsOpen ? 'mobile-accordion-content-open' : ''}`}>
               {productLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="mobile-sublink"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -262,7 +271,8 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="mobile-link-header">
-              <span className="mobile-no-icon-spacing">FINANCIALS</span>
+              <FinancialsIcon />
+              <span>FINANCIALS</span>
             </div>
           </Link>
 
@@ -328,6 +338,17 @@ function NewsIcon() {
       <circle cx="8" cy="10" r="1" fill="currentColor" stroke="none" />
       <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none" />
       <circle cx="16" cy="10" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FinancialsIcon() {
+  return (
+    <svg className="nav-icon-svg text-teal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="3" />
+      <line x1="8" y1="18" x2="8" y2="10" />
+      <line x1="12" y1="18" x2="12" y2="6" />
+      <line x1="16" y1="18" x2="16" y2="14" />
     </svg>
   );
 }
