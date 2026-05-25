@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const slides = [
@@ -12,8 +13,8 @@ const slides = [
     body: 'Insurance solutions designed to protect your assets, business, family, and future.',
     image: '/media/Marine-scaled.jpg',
     imagePosition: 'center top',
-    primaryCta: { label: 'Get a Quote', href: 'https://ceiil.ng/index.php/contact-us/' },
-    secondaryCta: { label: 'Report a Claim', href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/' },
+    primaryCta: { label: 'Get a Quote', href: '/contact' },
+    secondaryCta: { label: 'Report a Claim', href: '/claims' },
   },
   {
     id: 'family-photo',
@@ -23,8 +24,8 @@ const slides = [
     body: 'Our values guide how we serve our customers, work with one another, and create lasting value for every stakeholder.',
     image: '/media/family-7257182-scaled.jpg',
     imagePosition: 'center top',
-    primaryCta: { label: 'Contact Us', href: 'https://ceiil.ng/index.php/contact-us/' },
-    secondaryCta: { label: 'Explore Products', href: '#products' },
+    primaryCta: { label: 'Contact Us', href: '/contact' },
+    secondaryCta: { label: 'Explore Products', href: '/products' },
   },
   {
     id: 'motor-photo',
@@ -34,8 +35,8 @@ const slides = [
     body: 'Delivering value through efficient technology, professional manpower, and customer-focused service.',
     image: '/media/afroamerican-man-waving-medium-shot-scaled.jpg',
     imagePosition: 'center top',
-    primaryCta: { label: 'Buy a Policy', href: 'https://ceiil.ng/index.php/contact-us/' },
-    secondaryCta: { label: 'Contact Us', href: '#contact' },
+    primaryCta: { label: 'Buy a Policy', href: '/contact' },
+    secondaryCta: { label: 'Contact Us', href: '/contact' },
   },
   {
     id: 'motor-campaign',
@@ -56,12 +57,12 @@ const slides = [
 const quickActions = [
   {
     label: 'Buy a Policy',
-    href: 'https://ceiil.ng/index.php/contact-us/',
+    href: '/contact',
     detail: 'Start a conversation with CEIIL',
   },
   {
     label: 'Make a Claim',
-    href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/',
+    href: '/claims',
     detail: 'Go straight to the claim forms page',
   },
   {
@@ -75,27 +76,27 @@ const products = [
   {
     name: 'Marine Insurance',
     summary: 'Cargo, hull, freight, and transport risk protection across sea, air, and land movements.',
-    href: 'https://ceiil.ng/index.php/marine-insurance/',
+    href: '/products/marine',
   },
   {
     name: 'Motor Insurance',
     summary: 'Third-party, fire and theft, comprehensive, extended comprehensive, and goods in transit cover.',
-    href: 'https://ceiil.ng/index.php/motor-insurance/',
+    href: '/products/motor',
   },
   {
     name: 'Property Insurance',
     summary: 'Fire and special perils, burglary, and protection for buildings, contents, and operating continuity.',
-    href: 'https://ceiil.ng/index.php/property-insurance/',
+    href: '/products/property',
   },
   {
     name: 'Liability Insurance',
     summary: 'Fidelity guarantee and professional indemnity solutions for legal and operational exposure.',
-    href: 'https://ceiil.ng/index.php/liability-insurance/',
+    href: '/products/liability',
   },
   {
     name: 'Engineering Insurance',
     summary: 'Plant all risks, erection all risks, machinery breakdown, and contractor all-risk cover.',
-    href: 'https://ceiil.ng/index.php/engineering-insurance/',
+    href: '/products/engineering',
   },
 ];
 
@@ -360,10 +361,10 @@ export default function HomePage() {
               Explore our comprehensive portfolio of general insurance plans designed to protect your assets, mitigate risks, and safeguard your peace of mind.
             </p>
             <div className="button-row" style={{ marginTop: '32px' }}>
-              <a href="https://ceiil.ng/index.php/contact-us/" className="button-primary">
+              <Link href="/contact" className="button-primary">
                 <span>Talk to an Advisor</span>
                 <ArrowIcon />
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -5,23 +5,23 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const whoWeAreLinks = [
-  { label: 'Our Core Values', href: '#values' },
-  { label: 'Our Board', href: 'https://ceiil.ng/index.php/our-management-team/' },
-  { label: 'Our Management', href: 'https://ceiil.ng/index.php/our-leadership/' },
-  { label: 'Investor Portal', href: 'https://ceiil.ng/index.php/investor-portal/' },
+  { label: 'Our Core Values', href: '/our-core-values' },
+  { label: 'Our Board', href: '/our-board' },
+  { label: 'Our Management', href: '/our-management' },
+  { label: 'Investor Portal', href: '/investor-portal' },
 ];
 
 const productLinks = [
-  { label: 'Motor Insurance', href: 'https://ceiil.ng/index.php/motor-insurance/' },
-  { label: 'Liability Insurance', href: 'https://ceiil.ng/index.php/liability-insurance/' },
-  { label: 'Engineering Insurance', href: 'https://ceiil.ng/index.php/engineering-insurance/' },
-  { label: 'Marine Insurance', href: 'https://ceiil.ng/index.php/marine-insurance/' },
-  { label: 'Property Insurance', href: 'https://ceiil.ng/index.php/property-insurance/' },
+  { label: 'Motor Insurance', href: '/products/motor' },
+  { label: 'Liability Insurance', href: '/products/liability' },
+  { label: 'Engineering Insurance', href: '/products/engineering' },
+  { label: 'Marine Insurance', href: '/products/marine' },
+  { label: 'Property Insurance', href: '/products/property' },
 ];
 
 const actionLinks = [
-  { label: 'Buy a Policy', href: 'https://ceiil.ng/index.php/contact-us/' },
-  { label: 'Make a Claim', href: 'https://ceiil.ng/index.php/motor-insurance-claim-2/' },
+  { label: 'Buy a Policy', href: '/contact' },
+  { label: 'Make a Claim', href: '/claims' },
   { label: 'Renew a Policy', href: 'https://www.ceiil.com.ng/' },
 ];
 
@@ -115,25 +115,25 @@ export default function Navbar() {
           <span className="nav-dot">•</span>
 
           {/* NEWS */}
-          <a href="https://ceiil.ng/index.php/blog/" className="nav-link nav-link-teal">
+          <Link href="/news" className="nav-link nav-link-teal">
             <NewsIcon />
             <span>NEWS</span>
-          </a>
+          </Link>
 
           <span className="nav-dot">•</span>
 
           {/* FINANCIALS */}
-          <a href="https://ceiil.ng/index.php/our-financials/" className="nav-link nav-link-teal">
+          <Link href="/financials" className="nav-link nav-link-teal">
             <span>FINANCIALS</span>
-          </a>
+          </Link>
 
           <span className="nav-dot">•</span>
 
           {/* CONTACT US */}
-          <a href="#contact" className="nav-link nav-link-teal">
+          <Link href="/contact" className="nav-link nav-link-teal">
             <ContactIcon />
             <span>CONTACT US</span>
-          </a>
+          </Link>
 
         </nav>
 
@@ -244,8 +244,8 @@ export default function Navbar() {
           </div>
 
           {/* NEWS */}
-          <a
-            href="https://ceiil.ng/index.php/blog/"
+          <Link
+            href="/news"
             className="mobile-link"
             onClick={() => setIsMenuOpen(false)}
           >
@@ -253,22 +253,22 @@ export default function Navbar() {
               <NewsIcon />
               <span>NEWS</span>
             </div>
-          </a>
+          </Link>
 
           {/* FINANCIALS */}
-          <a
-            href="https://ceiil.ng/index.php/our-financials/"
+          <Link
+            href="/financials"
             className="mobile-link"
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="mobile-link-header">
               <span className="mobile-no-icon-spacing">FINANCIALS</span>
             </div>
-          </a>
+          </Link>
 
           {/* CONTACT US */}
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="mobile-link"
             onClick={() => setIsMenuOpen(false)}
           >
@@ -276,7 +276,7 @@ export default function Navbar() {
               <ContactIcon />
               <span>CONTACT US</span>
             </div>
-          </a>
+          </Link>
 
         </nav>
 

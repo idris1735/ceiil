@@ -2,19 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const quickLinks = [
-  { label: 'About', href: '#about', color: '#38bdf8' },      // Sky blue
-  { label: 'Products', href: '#products', color: '#f59e0b' },  // Amber
-  { label: 'Values', href: '#values', color: '#ec4899' },      // Pink
-  { label: 'Alliances', href: '#alliances', color: '#10b981' },  // Emerald
-  { label: 'Contact', href: '#contact', color: '#a855f7' },    // Purple
+  { label: 'About', href: '/about', color: '#38bdf8' },      // Sky blue
+  { label: 'Products', href: '/products', color: '#f59e0b' },  // Amber
+  { label: 'Values', href: '/about#philosophy', color: '#ec4899' },      // Pink
+  { label: 'Alliances', href: '/#alliances', color: '#10b981' },  // Emerald
+  { label: 'Contact', href: '/contact', color: '#a855f7' },    // Purple
 ];
 
 const productLinks = [
-  { label: 'Marine Insurance', href: 'https://ceiil.ng/index.php/marine-insurance/', color: '#60a5fa' },   // Light blue
-  { label: 'Motor Insurance', href: 'https://ceiil.ng/index.php/motor-insurance/', color: '#f87171' },     // Red
-  { label: 'Property Insurance', href: 'https://ceiil.ng/index.php/property-insurance/', color: '#34d399' }, // Green
-  { label: 'Liability Insurance', href: 'https://ceiil.ng/index.php/liability-insurance/', color: '#c084fc' }, // Light purple
-  { label: 'Engineering Insurance', href: 'https://ceiil.ng/index.php/engineering-insurance/', color: '#fbbf24' }, // Yellow-gold
+  { label: 'Marine Insurance', href: '/products/marine', color: '#60a5fa' },   // Light blue
+  { label: 'Motor Insurance', href: '/products/motor', color: '#f87171' },     // Red
+  { label: 'Property Insurance', href: '/products/property', color: '#34d399' }, // Green
+  { label: 'Liability Insurance', href: '/products/liability', color: '#c084fc' }, // Light purple
+  { label: 'Engineering Insurance', href: '/products/engineering', color: '#fbbf24' }, // Yellow-gold
 ];
 
 function getLinkIcon(label: string, color: string) {
@@ -146,10 +146,10 @@ export default function Footer() {
             <h3>Products</h3>
             <div className="footer-links">
               {productLinks.map((link) => (
-                <a key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <Link key={link.href} href={link.href} className="footer-link" style={{ display: 'inline-flex', alignItems: 'center' }}>
                   {getLinkIcon(link.label, link.color)}
                   <span style={{ marginLeft: '8px' }}>{link.label}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -210,8 +210,8 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom-links">
-            <a href="http://ceiil.ng/index.php/privacy-policy/">Privacy Policy</a>
-            <a href="https://ceiil.ng/index.php/our-financials/">Financials</a>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/financials">Financials</Link>
             <a href="http://ceiil.ng/wp-content/uploads/2025/06/CAPEX-Indemnity-Insurance-Limited-Whistleblow-Policy.pdf" target="_blank" rel="noopener noreferrer">Whistleblowing Policy</a>
             <a href="https://services.ndpc.gov.ng/portal/?page=verify-c&d=ang38719805065&id=21251&sn=1d0606f0a5d90959d3e32ac2d4ce9739&t=audit_filing&tp=nwp_audit" target="_blank" rel="noopener noreferrer">NDPC Compliance</a>
           </div>
