@@ -2936,13 +2936,24 @@ button {
   }
 
   /* ── Navbar ── */
-  .nav-shell { padding: 8px 14px !important; min-height: 64px !important; }
+  .nav-shell {
+    padding: 8px 14px !important;
+    min-height: 64px !important;
+    grid-template-columns: auto 1fr !important;
+  }
   .brand-logo { width: 140px !important; height: auto !important; }
   .nav-links,
   .nav-dot,
   .nav-cta,
   .action-menu { display: none !important; }
-  .menu-toggle { display: inline-flex !important; }
+  .nav-actions {
+    justify-content: flex-end !important;
+    gap: 0 !important;
+  }
+  .menu-toggle {
+    display: inline-flex !important;
+    margin-left: auto !important;
+  }
   .mobile-panel-open { display: block !important; }
 
   /* ── Homepage Hero: immersive full-screen ── */
