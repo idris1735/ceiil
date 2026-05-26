@@ -34,7 +34,7 @@ export default function PageHero({ bgImage, kicker, title, subtitle }: PageHeroP
         backgroundPosition: 'center center',
         backgroundAttachment: 'fixed',
         color: '#fff',
-        padding: '180px 0 100px',
+        padding: '220px 0 100px',
         position: 'relative',
         overflow: 'hidden',
       }}
