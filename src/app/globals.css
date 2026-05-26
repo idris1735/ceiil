@@ -2893,30 +2893,28 @@ button {
 }
 
 /* ============================================
-   RESPONSIVE — iPad / Tablet (≤1024px)
+   RESPONSIVE GRID SYSTEM
+   No attribute selectors — clean classes
    ============================================ */
+
+/* Base grid utilities */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+.grid-auto-sm { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
+.flex-row { display: flex; flex-direction: row; gap: 64px; align-items: center; flex-wrap: wrap; }
+
+/* Responsive breakpoints */
 @media (max-width: 1024px) {
-  /* Products: featured 2-col → stack */
-  .products-page [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
-  .products-page [style*="height: 520px"] {
-    height: 380px !important;
-  }
-  .products-page [style*="grid-template-columns: repeat(3, 1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* About split section */
-  .about-us-page-wrapper [style*="minHeight: 480px"] {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-  }
-
-  /* Board / Management: 3-col → 2-col */
-  [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-auto, .grid-auto-sm { grid-template-columns: 1fr; gap: 24px; }
+  .flex-row { flex-direction: column; gap: 32px; }
+}
+@media (max-width: 480px) {
+  .grid-2, .grid-3, .grid-auto, .grid-auto-sm { gap: 16px; }
+  .flex-row { gap: 24px; }
 }
 
 /* ============================================
@@ -2936,152 +2934,45 @@ button {
   }
 
   /* ── Navbar ── */
-  .nav-shell {
-    padding: 8px 14px !important;
-    min-height: 64px !important;
-    grid-template-columns: auto 1fr !important;
-  }
+  .nav-shell { padding: 8px 14px !important; min-height: 64px !important; grid-template-columns: auto 1fr !important; }
   .brand-logo { width: 140px !important; height: auto !important; }
-  .nav-links,
-  .nav-dot,
-  .nav-cta,
-  .action-menu { display: none !important; }
-  .nav-actions {
-    justify-content: flex-end !important;
-    gap: 0 !important;
-  }
-  .menu-toggle {
-    display: inline-flex !important;
-    margin-left: auto !important;
-  }
+  .nav-links, .nav-dot, .nav-cta, .action-menu { display: none !important; }
+  .nav-actions { justify-content: flex-end !important; gap: 0 !important; }
+  .menu-toggle { display: inline-flex !important; margin-left: auto !important; }
   .mobile-panel-open { display: block !important; }
 
-  /* ── Homepage Hero: immersive full-screen ── */
-  .hero-shell {
-    min-height: 100svh !important;
-    max-height: 100svh !important;
-  }
-  .hero-overlay-content {
-    padding: 0 20px 120px !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-  .hero-text-container {
-    max-width: 100% !important;
-    gap: 8px !important;
-    padding: 24px 16px !important;
-    align-items: center !important;
-  }
-  .hero-title {
-    font-size: clamp(1.5rem, 8vw, 2.4rem) !important;
-    text-align: center !important;
-  }
-  .hero-subtitle {
-    font-size: 0.9rem !important;
-    text-align: center !important;
-    max-width: 320px !important;
-  }
-  .hero-cta-buttons {
-    flex-direction: row !important;
-    gap: 10px !important;
-    justify-content: center !important;
-  }
-  .hero-btn {
-    min-height: 42px !important;
-    font-size: 0.82rem !important;
-    padding: 0 18px !important;
-  }
-  .hero-content-shell {
-    right: 50% !important;
-    transform: translateX(50%) !important;
-    bottom: 16px !important;
-  }
-  .hero-controls {
-    gap: 3px !important;
-    padding: 3px 6px !important;
-  }
-  .hero-arrow-button {
-    width: 24px !important;
-    height: 24px !important;
-  }
+  /* ── Homepage Hero ── */
+  .hero-shell { min-height: 100svh !important; max-height: 100svh !important; }
+  .hero-overlay-content { padding: 0 20px 120px !important; align-items: flex-end !important; justify-content: center !important; text-align: center !important; }
+  .hero-text-container { max-width: 100% !important; gap: 8px !important; padding: 24px 16px !important; align-items: center !important; }
+  .hero-title { font-size: clamp(1.5rem, 8vw, 2.4rem) !important; text-align: center !important; }
+  .hero-subtitle { font-size: 0.9rem !important; text-align: center !important; max-width: 320px !important; }
+  .hero-cta-buttons { flex-direction: row !important; gap: 10px !important; justify-content: center !important; }
+  .hero-btn { min-height: 42px !important; font-size: 0.82rem !important; padding: 0 18px !important; }
+  .hero-content-shell { right: 50% !important; transform: translateX(50%) !important; bottom: 16px !important; }
+  .hero-controls { gap: 3px !important; padding: 3px 6px !important; }
+  .hero-arrow-button { width: 24px !important; height: 24px !important; }
 
-  /* ── Quick Actions: compact row ── */
-  .actions-shell {
-    grid-template-columns: repeat(3, 1fr) !important;
-    margin-top: -20px !important;
-    gap: 0 !important;
-    padding: 0 8px !important;
-  }
-  .action-card {
-    min-height: 72px !important;
-    padding: 0 10px !important;
-    gap: 8px !important;
-  }
-  .action-card .action-text h2 {
-    font-size: 0.82rem !important;
-  }
-  .action-card .action-text p {
-    font-size: 0.68rem !important;
-    display: none !important;
-  }
-  .action-card svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
+  /* ── Quick Actions ── */
+  .actions-shell { grid-template-columns: repeat(3, 1fr) !important; margin-top: -20px !important; gap: 0 !important; padding: 0 8px !important; }
+  .action-card { min-height: 72px !important; padding: 0 10px !important; gap: 8px !important; }
+  .action-card .action-text h2 { font-size: 0.82rem !important; }
+  .action-card .action-text p { font-size: 0.68rem !important; display: none !important; }
+  .action-card svg { width: 20px !important; height: 20px !important; }
 
   /* ── Footer ── */
-  .footer-panel {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 24px !important;
-    padding: 28px !important;
-  }
-  .footer-bottom {
-    flex-direction: column !important;
-    gap: 12px !important;
-    text-align: center !important;
-  }
-  .footer-bottom-links {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 10px !important;
-  }
+  .footer-panel { grid-template-columns: 1fr 1fr !important; gap: 24px !important; padding: 28px !important; }
+  .footer-bottom { flex-direction: column !important; gap: 12px !important; text-align: center !important; }
+  .footer-bottom-links { flex-wrap: wrap !important; justify-content: center !important; gap: 10px !important; }
 
-  /* ── Products Page ── */
-  .products-page [style*="grid-template-columns: 1fr 1fr"],
-  .products-page [style*="grid-template-columns: repeat(3, 1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* ── Board / Management ── */
-  [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* ── Core Values ── */
-  .core-values-page [style*="flex-direction: row"],
-  .core-values-page [style*="flex-direction: row-reverse"] {
-    flex-direction: column !important;
-    gap: 24px !important;
-  }
+  /* ── Products featured cards ── */
+  .products-page [style*="height: 520px"] { height: 380px !important; }
 
   /* ── About split section ── */
-  .about-us-page-wrapper [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-  }
+  .about-us-page-wrapper [style*="minHeight: 480px"] { grid-template-columns: 1fr !important; min-height: auto !important; }
 
-  /* ── Contact ── */
-  .contact-page-wrapper [style*="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr))"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* ── Claims / Investor / Privacy ── */
-  [style*="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))"] {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
+  /* ── Board profile page image ── */
+  [style*="flex: 0 0 280px"] { flex: 0 0 100% !important; height: 300px !important; }
 }
 
 /* ============================================
@@ -3091,51 +2982,22 @@ button {
 
   .section-block { padding: 36px 0; }
   .section-shell { width: calc(100% - 20px); }
+  .page-hero-section { padding: 120px 0 48px !important; }
 
-  .page-hero-section {
-    padding: 120px 0 48px !important;
-  }
-
-  /* Hero even more compact */
   .hero-text-container { padding: 16px 12px !important; }
-  .hero-cta-buttons {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
+  .hero-cta-buttons { flex-direction: column !important; width: 100% !important; }
   .hero-btn { width: 100% !important; }
 
-  /* Quick Actions: compact */
   .actions-shell { grid-template-columns: repeat(3, 1fr) !important; }
-  .action-card {
-    min-height: 60px !important;
-    padding: 0 6px !important;
-    gap: 4px !important;
-  }
+  .action-card { min-height: 60px !important; padding: 0 6px !important; gap: 4px !important; }
   .action-card .action-text h2 { font-size: 0.7rem !important; }
   .action-card svg { width: 16px !important; height: 16px !important; }
 
-  /* Footer fully stacked */
   .footer-panel { grid-template-columns: 1fr !important; }
   .footer-bottom-links { flex-direction: column !important; align-items: center !important; }
 
-  /* Board / Management: single column */
-  [style*="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"] {
-    grid-template-columns: 1fr !important;
-  }
-  [style*="height: 320px"] { height: 280px !important; }
+  .products-page [style*="height: 520px"], .products-page [style*="height: 380px"] { height: 300px !important; }
 
-  /* Products featured cards */
-  .products-page [style*="height: 520px"] { height: 300px !important; }
-  .products-page [style*="height: 380px"] { height: 300px !important; }
-
-  /* Form name fields */
-  form [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Glass panels */
   .glass-panel.info-card { padding: 20px 16px !important; }
-
-  /* CTA banners */
-  [style*="padding: 60px 48px"] { padding: 32px 20px !important; }
+  form [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
 }

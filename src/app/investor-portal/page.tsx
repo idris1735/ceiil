@@ -13,7 +13,7 @@ export default function InvestorPortalPage() {
 
       {/* Grid of sections */}
       <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+        <div className="grid-auto">
           
           {/* Share Capital */}
           <div className="glass-panel info-card" style={{ padding: '40px', background: '#fff' }}>
@@ -23,11 +23,6 @@ export default function InvestorPortalPage() {
             <p style={{ color: 'var(--muted)', fontSize: '0.94rem', lineHeight: '1.6', marginBottom: '20px' }}>
               Capital Express Indemnity Insurance Limited maintains a robust capital base in compliance with the National Insurance Commission (NAICOM) recapitalization directives.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', color: 'var(--ink)' }}>
-              <div><strong>Authorized Share Capital:</strong> ₦5.0 Billion</div>
-              <div><strong>Paid-Up Share Capital:</strong> ₦4.1 Billion</div>
-              <div><strong>Regulatory Solvency Ratio:</strong> Exceeds statutory minimums</div>
-            </div>
           </div>
 
           {/* Corporate Governance */}

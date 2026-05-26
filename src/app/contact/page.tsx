@@ -81,7 +81,7 @@ export default function ContactPage() {
 
       {/* Main layout */}
       <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'start' }}>
+        <div className="grid-auto" style={{ alignItems: 'start' }}>
           
           {/* Left: Contact Form */}
           <div className="glass-panel info-card" style={{ padding: '40px', background: '#fff' }}>

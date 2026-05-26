@@ -55,13 +55,7 @@ export default function CoreValuesPage() {
             return (
               <div 
                 key={val.num}
-                style={{ 
-                  display: 'flex',
-                  flexDirection: isEven ? 'row' : 'row-reverse',
-                  gap: '64px',
-                  alignItems: 'center',
-                  flexWrap: 'wrap'
-                }}
+                className="flex-row"
               >
                 {/* Visual Block — SVG Illustration */}
                 <div style={{ flex: '1 1 420px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

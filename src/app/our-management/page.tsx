@@ -89,13 +89,7 @@ export default function OurManagementPage() {
       {/* Editorial Profile Grid */}
       <section className="section-block">
         <div className="section-shell">
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-              gap: '40px' 
-            }}
-          >
+          <div className="grid-auto-sm">
             {managementTeam.map((member) => (
               <div 
                 key={member.name}

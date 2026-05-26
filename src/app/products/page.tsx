@@ -105,7 +105,7 @@ export default function ProductsPage() {
       {/* ── Featured Products: Large 2-up Layout ── */}
       <section className="section-block" style={{ paddingBottom: '48px' }}>
         <div className="section-shell">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+          <div className="grid-2">
             {featured.map((cat) => (
               <NextLink
                 key={cat.id}
@@ -145,7 +145,7 @@ export default function ProductsPage() {
       {/* ── Remaining Products: 3-Column Editorial Grid ── */}
       <section className="section-block" style={{ paddingTop: '0' }}>
         <div className="section-shell">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px' }}>
+          <div className="grid-3">
             {/* Liability — accent dark card */}
             {accent.map((cat) => (
               <NextLink key={cat.id} href={`/products/${cat.id}`} className="card-rise"

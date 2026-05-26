@@ -24,7 +24,7 @@ export default function ClaimsPage() {
 
       {/* Main Layout */}
       <section className="section-shell">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'start' }}>
+        <div className="grid-auto" style={{ alignItems: 'start' }}>
           
           {/* Claims Guide Info */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -81,7 +81,7 @@ export default function ClaimsPage() {
                 Need instant claims support? Contact our dedicated claims processing unit directly:
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', color: 'var(--ink)', fontSize: '0.95rem' }}>
-                <div><strong>Email:</strong> <a href="mailto:claims@ceiil.ng" style={{ textDecoration: 'underline' }}>claims@ceiil.ng</a></div>
+                <div><strong>Email:</strong> <a href="mailto:info@ceiil.ng" style={{ textDecoration: 'underline' }}>info@ceiil.ng</a></div>
                 <div><strong>Hotline 1:</strong> <a href="tel:07059770508">070-5977-0508</a></div>
                 <div><strong>Hotline 2:</strong> <a href="tel:02013302950">020-1330-2950</a></div>
                 <div><strong>Hours:</strong> Mon - Fri, 8:00 AM to 5:00 PM</div>
