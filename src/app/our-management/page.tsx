@@ -45,7 +45,7 @@ const managementTeam = [
   {
     name: "Victor Ajayi",
     role: "Head ICT",
-    image: "/media/ajayi-victor.jpg",
+    image: "",
     bio: "Victor Ajayi is a visionary technology leader with a robust background in Electrical/Electronics Engineering and over two decades of experience in IT and infrastructure. He holds an MBA in Management Technology from Lagos State University and an HND in Telecoms Electronics from Federal Polytechnic, Ado-Ekiti."
   },
   {

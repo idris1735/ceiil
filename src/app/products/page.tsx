@@ -53,16 +53,37 @@ const productCategories = [
   {
     id: 'travel',
     name: 'Travel Insurance',
-    summary: 'Air travel and group personal accident cover for domestic and international journeys.',
+    summary: 'Air travel and personal accident cover for domestic and international journeys.',
     image: "/media/smiley-woman-placing-her-luggage-her-trunk-scaled.jpg",
     subProducts: ['Air Travel Insurance', 'Group Personal Accident'],
   },
   {
+    id: 'gpa',
+    name: 'Group Personal Accident',
+    summary: 'Comprehensive accident protection for groups, employees, and associations against unforeseen injury or loss.',
+    image: "/media/business-7304257-scaled.jpg",
+    subProducts: ['Group Personal Accident Cover', 'Employee Protection Plans', 'Association & Club Schemes'],
+  },
+  {
+    id: 'swis',
+    name: 'Student Welfare Insurance Scheme (SWIS)',
+    summary: 'Affordable insurance protection tailored for students in primary, secondary, and tertiary institutions.',
+    image: "/media/seedling-8810123-scaled.jpg",
+    subProducts: ['Personal Accident Cover', 'Medical Expenses', 'School Fees Protection'],
+  },
+  {
+    id: 'expressride',
+    name: 'ExpressRide',
+    summary: 'Specialized insurance for ride-hailing, delivery, and commercial transport operators.',
+    image: "/media/front-view-smiley-woman-posing-with-her-car-door-open-scaled.jpg",
+    subProducts: ['Ride-Hailing Cover', 'Delivery Fleet Protection', 'Passenger Liability'],
+  },
+  {
     id: 'general',
     name: 'General Accident',
-    summary: 'Broad accident protection for individuals and groups against unforeseen events.',
+    summary: 'Broad protection covering burglary, goods-in-transit, and general unforeseen events.',
     image: "/media/insurance-5238829-scaled.jpg",
-    subProducts: ['Group Personal Accident', 'Burglary Insurance', 'Goods-In-Transit (GIT)'],
+    subProducts: ['Burglary Insurance', 'Goods-In-Transit (GIT)', 'Fidelity Guarantee'],
   },
 ];
 

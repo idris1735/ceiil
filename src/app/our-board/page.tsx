@@ -11,56 +11,56 @@ const boardOfDirectors = [
     role: "Chairman",
     designation: "Chairman of the Board of Directors",
     image: "/media/Dr.-‘Dere-scaled.jpg",
-    bio: "Dr. Awosika is an alumnus of the National Institute for Policy and Strategic Studies (NIPSS), Kuru, and a distinguished administrator who has served at the highest levels of public service and corporate governance in Nigeria. She is a former Federal Permanent Secretary and sits on the boards of multiple corporate enterprises, steering CEIIL's strategic governance."
+    bio: "Dr. 'Dere Awosika is an accomplished entrepreneur and philanthropist with over three decades of experience in public sector governance. She served as Permanent Secretary in the Federal Ministries of Internal Affairs, Science and Technology, and Power. In April 2013, she was appointed to the Board of Access Bank, where she served as Vice-Chairman of the Board Audit Committee and Chairman of the Board Credit and Finance Committee. She became Chairman of Access Bank in January 2020. Dr. Awosika has also served on the boards of Capital Express Assurance Ltd, Chams Plc, Ned-In Pharmaceutical IV Plant, and Josephine Consulting Limited."
   },
   {
     name: "Mr. Adewale Koko",
     role: "Managing Director / CEO",
     designation: "Managing Director / CEO",
     image: "/media/adewale-koko.jpg",
-    bio: "Mr. Adewale Koko is a highly experienced chartered insurer with more than two (2) decades of extensive expertise in the insurance industry. His proficiency spans business development, strategic planning, risk management, oil and gas, and financial management. Throughout his career, he has held pivotal leadership roles in several renowned Nigerian companies, demonstrating remarkable skill and strategic foresight."
+    bio: "Mr. Adewale Koko is a distinguished Chartered Insurer with over two decades of experience in the insurance industry. His expertise spans business development, strategic planning, oil and gas, risk management, product development, and financial management. Before joining Capital Express Indemnity Insurance Limited, Mr. Koko served as Managing Director of Coronation Life Assurance Limited. He also held the position of Group Head, Oil and Gas, at both Standard Alliance Insurance Plc and Wapic Insurance, now Coronation Insurance, managing relationships with numerous International Oil Companies and marginal field operators in Nigeria."
   },
   {
     name: "Chief Mrs. Olayinka Titilope Aletor mni (JP)",
     role: "Non-Executive Director",
     designation: "Non-Executive Director",
     image: "/media/Chief-Mrs.-OLAYINKA-scaled.jpg",
-    bio: "A seasoned administrator, director, and alumnus of NIPSS with extensive leadership experience in financial services and strategic community development. She brings deep oversight to CEIIL's audit and governance portfolios."
+    bio: "Chief Mrs. Olayinka Titilope Aletor is an accomplished professional with expertise spanning the humanities and legal fields. She holds a Bachelor's degree in History from Olabisi Onabanjo University and later studied Law at the University of Ibadan. She worked with the Council of Legal Education, where she applied her legal expertise to advance legal education in Nigeria. She currently sits on the boards of highly rated organisations across various sectors, including insurance."
   },
   {
     name: "Mr. Segun Ajayi-Kadir (mni)",
     role: "Independent Non-Executive Director",
     designation: "Independent Non-Executive Director",
-    image: "/media/Mr.-Segun--scaled.jpg",
-    bio: "Prominent policy advocate and industrialist, currently serving as the Director General of the Manufacturers Association of Nigeria (MAN). He brings a strong commercial development and public relations perspective to the Board."
+    image: "/media/segun-kadir.JPG",
+    bio: "Mr. Segun Ajayi-Kadir is a seasoned administrator and policy advocate with extensive experience in private sector development and industry advocacy. He began his career at the Lagos Chamber of Commerce and Industry and later worked with the Manufacturers Association of Nigeria. In 2016, he was appointed Director General of MAN. He has served on various Federal Government committees including the Tariff Technical Committee and the Industrial Training Fund."
   },
   {
     name: "Alh. Abdulaziz Abdullahi Mashi",
     role: "Independent Non-Executive Director",
     designation: "Independent Non-Executive Director",
     image: "/media/Alh.-Abdulaziz-scaled.jpg",
-    bio: "Distinguished public administrator with decades of federal and state administrative management experience, having served as a Federal Permanent Secretary in several ministries."
+    bio: "Mr. Abdulaziz M. Abdullahi is a seasoned accountant and financial manager with over 35 years of experience across both private and public sectors. He holds a B.Sc. in Accounting from Bayero University, Kano, and an MBA from the University of Plymouth, UK. He served as Permanent Secretary, Federal Ministry of Communications (2017–2018) and Federal Ministry of Health (2018–2021). He is presently the Founder and CEO of Ehsquare Consulting Ltd."
   },
   {
     name: "Mr. Adegboyega Fatimileyin",
     role: "Independent Non-Executive Director",
     designation: "Independent Non-Executive Director",
     image: "/media/Mr-Ghoyega-Fatimileyin.jpeg",
-    bio: "Experienced professional in real estate development, corporate investment strategy, and asset optimization. He provides specialized real estate and capital market insights to the board."
+    bio: "Mr. Gboyega Fatimilehin is a seasoned real estate professional and a recognised leader in the Nigerian real estate industry. He is the Founding Partner of Diya Fatimilehin & Co., Nigeria's leading estate service and valuation firm. He serves on the boards of several notable organisations and is an active member of the Nigerian Institution of Estate Surveyors and Valuers, the Nigerian Institute of Management, and the Institute of Directors, London."
   },
   {
     name: "Mr. Francis Oketola",
     role: "Non-Executive Director",
     designation: "Non-Executive Director",
     image: "/media/francis-oketola.jpg",
-    bio: "Financial strategist with deep expertise in general insurance investment portfolios, financial analysis, and corporate risk mitigation frameworks."
+    bio: "Mr. Francis A. Oketola has over three decades of experience in finance, performance management, audit, internal control, risk management, and strategy. He began his career at KPMG and later joined EIB International Bank Plc, now Polaris Bank, rising to Senior Manager. Before joining CEIIL, he was Chief Finance Officer at CrystaLife Assurance Plc, now ARM Life Plc. He holds a First-Class Honours degree from the University of Maiduguri."
   },
   {
     name: "Mr. Mathew Ogwezhi",
     role: "Non-Executive Director",
     designation: "Non-Executive Director",
     image: "",
-    bio: "Senior corporate administrator specialized in operational efficiency and value creation across portfolios, bringing extensive expertise in managing multi-asset investments and compliance."
+    bio: "Mr. Mathew Ogwezhi is a seasoned insurance professional with over 20 years' experience. His expertise spans strategic partnership management, deal structuring, contract negotiations, channel development, marketing, and leadership. His journey at Capital Express Assurance began in 2003. He holds an MBA in Marketing from Lagos State University and qualified as a Chartered Insurer in 2009."
   }
 ];
 

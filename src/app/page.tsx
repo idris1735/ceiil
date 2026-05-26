@@ -160,36 +160,36 @@ const coreValuesData = [
     icon: HeartShieldIcon,
   },
   {
-    name: 'Respect for Individuals',
-    desc: "We value people, diversity, dignity, and mutual respect.",
-    num: '02',
-    color: 'linear-gradient(135deg, #b02038 0%, #e91e63 100%)',
-    ribbonText: 'RESPECT / EQUITY / DIGNITY / INCLUSION / ',
-    icon: RespectIcon,
-  },
-  {
-    name: 'Integrity',
-    desc: "We uphold trust, transparency, and accountability in all we do.",
-    num: '03',
-    color: 'linear-gradient(135deg, #003247 0%, #ffb300 100%)',
-    ribbonText: 'INTEGRITY / TRUTH / HONESTY / ETHICS / ',
-    icon: ShieldCheckIcon,
-  },
-  {
     name: 'Creativity',
     desc: "We embrace innovation and practical ideas that improve service delivery.",
-    num: '04',
+    num: '02',
     color: 'linear-gradient(135deg, #3b0764 0%, #a855f7 100%)',
     ribbonText: 'CREATIVITY / IDEA / VISION / FUTURE / ',
     icon: CreativityIcon,
   },
   {
+    name: 'Respect for Individuals',
+    desc: "We value people, diversity, dignity, and mutual respect.",
+    num: '03',
+    color: 'linear-gradient(135deg, #b02038 0%, #e91e63 100%)',
+    ribbonText: 'RESPECT / EQUITY / DIGNITY / INCLUSION / ',
+    icon: RespectIcon,
+  },
+  {
     name: 'Teamwork',
     desc: "We work together to deliver better outcomes for customers and stakeholders.",
-    num: '05',
+    num: '04',
     color: 'linear-gradient(135deg, #064e3b 0%, #10b981 100%)',
     ribbonText: 'TEAMWORK / UNITY / SYNERGY / COLLABORATE / ',
     icon: TeamworkIcon,
+  },
+  {
+    name: 'Integrity',
+    desc: "We uphold trust, transparency, and accountability in all we do.",
+    num: '05',
+    color: 'linear-gradient(135deg, #003247 0%, #ffb300 100%)',
+    ribbonText: 'INTEGRITY / TRUTH / HONESTY / ETHICS / ',
+    icon: ShieldCheckIcon,
   },
 ];
 
@@ -588,7 +588,7 @@ export default function HomePage() {
                   <h3>Vision</h3>
                 </div>
               </div>
-              <p>To be a leading world-class financial services and risk protection provider.</p>
+              <p>To be a world class Financial Service Provider.</p>
             </article>
 
             <article
@@ -607,7 +607,7 @@ export default function HomePage() {
                   <h3>Mission</h3>
                 </div>
               </div>
-              <p>To deliver innovative wealth management and risk protection solutions through efficient technology, exceptional people, and customer-focused service, while creating sustainable value for all stakeholders.</p>
+              <p>To be in every household where we are licensed to operate, providing wealth management and risk protection services, using the most efficient technology and manpower, thereby creating value to all stakeholders.</p>
             </article>
 
             <article
