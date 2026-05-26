@@ -31,7 +31,7 @@ export default function PageHero({ bgImage, kicker, title, subtitle }: PageHeroP
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 37, 52, 0.72), rgba(0, 25, 36, 0.82)), url("${bgImage}")`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'center 80px',
         backgroundAttachment: 'fixed',
         color: '#fff',
         padding: '220px 0 100px',

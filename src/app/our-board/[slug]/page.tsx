@@ -25,7 +25,7 @@ const boardProfiles: Record<string, {
   'segun-ajayi-kadir': {
     name: "Mr. Segun Ajayi-Kadir, mni",
     role: "Independent Non-Executive Director",
-    image: "/media/segun-kadir.JPG",
+    image: "/media/segun-kadir.jpg",
     fullBio: "Mr. Segun Ajayi-Kadir is a seasoned administrator and policy advocate with extensive experience in private sector development and industry advocacy in Nigeria.\n\nHe began his career at the Lagos Chamber of Commerce and Industry, where he served as Executive Secretary, and later worked with the Ikeja Branch of the Manufacturers Association of Nigeria. He subsequently served as Director of the Association's Liaison Office in the Federal Capital Territory, Abuja, and as Director of the Field Services Department. In 2016, he was appointed Director General of the Manufacturers Association of Nigeria.\n\nHe has served on various Federal Government committees, councils, and boards, including the Tariff Technical Committee, National Focal Point on Trade Matters, and the Industrial Training Fund. His professional development includes training programmes with the United Nations Industrial Development Organization, the Center for International Private Enterprise in Washington, DC, and the Lagos Business School at Pan-Atlantic University.",
   },
   'abdulaziz-mashi': {

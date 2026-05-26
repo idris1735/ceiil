@@ -9,7 +9,7 @@ const boardOfDirectors = [
   { slug: 'dere-awosika', name: "Dr. 'Dere Awosika (OON, MFR, mni)", role: "Chairman", image: "/media/Chairman.JPG" },
   { slug: 'adewale-koko', name: "Mr. Adewale Koko", role: "Managing Director / CEO", image: "/media/adewale-koko.jpg" },
   { slug: 'olayinka-aletor', name: "Chief Mrs. Olayinka Titilope Aletor mni (JP)", role: "Non-Executive Director", image: "/media/yinka-aletor.JPG" },
-  { slug: 'segun-ajayi-kadir', name: "Mr. Segun Ajayi-Kadir (mni)", role: "Independent Non-Executive Director", image: "/media/segun-kadir.JPG" },
+  { slug: 'segun-ajayi-kadir', name: "Mr. Segun Ajayi-Kadir (mni)", role: "Independent Non-Executive Director", image: "/media/segun-kadir.jpg" },
   { slug: 'abdulaziz-mashi', name: "Alh. Abdulaziz Abdullahi Mashi", role: "Independent Non-Executive Director", image: "/media/Alh.-Abdulaziz-scaled.jpg" },
   { slug: 'gboyega-fatimilehin', name: "Mr. Adegboyega Fatimileyin", role: "Independent Non-Executive Director", image: "/media/Mr-Ghoyega-Fatimileyin.jpeg" },
   { slug: 'francis-oketola', name: "Mr. Francis Oketola", role: "Non-Executive Director", image: "/media/francis-oketola.jpg" },
