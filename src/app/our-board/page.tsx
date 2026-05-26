@@ -10,7 +10,7 @@ const boardOfDirectors = [
     name: "Dr. ‘Dere Awosika (OON, MFR, mni)",
     role: "Chairman",
     designation: "Chairman of the Board of Directors",
-    image: "/media/Dr.-‘Dere-scaled.jpg",
+    image: "/media/Chairman.JPG",
     bio: "Dr. 'Dere Awosika is an accomplished entrepreneur and philanthropist with over three decades of experience in public sector governance. She served as Permanent Secretary in the Federal Ministries of Internal Affairs, Science and Technology, and Power. In April 2013, she was appointed to the Board of Access Bank, where she served as Vice-Chairman of the Board Audit Committee and Chairman of the Board Credit and Finance Committee. She became Chairman of Access Bank in January 2020. Dr. Awosika has also served on the boards of Capital Express Assurance Ltd, Chams Plc, Ned-In Pharmaceutical IV Plant, and Josephine Consulting Limited."
   },
   {
@@ -24,7 +24,7 @@ const boardOfDirectors = [
     name: "Chief Mrs. Olayinka Titilope Aletor mni (JP)",
     role: "Non-Executive Director",
     designation: "Non-Executive Director",
-    image: "/media/Chief-Mrs.-OLAYINKA-scaled.jpg",
+    image: "/media/yinka-aletor.JPG",
     bio: "Chief Mrs. Olayinka Titilope Aletor is an accomplished professional with expertise spanning the humanities and legal fields. She holds a Bachelor's degree in History from Olabisi Onabanjo University and later studied Law at the University of Ibadan. She worked with the Council of Legal Education, where she applied her legal expertise to advance legal education in Nigeria. She currently sits on the boards of highly rated organisations across various sectors, including insurance."
   },
   {
@@ -59,7 +59,7 @@ const boardOfDirectors = [
     name: "Mr. Mathew Ogwezhi",
     role: "Non-Executive Director",
     designation: "Non-Executive Director",
-    image: "",
+    image: "/media/Mr. Matthew Ogwezhi.JPG",
     bio: "Mr. Mathew Ogwezhi is a seasoned insurance professional with over 20 years' experience. His expertise spans strategic partnership management, deal structuring, contract negotiations, channel development, marketing, and leadership. His journey at Capital Express Assurance began in 2003. He holds an MBA in Marketing from Lagos State University and qualified as a Chartered Insurer in 2009."
   }
 ];
