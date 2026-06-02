@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   description:
     "Capital Express Indemnity Insurance Limited delivers motor, marine, property, liability, and engineering insurance solutions from Victoria Island, Lagos.",
   icons: {
-    icon: "/media/ceiil-litt.png",
-    shortcut: "/media/ceiil-litt.png",
-    apple: "/media/ceiil-litt.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     type: "website",
