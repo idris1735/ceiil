@@ -67,7 +67,7 @@ export default function ContactPage() {
         <div className="section-shell">
           <div style={{ borderRadius: 'var(--radius-panel)', overflow: 'hidden', border: '1px solid var(--line)' }}>
             <iframe
-              src="https://maps.google.com/maps?q=17+Bishop+Kale+Close+Victoria+Island+Lagos+Nigeria&t=m&z=15&output=embed&iwloc=near"
+              src="https://www.google.com/maps?q=17+Bishop+Kale+Close,+Victoria+Island,+Lagos,+Nigeria&output=embed"
               width="100%"
               height="360"
               style={{ border: 0, display: 'block' }}
