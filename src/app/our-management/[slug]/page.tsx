@@ -51,14 +51,14 @@ const managementProfiles: Record<string, { name: string; role: string; image: st
   'olayinka-popoola': {
     name: "Olayinka Popoola",
     role: "Group Head, Retail, Branch Operations and Multi-Clients",
-    image: "",
-    fullBio: "Olayinka Popoola is the Head, Branch and Retail/Multi Clients. He has been in the insurance industry for more than two decades.\n\nPrior to joining Capital Express Indemnity Insurance Limited, he was the Head, Retail Business at Capital Express Life Assurance Limited. He pioneered the Retail Agency operation of Standard Life Assurance Company Limited and developed it to over 40 locations across the country as the National Retail Coordinator.",
+    image: "/media/olayinka-popoola.png",
+    fullBio: "Olayinka Popoola is the Head, Branch and Retail/Multi Clients. He has been in the insurance industry for more than two decades.\n\nPrior to joining Capital Express Indemnity Insurance Limited, he was the Head, Retail Business at Capital Express Life Assurance Limited. He pioneered the Retail Agency operation of Standard Life Assurance Company Limited and developed it to over 40 locations across the country as the National Retail Coordinator.\n\nHe joined Standard Alliance Insurance Plc in 2014 because of the merger process as the Divisional Head, Lagos East/Western Region, and later became the Divisional Head, National Retail Business.",
   },
   'steve-akadiri': {
     name: "Dr. Steve Akadiri",
     role: "Group Head, Partnership and Alliances",
-    image: "",
-    fullBio: "Dr. Steve Olufemi Akadiri is a distinguished management professional and thought leader with extensive experience across insurance, pensions, media, and event management.\n\nHe currently serves as Group Head, Partnership and Alliances at Capital Express Indemnity Insurance Limited where he focuses on marketing partnerships, operational efficiency, customer-centric strategies, and performance management.",
+    image: "/media/steve-akadiri.png",
+    fullBio: "Dr. Steve Olufemi Akadiri is a distinguished management professional and thought leader with extensive experience across insurance, pensions, media and event management.\n\nHe currently serves as Group Head, Partnership and Alliances at Capital Express Indemnity Insurance Limited where he focuses on marketing partnerships, operational efficiency, customer centric strategies and performance management.\n\nHe is a Fellow of the Institute of Management Consultants (FIMC) and Doctoral Fellow of the Chartered Institute of Sales and Customer Service Management. He holds a bachelor's degree (BA) from Ekiti State University and a Post Graduate Diploma in Adult Learning from JCI University, Coral Gables, Florida USA.\n\nHe began his career as a broadcaster with FRCN Radio Nigeria and later served as Executive Secretary of JCI Nigeria, demonstrating strong leadership and commitment to youth development. His insurance career started in 2001 with Standard Alliance Insurance Limited where he served in several capacities as Branch Manager and Head Public Sector Marketing.\n\nSteve has held many management roles, earned multiple awards for service and leadership and is widely recognized for his public speaking, strategic leadership and expertise in organizational development, customer service and stakeholder engagement. He is an accomplished seminar leader and life coach and married with children.",
   },
 };
 

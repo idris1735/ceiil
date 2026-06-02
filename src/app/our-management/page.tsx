@@ -13,8 +13,8 @@ const managementTeam = [
   { slug: 'olatubosun-caleb', name: "Olatubosun Caleb", role: "ERM", image: "/media/Mr. Caleb Olatubosun.png" },
   { slug: 'audu-dunni-oladokun', name: "Audu Dunni Oladokun", role: "Head, E-Business", image: "/media/Mr, Oladotun Audu.jpeg" },
   { slug: 'victor-ajayi', name: "Victor Ajayi", role: "Head ICT", image: "/media/Mr. Victor Ajayi.jpeg" },
-  { slug: 'olayinka-popoola', name: "Olayinka Popoola", role: "Group Head, Retail, Branch Operations and Multi-Clients", image: "" },
-  { slug: 'steve-akadiri', name: "Dr. Steve Akadiri", role: "Group Head, Partnership and Alliances", image: "" },
+  { slug: 'olayinka-popoola', name: "Olayinka Popoola", role: "Group Head, Retail, Branch Operations and Multi-Clients", image: "/media/olayinka-popoola.png" },
+  { slug: 'steve-akadiri', name: "Dr. Steve Akadiri", role: "Group Head, Partnership and Alliances", image: "/media/steve-akadiri.png" },
 ];
 
 export default function OurManagementPage() {
