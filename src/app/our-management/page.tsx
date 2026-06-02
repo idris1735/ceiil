@@ -7,12 +7,12 @@ import PageHero from '@/components/PageHero';
 
 const managementTeam = [
   { slug: 'adewale-koko', name: "Mr. Adewale Koko", role: "Managing Director / CEO", image: "/media/adewale-koko.jpg" },
-  { slug: 'uruemuesiri-oghen', name: "Uruemuesiri Oghen", role: "Company Secretary / Compliance", image: "/media/UREMUESIRI-OGHEN.jpeg" },
-  { slug: 'arusiuka-adetutu', name: "Mrs. Arusiuka Adetutu", role: "General Manager, Business Development", image: "" },
-  { slug: 'adeyinka-oyekunle', name: "Adeyinka Oyekunle", role: "Chief Technical Officer", image: "/media/ADEYINKA-OYEKUNLE.jpg" },
-  { slug: 'olatubosun-caleb', name: "Olatubosun Caleb", role: "ERM", image: "/media/caleb-scaled.jpg" },
-  { slug: 'audu-dunni-oladokun', name: "Audu Dunni Oladokun", role: "Head, E-Business", image: "" },
-  { slug: 'victor-ajayi', name: "Victor Ajayi", role: "Head ICT", image: "" },
+  { slug: 'uruemuesiri-oghen', name: "Uruemuesiri Oghen", role: "Company Secretary / Compliance", image: "/media/Mrs. Uruemuesiri Oghen.JPG" },
+  { slug: 'arusiuka-adetutu', name: "Mrs. Arusiuka Adetutu", role: "General Manager, Business Development", image: "/media/Mrs. Adetutu Ariusika.jpeg" },
+  { slug: 'adeyinka-oyekunle', name: "Adeyinka Oyekunle", role: "Chief Technical Officer", image: "/media/Mrs. Adeyinka Oyekunle.JPG" },
+  { slug: 'olatubosun-caleb', name: "Olatubosun Caleb", role: "ERM", image: "/media/Mr. Caleb Olatubosun.png" },
+  { slug: 'audu-dunni-oladokun', name: "Audu Dunni Oladokun", role: "Head, E-Business", image: "/media/Mr, Oladotun Audu.jpeg" },
+  { slug: 'victor-ajayi', name: "Victor Ajayi", role: "Head ICT", image: "/media/Mr. Victor Ajayi.jpeg" },
   { slug: 'olayinka-popoola', name: "Olayinka Popoola", role: "Group Head, Retail, Branch Operations and Multi-Clients", image: "" },
   { slug: 'steve-akadiri', name: "Dr. Steve Akadiri", role: "Group Head, Partnership and Alliances", image: "" },
 ];

@@ -25,13 +25,13 @@ const boardProfiles: Record<string, {
   'segun-ajayi-kadir': {
     name: "Mr. Segun Ajayi-Kadir, mni",
     role: "Independent Non-Executive Director",
-    image: "/media/segun-kadir.jpg",
+    image: "/media/dr-segun-kadri.JPG",
     fullBio: "Mr. Segun Ajayi-Kadir is a seasoned administrator and policy advocate with extensive experience in private sector development and industry advocacy in Nigeria.\n\nHe began his career at the Lagos Chamber of Commerce and Industry, where he served as Executive Secretary, and later worked with the Ikeja Branch of the Manufacturers Association of Nigeria. He subsequently served as Director of the Association's Liaison Office in the Federal Capital Territory, Abuja, and as Director of the Field Services Department. In 2016, he was appointed Director General of the Manufacturers Association of Nigeria.\n\nHe has served on various Federal Government committees, councils, and boards, including the Tariff Technical Committee, National Focal Point on Trade Matters, and the Industrial Training Fund. His professional development includes training programmes with the United Nations Industrial Development Organization, the Center for International Private Enterprise in Washington, DC, and the Lagos Business School at Pan-Atlantic University.",
   },
   'abdulaziz-mashi': {
     name: "Alh. Abdulaziz Abdullahi Mashi",
     role: "Independent Non-Executive Director",
-    image: "/media/Alh.-Abdulaziz-scaled.jpg",
+    image: "/media/abdullahi-mashi.JPG",
     fullBio: "Mr. Abdulaziz M. Abdullahi is a seasoned accountant and financial manager with over 35 years of experience across both the private and public sectors.\n\nBorn on 12 August 1961, he holds a B.Sc. in Accounting from Bayero University, Kano, and an MBA in Financial Management from the University of Plymouth, United Kingdom. He became a member of the Association of National Accountants of Nigeria in 2004 and the Nigerian Institute of Management in 2008, and was admitted as a Fellow of the Association of National Accountants of Nigeria in 2016.\n\nHis distinguished public service career includes serving as Director, Internal Audit Department, State House, Abuja (2015–2017); Director, Finance & Accounts, Nigeria Security and Civil Defence Corps (2017); Permanent Secretary, Federal Ministry of Communications (2017–2018); and Permanent Secretary, Federal Ministry of Health (2018–2021).\n\nPresently, he is the Founder and CEO of Ehsquare Consulting Ltd, established in 2021. He is married with children and grandchildren.",
   },
   'gboyega-fatimilehin': {
