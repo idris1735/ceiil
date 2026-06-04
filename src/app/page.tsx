@@ -422,7 +422,7 @@ export default function HomePage() {
                 fill 
                 sizes="(max-width: 768px) 100vw, 50vw" 
                 className="claims-image"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'top right' }}
               />
             </div>
             <div 
