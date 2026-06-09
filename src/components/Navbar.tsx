@@ -15,10 +15,11 @@ const whoWeAreLinks = [
 
 const productLinks = [
   { label: 'Motor Insurance', href: '/products/motor' },
-  { label: 'Liability Insurance', href: '/products/liability' },
-  { label: 'Engineering Insurance', href: '/products/engineering' },
   { label: 'Marine Insurance', href: '/products/marine' },
   { label: 'Property Insurance', href: '/products/property' },
+  { label: 'Liability Insurance', href: '/products/liability' },
+  { label: 'Engineering Insurance', href: '/products/engineering' },
+  { label: 'ExpressRide', href: '/products/expressride' },
 ];
 
 const actionLinks = [

@@ -75,7 +75,7 @@ const productCategories = [
     id: 'expressride',
     name: 'ExpressRide',
     summary: 'Specialized insurance for ride-hailing, delivery, and commercial transport operators.',
-    image: "/media/front-view-smiley-woman-posing-with-her-car-door-open-scaled.jpg",
+    image: "/media/express-ride.jpeg",
     subProducts: ['Ride-Hailing Cover', 'Delivery Fleet Protection', 'Passenger Liability'],
   },
   {

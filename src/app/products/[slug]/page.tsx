@@ -116,6 +116,28 @@ const productsDetailData: Record<string, {
       "Provide estimate of repair or replacement from qualified engineer.",
       "Site visit by engineering loss adjusters to resolve claim."
     ]
+  },
+  expressride: {
+    name: "ExpressRide Insurance",
+    tagline: "Safety in every mile covered by us",
+    overview: "Get covered with our Express Ride and enjoy additional benefits with limited own damage coverage. Designed for ride-hailing and commercial transport operators.",
+    bgImage: "/media/express-ride.jpeg",
+    features: [
+      { title: "CLASSIC Plan — ₦40,000/yr", desc: "Vehicle value ≥ ₦3M. Fire & accidental damage cover up to ₦300,000. Personal effects up to ₦200,000. Third-party property damage up to ₦3M. Unlimited third-party bodily injury/death." },
+      { title: "STANDARD Plan — ₦30,000/yr", desc: "Vehicle value ≥ ₦2M. Fire & accidental damage cover up to ₦200,000. Personal effects up to ₦150,000. Third-party property damage up to ₦3M. Unlimited third-party bodily injury/death." },
+      { title: "ORDINARY Plan — ₦20,000/yr", desc: "Vehicle value ≥ ₦1M. Theft & accidental damage cover up to ₦150,000. Personal effects up to ₦100,000. Third-party property damage up to ₦3M. Unlimited third-party bodily injury/death." }
+    ],
+    subcategories: [
+      { title: "ExpressRide CLASSIC", items: ["Fire & accidental damage (₦300K)", "Personal effects (₦200K)", "Third-party property (₦3M)", "Third-party injury/death (Unlimited)"] },
+      { title: "ExpressRide STANDARD", items: ["Fire & accidental damage (₦200K)", "Personal effects (₦150K)", "Third-party property (₦3M)", "Third-party injury/death (Unlimited)"] },
+      { title: "ExpressRide ORDINARY", items: ["Theft & accidental damage (₦150K)", "Personal effects (₦100K)", "Third-party property (₦3M)", "Third-party injury/death (Unlimited)"] }
+    ],
+    claimProcess: [
+      "Report the incident immediately within 24 hours.",
+      "Submit completed Claim Form and Police Report (where applicable).",
+      "Provide estimate of repairs and photographs of damage.",
+      "CEIIL inspects the vehicle and issues approval/settlement."
+    ]
   }
 };
 
