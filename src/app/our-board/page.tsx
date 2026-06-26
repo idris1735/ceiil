@@ -7,13 +7,13 @@ import PageHero from '@/components/PageHero';
 
 const boardOfDirectors = [
   { slug: 'dere-awosika', name: "Dr. 'Dere Awosika (OON, MFR, mni)", role: "Chairman", image: "/media/Chairman.JPG" },
-  { slug: 'adewale-koko', name: "Mr. Adewale Koko", role: "Managing Director / CEO", image: "/media/adewale-koko.jpg" },
+  { slug: 'adewale-koko', name: "Adewale Koko", role: "Managing Director / CEO", image: "/media/adewale-koko.jpg" },
   { slug: 'olayinka-aletor', name: "Chief Mrs. Olayinka Titilope Aletor mni (JP)", role: "Non-Executive Director", image: "/media/yinka-aletor.JPG" },
-  { slug: 'segun-ajayi-kadir', name: "Mr. Segun Ajayi-Kadir (mni)", role: "Independent Non-Executive Director", image: "/media/dr-segun-kadri.JPG" },
-  { slug: 'abdulaziz-mashi', name: "Alh. Abdulaziz Abdullahi Mashi", role: "Independent Non-Executive Director", image: "/media/abdullahi-mashi.JPG" },
-  { slug: 'gboyega-fatimilehin', name: "Mr. Adegboyega Fatimileyin", role: "Independent Non-Executive Director", image: "/media/Mr-Ghoyega-Fatimileyin.jpeg" },
-  { slug: 'francis-oketola', name: "Mr. Francis Oketola", role: "Non-Executive Director", image: "/media/francis-oketola.jpg" },
-  { slug: 'mathew-ogwezhi', name: "Mr. Mathew Ogwezhi", role: "Non-Executive Director", image: "/media/Mr. Matthew Ogwezhi.JPG" },
+  { slug: 'segun-ajayi-kadir', name: "Segun Ajayi-Kadir (mni)", role: "Independent Non-Executive Director", image: "/media/dr-segun-kadri.JPG" },
+  { slug: 'abdulaziz-mashi', name: "Abdulaziz Abdullahi Mashi", role: "Independent Non-Executive Director", image: "/media/abdullahi-mashi.JPG" },
+  { slug: 'gboyega-fatimilehin', name: "Adegboyega Fatimileyin", role: "Independent Non-Executive Director", image: "/media/Mr-Ghoyega-Fatimileyin.jpeg" },
+  { slug: 'francis-oketola', name: "Francis Oketola", role: "Non-Executive Director", image: "/media/francis-oketola.jpg" },
+  { slug: 'mathew-ogwezhi', name: "Mathew Ogwezhi", role: "Non-Executive Director", image: "/media/Mr. Matthew Ogwezhi.JPG" },
 ];
 
 export default function OurBoardPage() {

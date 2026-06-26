@@ -20,6 +20,7 @@ const productLinks = [
   { label: 'Liability Insurance', href: '/products/liability' },
   { label: 'Engineering Insurance', href: '/products/engineering' },
   { label: 'ExpressRide', href: '/products/expressride' },
+  { label: 'Other Products', href: '/products' },
 ];
 
 const actionLinks = [

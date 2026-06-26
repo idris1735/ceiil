@@ -6,17 +6,6 @@ import { useEffect, useState } from 'react';
 
 const slides = [
   {
-    id: 'marine-photo',
-    theme: 'photo',
-    eyebrow: 'Capital Express Indemnity Insurance',
-    title: 'Protecting What Matters Most',
-    body: 'Insurance solutions designed to protect your assets, business, family, and future.',
-    image: '/media/Marine-scaled.jpg',
-    imagePosition: 'center top',
-    primaryCta: { label: 'Get a Quote', href: '/contact' },
-    secondaryCta: { label: 'Report a Claim', href: '/claims' },
-  },
-  {
     id: 'family-photo',
     theme: 'photo',
     eyebrow: 'Customer-Focused Service',
@@ -26,6 +15,17 @@ const slides = [
     imagePosition: 'center top',
     primaryCta: { label: 'Contact Us', href: '/contact' },
     secondaryCta: { label: 'Explore Products', href: '/products' },
+  },
+  {
+    id: 'marine-photo',
+    theme: 'photo',
+    eyebrow: 'Capital Express Indemnity Insurance',
+    title: 'Protecting What Matters Most',
+    body: 'Insurance solutions designed to protect your assets, business, family, and future.',
+    image: '/media/Marine-scaled.jpg',
+    imagePosition: 'center top',
+    primaryCta: { label: 'Get a Quote', href: '/contact' },
+    secondaryCta: { label: 'Report a Claim', href: '/claims' },
   },
   {
     id: 'motor-photo',

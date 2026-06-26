@@ -7,7 +7,7 @@ import PageHero from '@/components/PageHero';
 
 const managementProfiles: Record<string, { name: string; role: string; image: string; fullBio: string }> = {
   'adewale-koko': {
-    name: "Mr. Adewale Koko",
+    name: "Adewale Koko",
     role: "Managing Director / CEO",
     image: "/media/adewale-koko.jpg",
     fullBio: "Mr. Adewale Koko is a highly experienced chartered insurer with more than two decades of extensive expertise in the insurance industry. His proficiency spans business development, strategic planning, risk management, oil and gas, and financial management.\n\nThroughout his career, he has held pivotal leadership roles in several renowned Nigerian companies, demonstrating remarkable skill and strategic foresight. Before joining Capital Express Indemnity Insurance Limited, Mr. Koko served as Managing Director of Coronation Life Assurance Limited, where he was instrumental in steering the company toward significant growth and stability.\n\nHe also held the position of Group Head, Oil and Gas, at both Standard Alliance Insurance Plc and Wapic Insurance, now Coronation Insurance, managing relationships with numerous International Oil Companies and marginal field operators in Nigeria. Known for his self-driven approach and consistent ability to meet and exceed targets, Mr. Koko combines a strategic mindset with a deep understanding of the insurance landscape.",
@@ -19,7 +19,7 @@ const managementProfiles: Record<string, { name: string; role: string; image: st
     fullBio: "Uruemuesiri Oghen is a corporate lawyer with over 20 years' experience delivering secretarial, legal, HR management, corporate governance, and compliance services.\n\nShe brings versatile expertise in business and board advisory, secretariat management, and the execution of contractual objectives, consistently aligning outcomes with stakeholder expectations. With more than 10 years in the insurance sector, she has held senior leadership roles of increasing scope and complexity, building a reputation for sound judgment, operational excellence, and steady leadership under pressure.",
   },
   'arusiuka-adetutu': {
-    name: "Mrs. Arusiuka Adetutu",
+    name: "Arusiuka Adetutu",
     role: "General Manager, Business Development",
     image: "/media/Mrs. Adetutu Ariusika.jpeg",
     fullBio: "Adetutu currently holds the position of General Manager Business Development at Capital Express Indemnity Insurance. She is a seasoned insurance executive with over 30 years experience spanning life and non-life underwriting, corporate marketing, agency administration, E-channel & partnership management, bancassurance, and product development.\n\nHer extensive career has equipped her with deep insight into the Nigerian insurance market and the ability to drive sustainable business growth through strategic client relationships and innovative distribution channels.",
@@ -55,7 +55,7 @@ const managementProfiles: Record<string, { name: string; role: string; image: st
     fullBio: "Olayinka Popoola is the Head, Branch and Retail/Multi Clients. He has been in the insurance industry for more than two decades.\n\nPrior to joining Capital Express Indemnity Insurance Limited, he was the Head, Retail Business at Capital Express Life Assurance Limited. He pioneered the Retail Agency operation of Standard Life Assurance Company Limited and developed it to over 40 locations across the country as the National Retail Coordinator.\n\nHe joined Standard Alliance Insurance Plc in 2014 because of the merger process as the Divisional Head, Lagos East/Western Region, and later became the Divisional Head, National Retail Business.",
   },
   'steve-akadiri': {
-    name: "Dr. Steve Akadiri",
+    name: "Steve Akadiri",
     role: "Group Head, Partnership and Alliances",
     image: "/media/steve-akadiri.png",
     fullBio: "Dr. Steve Olufemi Akadiri is a distinguished management professional and thought leader with extensive experience across insurance, pensions, media and event management.\n\nHe currently serves as Group Head, Partnership and Alliances at Capital Express Indemnity Insurance Limited where he focuses on marketing partnerships, operational efficiency, customer centric strategies and performance management.\n\nHe is a Fellow of the Institute of Management Consultants (FIMC) and Doctoral Fellow of the Chartered Institute of Sales and Customer Service Management. He holds a bachelor's degree (BA) from Ekiti State University and a Post Graduate Diploma in Adult Learning from JCI University, Coral Gables, Florida USA.\n\nHe began his career as a broadcaster with FRCN Radio Nigeria and later served as Executive Secretary of JCI Nigeria, demonstrating strong leadership and commitment to youth development. His insurance career started in 2001 with Standard Alliance Insurance Limited where he served in several capacities as Branch Manager and Head Public Sector Marketing.\n\nSteve has held many management roles, earned multiple awards for service and leadership and is widely recognized for his public speaking, strategic leadership and expertise in organizational development, customer service and stakeholder engagement. He is an accomplished seminar leader and life coach and married with children.",
