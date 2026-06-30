@@ -7,14 +7,14 @@ const verifiedBranches = [
   {
     name: "Head Office (Lagos)",
     address: "No. 17, Bishop Kale Close, Off Kasumu Ekemode Street, Victoria Island, Eti-Osa, Lagos State.",
-    tels: ["07059770508", "020-1330-2950"],
+    tels: ["+234 705 977 0508", "+234 201 330 2950"],
     emails: ["info@ceiil.ng", "customercare@ceiil.ng"],
     hours: "Mondays – Fridays: 8:00 AM – 5:00 PM",
   },
   {
     name: "Abuja Head Office Annex",
     address: "2nd Floor UAC Building, Beside The Securities & Exchange Commission, Central Business District, Abuja.",
-    tels: ["08029999671", "08129988016"],
+    tels: ["+234 802 999 9671", "+234 812 998 8016"],
     hours: "Mondays – Fridays: 8:00 AM – 5:00 PM",
   },
   {
@@ -37,7 +37,7 @@ const verifiedBranches = [
 const faqs = [
   { q: "How do I file an insurance claim?", a: "Visit the Claims page on our website, fill out the relevant claim form with supporting documentation, and submit online. A claims officer will follow up with next steps." },
   { q: "What are CEIIL's working hours?", a: "Mondays to Fridays, 8:00 AM to 5:00 PM (WAT)." },
-  { q: "How can I get a quote?", a: "Fill out the contact form on this page, call us on 07059770508 or 020-1330-2950, or send an email to info@ceiil.ng." },
+  { q: "How can I get a quote?", a: "Fill out the contact form on this page, call us on +234 705 977 0508 or +234 201 330 2950, or send an email to info@ceiil.ng." },
   { q: "How do I renew my policy?", a: "Visit our self-service portal, contact customer care, or visit any branch office. Reach out via customercare@ceiil.ng." },
   { q: "Where is CEIIL located?", a: "Head office at 17, Bishop Kale Close, Victoria Island, Lagos. Branches in Abuja, Ibadan, and Kano." },
   { q: "Is CEIIL regulated?", a: "Yes. CEIIL is licensed and regulated by the National Insurance Commission (NAICOM)." },
