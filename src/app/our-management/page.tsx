@@ -15,6 +15,7 @@ const managementTeam = [
   { slug: 'victor-ajayi', name: "Victor Ajayi", role: "Head ICT", image: "/media/Mr. Victor Ajayi.jpeg" },
   { slug: 'olayinka-popoola', name: "Olayinka Popoola", role: "Group Head, Retail, Branch Operations and Multi-Clients", image: "/media/olayinka-popoola.png" },
   { slug: 'steve-akadiri', name: "Steve Akadiri", role: "Group Head, Partnership and Alliances", image: "/media/steve-akadiri.png" },
+  { slug: 'eyitayo-oluwaloyi', name: "Eyitayo Sunday Oluwaloyi", role: "Executive Director, Technical & Operations", image: "" },
 ];
 
 export default function OurManagementPage() {
