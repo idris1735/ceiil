@@ -83,146 +83,79 @@ export default function ContactPage() {
       <section className="section-shell">
         <div className="grid-auto" style={{ alignItems: 'start' }}>
           
-          {/* Left: Contact Form */}
+          {/* Contact Form — Customer Contact Form */}
           <div className="glass-panel info-card" style={{ padding: '40px', background: '#fff' }}>
-            <h2 style={{ fontSize: '1.75rem', color: 'var(--brand-teal-strong)', margin: '0 0 12px', fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>
-              Send Us a Message
-            </h2>
-            <p style={{ color: 'var(--muted)', fontSize: '0.94rem', lineHeight: '1.5', marginBottom: '24px' }}>
-              Fill out the form below, and a member of our customer care team will get back to you within 24 hours.
-            </p>
+            <h2 style={{ fontSize: '1.5rem', color: 'var(--brand-teal-strong)', margin: '0 0 8px', fontFamily: '"Century Gothic", sans-serif', fontWeight: 700 }}>Customer Contact Form</h2>
+            <p style={{ color: 'var(--muted)', fontSize: '0.88rem', lineHeight: 1.5, marginBottom: '28px' }}>Fill out the form and a member of our team will get back to you.</p>
 
             {formSubmitted ? (
-              <div style={{ 
-                padding: '24px', 
-                background: 'var(--brand-teal-soft)', 
-                color: 'var(--brand-teal-strong)', 
-                borderRadius: '12px', 
-                fontWeight: 600,
-                fontSize: '1rem',
-                lineHeight: '1.5',
-                textAlign: 'center'
-              }}>
+              <div style={{ padding: '32px', background: 'var(--brand-teal-soft)', color: 'var(--brand-teal-strong)', borderRadius: '12px', fontWeight: 600, textAlign: 'center' }}>
                 <h3>Message Sent Successfully!</h3>
-                <p style={{ margin: '8px 0 0', fontWeight: 'normal', fontSize: '0.92rem' }}>
-                  Thank you for reaching out to Capital Express Indemnity Insurance. We will respond shortly.
-                </p>
+                <p style={{ margin: '8px 0 0', fontWeight: 400, fontSize: '0.9rem' }}>Thank you for reaching out. We will respond shortly. A confirmation email has been sent to your inbox.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div>
-                    <label htmlFor="first-name" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>First Name</label>
-                    <input 
-                      type="text" 
-                      id="first-name"
-                      required 
-                      style={{ 
-                        width: '100%', 
-                        padding: '12px', 
-                        borderRadius: '8px', 
-                        border: '1px solid var(--line)', 
-                        outline: 'none',
-                        fontSize: '0.95rem'
-                      }} 
-                      placeholder="Jane"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="last-name" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>Last Name</label>
-                    <input 
-                      type="text" 
-                      id="last-name"
-                      required 
-                      style={{ 
-                        width: '100%', 
-                        padding: '12px', 
-                        borderRadius: '8px', 
-                        border: '1px solid var(--line)', 
-                        outline: 'none',
-                        fontSize: '0.95rem'
-                      }} 
-                      placeholder="Doe"
-                    />
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {/* SECTION A: Contact Details */}
+                <div>
+                  <h3 style={{ fontSize: '1rem', color: 'var(--brand-crimson)', marginBottom: '12px', fontWeight: 700 }}>Section A: Contact Details</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <input required style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Full Name / Company Name *" />
+                    <input required style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Address *" />
+                    <input required type="email" style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Email Address *" />
+                    <input required type="tel" style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Phone Number *" />
+                    <div>
+                      <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px', display: 'block' }}>Preferred Contact Method</label>
+                      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                        {['Phone', 'Email', 'WhatsApp', 'SMS'].map(m => (
+                          <label key={m} style={{ fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '6px' }}><input type="checkbox" /> {m}</label>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
+                {/* SECTION B: Enquiry Details */}
                 <div>
-                  <label htmlFor="email" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    required 
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px', 
-                      borderRadius: '8px', 
-                      border: '1px solid var(--line)', 
-                      outline: 'none',
-                      fontSize: '0.95rem'
-                    }} 
-                    placeholder="jane.doe@example.com"
-                  />
+                  <h3 style={{ fontSize: '1rem', color: 'var(--brand-crimson)', marginBottom: '12px', fontWeight: 700 }}>Section B: Enquiry Details</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '4px', display: 'block' }}>Type of Enquiry</label>
+                      <select required style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem', background: '#fff' }}>
+                        <option value="">Select</option>
+                        <option>Motor</option><option>Claim</option><option>Renewal</option><option>Complaint</option><option>General</option><option>Other</option>
+                      </select>
+                    </div>
+                    <input style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Policy / Certificate Number (if applicable)" />
+                    <input style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Vehicle Registration Number (if applicable)" />
+                    <textarea required rows={3} style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem', resize: 'none' }} placeholder="Message / Description of Request *" />
+                    <div>
+                      <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '4px', display: 'block' }}>Urgency Level</label>
+                      <div style={{ display: 'flex', gap: '16px' }}>
+                        {['Low', 'Medium', 'High'].map(u => (
+                          <label key={u} style={{ fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '6px' }}><input type="radio" name="urgency" /> {u}</label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
+                {/* SECTION C: Consent */}
                 <div>
-                  <label htmlFor="subject" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>Subject</label>
-                  <select 
-                    id="subject"
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px', 
-                      borderRadius: '8px', 
-                      border: '1px solid var(--line)', 
-                      outline: 'none',
-                      fontSize: '0.95rem',
-                      background: '#fff'
-                    }}
-                  >
-                    <option value="general">General Inquiries</option>
-                    <option value="quote">Get a Policy Quote</option>
-                    <option value="claim">Claim Report / Status</option>
-                    <option value="partnership">Partnership & Alliances</option>
-                    <option value="feedback">Feedback & Complaints</option>
-                  </select>
+                  <h3 style={{ fontSize: '1rem', color: 'var(--brand-crimson)', marginBottom: '12px', fontWeight: 700 }}>Section C: Consent and Declaration</h3>
+                  <label style={{ fontSize: '0.88rem', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.5 }}>
+                    <input type="checkbox" required style={{ marginTop: '3px' }} />
+                    I consent to being contacted by CEIIL regarding my enquiry and related insurance services.
+                  </label>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '12px' }}>
+                    <input style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} placeholder="Signature / Initials" />
+                    <input type="date" style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid var(--line)', fontSize: '0.92rem' }} />
+                  </div>
                 </div>
 
-                <div>
-                  <label htmlFor="message" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>Your Message</label>
-                  <textarea 
-                    id="message"
-                    required
-                    rows={5}
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px', 
-                      borderRadius: '8px', 
-                      border: '1px solid var(--line)', 
-                      outline: 'none',
-                      fontSize: '0.95rem',
-                      resize: 'none'
-                    }} 
-                    placeholder="How can we assist you today?"
-                  />
-                </div>
-
-                <button 
-                  type="submit" 
-                  className="button-primary"
-                  style={{ 
-                    padding: '14px', 
-                    fontSize: '1rem', 
-                    fontWeight: 'bold', 
-                    background: 'var(--brand-crimson)', 
-                    border: 'none', 
-                    borderRadius: '8px',
-                    color: '#fff',
-                    marginTop: '8px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  Send Message
+                <button type="submit" className="button-primary" style={{ background: 'var(--brand-crimson)', border: 'none', width: '100%', padding: '14px', fontSize: '1rem' }}>
+                  Submit Enquiry
                 </button>
+                <p style={{ color: 'var(--muted)', fontSize: '0.75rem', textAlign: 'center' }}>Emails: customercare@ceiil.ng, Ebusiness@ceiil.ng</p>
               </form>
             )}
           </div>
