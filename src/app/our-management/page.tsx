@@ -7,6 +7,7 @@ import PageHero from '@/components/PageHero';
 
 const managementTeam = [
   { slug: 'adewale-koko', name: "Adewale Koko", role: "Managing Director / CEO", image: "/media/adewale-koko.jpg" },
+  { slug: 'eyitayo-oluwaloyi', name: "Eyitayo Sunday Oluwaloyi", role: "Executive Director, Technical & Operations", image: "/media/ED.png" },
   { slug: 'uruemuesiri-oghen', name: "Uruemuesiri Oghen", role: "Company Secretary / Compliance", image: "/media/Mrs. Uruemuesiri Oghen.JPG" },
   { slug: 'arusiuka-adetutu', name: "Arusiuka Adetutu", role: "General Manager, Business Development", image: "/media/Mrs. Adetutu Ariusika.jpeg" },
   { slug: 'adeyinka-oyekunle', name: "Adeyinka Oyekunle", role: "Chief Technical Officer", image: "/media/Mrs. Adeyinka Oyekunle.JPG" },
@@ -15,7 +16,6 @@ const managementTeam = [
   { slug: 'victor-ajayi', name: "Victor Ajayi", role: "Head ICT", image: "/media/Mr. Victor Ajayi.jpeg" },
   { slug: 'olayinka-popoola', name: "Olayinka Popoola", role: "Group Head, Retail, Branch Operations and Multi-Clients", image: "/media/olayinka-popoola.png" },
   { slug: 'steve-akadiri', name: "Steve Akadiri", role: "Group Head, Partnership and Alliances", image: "/media/steve-akadiri.png" },
-  { slug: 'eyitayo-oluwaloyi', name: "Eyitayo Sunday Oluwaloyi", role: "Executive Director, Technical & Operations", image: "/media/ED.png" },
 ];
 
 export default function OurManagementPage() {
